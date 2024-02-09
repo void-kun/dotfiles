@@ -39,6 +39,21 @@
     :type 'boolean
     :group 'lolo)
 
+(defcustom lolo-whitespace t
+  "Non-nil values enable whitespace"
+  :type 'boolean
+  :group 'lolo)
+
+(defcustom lolo-flyspell t
+  "Flyspell enable"
+  :type 'boolean
+  :group 'lolo)
+
+(defcustom lolo-guru t
+  "Guru"
+  :type 'boolean
+  :group 'lolo)
+
 (defcustom lolo-theme 'monokai-pro
     "The default color theme"
     :type'string

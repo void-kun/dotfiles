@@ -125,7 +125,7 @@
 
 (defun lolo-enable-whitespace ()
     "Enable `whitespace-mode' "
-    (when lolo-cleanup-whitespace
+    (when lolo-whitespace
         (add-hook 'before-save-hook 'lolo-cleanup-maybe nil t)
         (whitespace-mode +1)))
 

@@ -11,7 +11,9 @@
 (require 'lolo-lisp)
 (require 'lolo-emacs-lisp)
 (require 'lolo-c)
+(require 'lolo-go)
+(require 'lolo-rust)
+(require 'lolo-xml)
 
 (provide 'lolo-modules)
 ;;; lolo-modules.el ends here
-

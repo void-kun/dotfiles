@@ -28,7 +28,6 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(require 'nlinum)
 (setq display-line-numbers-type 'relative)
 (setq linum-format "%d ")
 
