@@ -1,0 +1,39 @@
+;;; -*- coding: utf-8; mode: lisp-data -*-
+(("c:/Users/hoang/AppData/Roaming/dotfiles/.emacs.d/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/dotfiles/.emacs.d/.."))
+ ("c:/Users/hoang/AppData/Roaming/dotfiles/.config/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/dotfiles/.config/.."))
+ ("c:/Users/hoang/AppData/Roaming/dotfiles/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/dotfiles/.emacs.d"))
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-mappings.el" . 2552)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-custom.el" . 407)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-editor.el" . 6556)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-core.el" . 2542)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/.emacs.d/core/.."))
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/.emacs.d/modules"))
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-ivy.el"))
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-ui.el" . 785)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-company.el" . 395)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-ivy.el" . 146)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/init.el" . 1752)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-modules.el" . 313)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-packages.el" . 804)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-org.el" . 186)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-c.el" . 138)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-vertico.el" . 2171)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-lsp.el" . 119)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-lisp.el" . 21)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-programming.el" . 1028)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/modules/lolo-emacs-lisp.el" . 1049)
+ ("c:/Users/hoang/AppData/Roaming/.emacs.d/core/lolo-pinned-packages.el" . 1362)
+ ("c:/Users/hoang/AppData/Roaming/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/go"))
+ ("c:/Users/hoang/AppData/Roaming/go/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/go/telemetry"))
+ ("c:/Users/hoang/AppData/Roaming/go/telemetry/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/go/telemetry/local"))
+ ("c:/Users/hoang/AppData/Roaming/go/telemetry/local/"
+  (dired-filename . "c:/Users/hoang/AppData/Roaming/go/telemetry/local/gopls@v0.14.2-go1.22.0-windows-amd64-2024-02-07.v1.count")))
