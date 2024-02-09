@@ -5,6 +5,7 @@
 (require 'lolo-company)
 (require 'lolo-org)
 (require 'lolo-lsp)
+(require 'lolo-ivy)
 
 ;; program language modules
 (require 'lolo-lisp)

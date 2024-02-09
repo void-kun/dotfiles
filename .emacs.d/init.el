@@ -63,7 +63,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(counsel swiper ivy zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number nlinum move-text monokai-pro-theme magit imenu-anywhere hl-todo guru-mode git-timemachine git-modes gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring anzu ag ace-window)))
+   '(elisp-slime-nav rainbow-delimiters lsp-ui lsp-mode company consult orderless vertico counsel swiper ivy zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number nlinum move-text monokai-pro-theme magit imenu-anywhere hl-todo guru-mode git-timemachine git-modes gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring anzu ag ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
