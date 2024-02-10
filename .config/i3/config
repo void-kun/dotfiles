@@ -137,10 +137,10 @@ mode "$mode_system" {
 #####################################################################################################################
 # gap next
 for_window [class="^.*"] border pixel 1
-gaps inner 10
-gaps outer 1
-#smart_gaps on
-#smart_borders on
+gaps inner 5
+gaps outer 2
+smart_gaps on
+smart_borders on
 
 
 #####################################################################################################################
@@ -214,9 +214,6 @@ bindsym $mod+r mode "resize"
 #####################################################################################
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         status_command i3status
-# }
 
 bar {
    	height 25
@@ -240,18 +237,18 @@ bar {
     }
 }
 
-    ##START THEMING WM
+##START THEMING WM  
 
-    # Window color settings
-    # class                 border  backgr. text    indicator
-    client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
-    client.unfocused        #2e3440 #1f222d #888888 #1f222d
-    client.focused_inactive #2e3440 #1f222d #888888 #1f222d
-    client.placeholder      #2e3440 #1f222d #888888 #1f222d
-    client.urgent           #900000 #900000 #ffffff #900000
+# Window color settings
+# class                 border  backgr. text    indicator
+client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
+client.unfocused        #2e3440 #1f222d #888888 #1f222d
+client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+client.placeholder      #2e3440 #1f222d #888888 #1f222d
+client.urgent           #900000 #900000 #ffffff #900000
 
-    client.background       #242424
+client.background       #242424
 
-    ##STOP THEMING WM
+##STOP THEMING WM
 
 exec xset r rate 300 50 &
