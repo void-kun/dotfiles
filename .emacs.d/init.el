@@ -46,6 +46,7 @@
 (require 'lolo-mode)
 (require 'lolo-editor)
 (require 'lolo-mappings)
+(require 'lolo-modules)
 
 ;; Windows specific settings
 (when (eq system-type 'windows-nt)

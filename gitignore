@@ -1,0 +1,5 @@
+.config/yay/*
+.config/systemd/
+
+# emacs elpa
+.emacs.d/elpa/
