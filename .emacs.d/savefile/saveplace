@@ -4,7 +4,6 @@
  ("/home/zrik/apps/dotfiles/" . 331)
  ("/home/zrik/apps/dotfiles/.config/"
   (dired-filename . "/home/zrik/apps/dotfiles/.config/systemd"))
- ("/home/zrik/apps/dotfiles/gitignore" . 61)
  ("/home/zrik/.config/"
   (dired-filename . "/home/zrik/.config/i3status"))
  ("/home/zrik/.config/i3status/"
