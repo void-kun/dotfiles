@@ -13,10 +13,10 @@
 
 ;; config font settings
 (custom-set-faces
- '(default ((t (:family "IosevkaTermSlab NF Medium" :foundry "outline" :slant normal :weight regular :height 120 :width normal)))))
+ '(default ((t (:family "IosevkaLyteTerm Nerd Font" :foundry "outline" :slant normal :weight regular :height 120 :width normal)))))
 
-(set-face-attribute 'line-number nil :family "Terminess Nerd Font" :height 200)
-(set-face-attribute 'line-number-current-line nil :family "Terminess Nerd Font" :height 200)
+(set-face-attribute 'line-number nil :family "IosevkaLyteTerm Nerd Font" :height 200)
+(set-face-attribute 'line-number-current-line nil :family "IosevkaLyteTerm Nerd Font" :height 200)
 
 ;; nice scrolling
 (setq scroll-margin 0
