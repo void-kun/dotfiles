@@ -1,9 +1,68 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/zrik/apps/"
-  (dired-filename . "/home/zrik/apps/dotfiles"))
- ("/home/zrik/apps/dotfiles/" . 331)
+(("/home/zrik/.config/alacritty/"
+  (dired-filename . "/home/zrik/.config/alacritty/alacritty.toml"))
+ ("/home/zrik/.config/alacritty/alacritty.toml" . 81)
+ ("/home/zrik/.zshrc" . 149)
+ ("/home/zrik/apps/dotfiles/.config/i3/config" . 2816)
+ ("/home/zrik/.emacs.d/"
+  (dired-filename . "/home/zrik/.emacs.d/modules"))
+ ("/home/zrik/.emacs.d/modules/"
+  (dired-filename . "/home/zrik/.emacs.d/modules/lolo-ivy.el"))
+ ("/home/zrik/apps/dotfiles/.emacs.d/modules/lolo-ivy.el" . 433)
+ ("/home/zrik/func/externals/learngo/01-get-started/"
+  (dired-filename . "/home/zrik/func/externals/learngo/01-get-started/programmers-roadmap.md"))
+ ("/home/zrik/func/externals/learngo/01-get-started/programmers-roadmap.md" . 30)
+ ("/home/zrik/func/externals/learngo/01-get-started/README.md" . 117)
+ ("/home/zrik/func/externals/learngo/"
+  (dired-filename . "/home/zrik/func/externals/learngo/02-write-your-first-program"))
+ ("/home/zrik/func/externals/learngo/02-write-your-first-program/"
+  (dired-filename . "/home/zrik/func/externals/learngo/02-write-your-first-program/annotated-go-program-example.md"))
+ ("/home/zrik/func/externals/learngo/02-write-your-first-program/annotated-go-program-example.md" . 240)
+ ("/home/zrik/go/"
+  (dired-filename . "/home/zrik/go/pkg"))
+ ("/home/zrik/go/pkg/"
+  (dired-filename . "/home/zrik/go/pkg/mod"))
+ ("/home/zrik/go/pkg/mod/"
+  (dired-filename . "/home/zrik/go/pkg/mod/gopkg.in"))
+ ("/home/zrik/go/pkg/mod/gopkg.in/"
+  (dired-filename . "/home/zrik/go/pkg/mod/gopkg.in/ini.v1@v1.67.0"))
+ ("/home/zrik/go/pkg/mod/gopkg.in/ini.v1@v1.67.0/"
+  (dired-filename . "/home/zrik/go/pkg/mod/gopkg.in/ini.v1@v1.67.0/bench_test.go"))
+ ("/home/zrik/go/pkg/mod/gopkg.in/ini.v1@v1.67.0/bench_test.go" . 335)
+ ("/home/zrik/func/void-kun.github.io/"
+  (dired-filename . "/home/zrik/func/void-kun.github.io/practice"))
+ ("/home/zrik/.eclipse/"
+  (dired-filename . "/home/zrik/.eclipse/.."))
+ ("/home/zrik/apps/"
+  (dired-filename . "/home/zrik/apps/.."))
+ ("/home/zrik/"
+  (dired-filename . "/home/zrik/func"))
+ ("/home/zrik/func/"
+  (dired-filename . "/home/zrik/func/void-kun.github.io"))
+ ("/home/zrik/func/luminae/"
+  (dired-filename . "/home/zrik/func/luminae/docker-compose.yml"))
+ ("/home/zrik/func/luminae/docker-compose.yml" . 345)
+ ("/home/zrik/func/luminae/scripts/" . 366)
+ ("/home/zrik/func/luminae/scripts/start.sh" . 99)
+ ("/home/zrik/func/luminae/scripts/stop.sh" . 74)
+ ("/home/zrik/func/luminae/docs/" . 101)
+ ("/home/zrik/func/luminae/docs/README.md" . 983)
+ ("/etc/bluetooth/main.conf" . 11508)
+ ("/etc/bluetooth/" . 86)
+ ("/home/zrik/apps/dotfiles/.config/alacritty/alacritty.toml" . 137)
+ ("/home/zrik/apps/dotfiles/.emacs.d/"
+  (dired-filename . "/home/zrik/apps/dotfiles/.emacs.d/.."))
+ ("/home/zrik/apps/dotfiles/"
+  (dired-filename . "/home/zrik/apps/dotfiles/.config"))
  ("/home/zrik/apps/dotfiles/.config/"
-  (dired-filename . "/home/zrik/apps/dotfiles/.config/systemd"))
+  (dired-filename . "/home/zrik/apps/dotfiles/.config/i3"))
+ ("/home/zrik/apps/dotfiles/.config/i3/"
+  (dired-filename . "/home/zrik/apps/dotfiles/.config/i3/config"))
+ ("/home/zrik/apps/dotfiles/.emacs.d/elpa/"
+  (dired-filename . "/home/zrik/apps/dotfiles/.emacs.d/elpa/rainbow-delimiters-20210515.1254"))
+ ("/etc/"
+  (dired-filename . "/etc/shells"))
+ ("/etc/shells" . 175)
  ("/home/zrik/.config/"
   (dired-filename . "/home/zrik/.config/i3status"))
  ("/home/zrik/.config/i3status/"
@@ -11,7 +70,4 @@
  ("/home/zrik/.config/i3status/config" . 173)
  ("/home/zrik/.config/i3/"
   (dired-filename . "/home/zrik/.config/i3/config"))
- ("/home/zrik/.config/i3/config" . 9330)
- ("/home/zrik/.emacs.d/init.el" . 1522)
- ("/home/zrik/.emacs.d/"
-  (dired-filename . "/home/zrik/.emacs.d/init.el")))
+ ("/home/zrik/.emacs.d/init.el" . 1522))
