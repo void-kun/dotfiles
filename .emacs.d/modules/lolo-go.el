@@ -3,6 +3,7 @@
 (require 'lolo-programming)
 (require 'lolo-lsp)
 
+;;; Code:
 (lolo-require-packages '(go-mode
                          go-projectile
                          lsp-mode

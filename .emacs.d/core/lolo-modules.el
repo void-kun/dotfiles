@@ -1,6 +1,7 @@
 ;;; lolo-modules.el --------------------------------
 
-;; default modules
+;;; Code:
+
 (require 'lolo-vertico)
 (require 'lolo-company)
 (require 'lolo-org)

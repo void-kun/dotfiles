@@ -1,1 +1,0 @@
-("~/apps/dotfiles/" "~/func/self-learn/" "~/go/pkg/mod/gopkg.in/ini.v1@v1.67.0/" "~/func/luminae/" "~/func/externals/learngo/")
