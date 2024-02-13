@@ -1,20 +1,23 @@
-import = []
+import = [
+       "~/.config/alacritty/themes/gruvbox_dark.toml"
+]
+
 
 [shell]
 program = "/usr/bin/zsh"
 
 [window]
-padding = { x = 3, y = 3 }
-dynamic_padding = true
-opacity = 0.9
+padding = { x = 5, y = 5 }
+dynamic_padding = false
+opacity = 1
 
 [font]
 normal = { family = "IosevkaLyteTerm Nerd Font", style = "Regular" }
 bold = { family = "IosevkaLyteTerm Nerd Font", style = "Bold" }
 italic = { family = "IosevkaLyteTerm Nerd Font", style = "Oblique" }
 bold_italic = { family = "IosevkaLyteTerm Nerd Font", style = "Bold Italic" }
-size = 16
+size = 12
 
 [cursor]
-style = { shape = "Beam", blinking = "Always" }
-
+style = { shape = "Block", blinking = "Always" }
+thickness = 0.5
