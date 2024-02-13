@@ -52,7 +52,9 @@
 (require 'lolo-editor)
 (require 'lolo-mappings)
 (require 'lolo-modules)
-(require 'lolo-personal)
+
+;; load personal modules
+(require 'lolo-personal-mappings)
 
 ;; Windows specific settings
 (when (eq system-type 'windows-nt)
