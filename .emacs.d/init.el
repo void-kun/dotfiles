@@ -70,7 +70,28 @@ Otherwise the startup will be very slow."
 (require 'lolo-window)
 (require 'lolo-treemacs)
 
+(require 'lolo-eshell)
+(require 'lolo-shell)
+
+(require 'lolo-markdown)
+(require 'lolo-org)
+(require 'lolo-reader)
+
+(require 'lolo-docker)
 (require 'lolo-utils)
+
+;; Programming
+(require 'lolo-vcs)
+(require 'lolo-flymake)
+(require 'lolo-lsp)
+(require 'lolo-dap)
+
+(require 'lolo-prog)
+(require 'lolo-elisp)
+(require 'lolo-c)
+(require 'lolo-go)
+(require 'lolo-rust)
+(require 'lolo-python)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

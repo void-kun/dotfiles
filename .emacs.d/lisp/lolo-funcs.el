@@ -432,7 +432,7 @@
        :init
        (setq auto-dark-light-theme (alist-get 'light lolo-system-themes)
              auto-dark-dark-theme (alist-get 'dark lolo-system-themes))
-       (when (and sys/macp (not (display-graphic-p)))
+       (when (not (display-graphic-p))
          (setq auto-dark-detection-method 'osascript))
        (auto-dark-mode 1)))
     ('random
