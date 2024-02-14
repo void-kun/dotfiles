@@ -45,32 +45,8 @@
     :type 'boolean)
 
 ;; Emacs Lisp Package Archive (ELPA)
-(defcustom lolo-package-archives-alist
-    (let ((proto (if (gnutls-available-p) "https" "http")))
-        `((melpa    . (("gnu"    . ,(format "%s://elpa.gnu.org/packages/" proto))
-                       ("melpa"  . ,(format "%s://melpa.org/packages/" proto))))))
-    "A list of the package archives."
-    :group 'lolo
-    :type '(alist :key-type (symbol :tag "Archive group name")
-                  :value-type (alist :key-type (string :tag "Archive name")
-                                     :value-type (string :tag "URL or directory name"))))
-
-
-(defcustom lolo-package-archives 'melpa
-    "Set package archives from which to fetch."
-    :group 'lolo
-    :set (lambda (symbol value)
-            (set symbol value)
-            (setq package-archives
-                (or (alist-get value lolo-package-archives-alist)
-                    (error "Unknown package archives: `%s'" value))))
-    :type `(choice ,@(mapcar
-                        (lambda (item)
-                        (let ((name (car item)))
-                            (list 'const
-                                :tag (capitalize (symbol-name name))
-                                name)))
-                        lolo-package-archives-alist)))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
 
 (defcustom lolo-theme-alist
     '((default . monokai-pro))

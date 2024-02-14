@@ -252,51 +252,6 @@
             (and (fboundp 'mixed-pitch-mode) (mixed-pitch-mode -1))
             (text-scale-set 0))))
 
-
-;; Pakcage repository (ELPA)
-(defun set-package-archives (archives &optional refresh async no-save)
-    "Set the package ARCHIVES (ELPA)."
-    (interactive
-        (list (intern (completing-read "Select package archives: "
-                (mapcar #'car lolo-package-archives-alist)))))
-    ;; Set option
-    (lolo-set-variable 'lolo-package-archives archives no-save)
-    ;; Refresh if need
-    (and refresh (package-refresh-contents async))
-    (message "Set package archives to `%s'" archives))
-
-(defalias 'lolo-set-package-archives #'set-package-archives)
-
-(defun lolo-test-package-archives (&optional no-chart)
-    "Test connection speed of all package archives and display on chart."
-    (interactive)
-    (let* ((durations (mapcar
-                        (lambda (pair)
-                        (let ((url (concat (cdr (nth 2 (cdr pair)))
-                                            "archive-contents"))
-                                (start (current-time)))
-                            (message "Fetching %s..." url)
-                            (ignore-errors
-                            (url-copy-file url null-device t))
-                            (float-time (time-subtract (current-time) start))))
-                        lolo-package-archives-alist))
-            (fastest (car (nth (cl-position (apply #'min durations) durations)
-                                lolo-package-archives-alist))))
-
-        ;; Display on chart
-        (when (and (not no-chart)
-                (require 'chart nil t)
-                (require 'url nil t))
-        (chart-bar-quickie
-        'vertical
-        "Speed test for the ELPA mirrors"
-        (mapcar (lambda (p) (symbol-name (car p))) lolo-package-archives-alist)
-        "ELPA"
-        (mapcar (lambda (d) (* 1e3 d)) durations) "ms"))
-        (message "`%s' is the fastest package archive" fastest)
-        ;; Return the fastest
-        fastest))
-
 (defun update-packages ()
     "Refresh package contents and update all packages."
     (interactive)

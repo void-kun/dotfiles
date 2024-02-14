@@ -124,23 +124,7 @@
          "others"
          :toggle (not (or (rassoc (car custom-enabled-themes) lolo-theme-alist)
                           (rassoc (cadr custom-enabled-themes) lolo-theme-alist)))
-         :exit t))
-       "Package Archive"
-       (("p m" (lolo-set-package-archives 'melpa t)
-         "melpa" :toggle (eq lolo-package-archives 'melpa) :exit t)
-        ("p c" (lolo-set-package-archives 'emacs-cn t)
-         "emacs-cn" :toggle (eq lolo-package-archives 'emacs-cn) :exit t)
-        ("p b" (lolo-set-package-archives 'bfsu t)
-         "bfsu" :toggle (eq lolo-package-archives 'bfsu) :exit t)
-        ("p n" (lolo-set-package-archives 'netease t)
-         "netease" :toggle (eq lolo-package-archives 'netease) :exit t)
-        ("p s" (lolo-set-package-archives 'sjtu t)
-         "sjtu" :toggle (eq lolo-package-archives 'sjtu) :exit t)
-        ("p t" (lolo-set-package-archives 'tuna t)
-         "tuna" :toggle (eq lolo-package-archives 'tuna) :exit t)
-        ("p u" (lolo-set-package-archives 'ustc t)
-         "ustc" :toggle (eq lolo-package-archives 'ustc) :exit t)
-        ("p T" (lolo-test-package-archives) "speed test" :exit t))))))
+         :exit t))))))
 
 (provide 'lolo-hydra)
 

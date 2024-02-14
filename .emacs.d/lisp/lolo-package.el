@@ -11,12 +11,6 @@
   (require 'lolo-custom)
   (require 'lolo-funcs))
 
-;; At first startup
-(when (file-exists-p lolo-custom-file)
-  ;; Test and select the fastest package archives
-  (message "Testing connection... Please wait a moment.")
-  (set-package-archives (lolo-test-package-archives 'no-chart)))
-
 ;; Load `lolo-custom-file'
 (and (file-readable-p lolo-custom-file) (load lolo-custom-file))
 
@@ -38,13 +32,9 @@
         (add-hook 'after-init-hook #'my-package--save-selected-packages)))
 (advice-add 'package--save-selected-packages :override #'my-package--save-selected-packages)
 
-;; Set ELPA packages
-(set-package-archives lolo-package-archives nil nil t)
-
 ;; Initialize packages
 (setq package-enable-at-startup nil)          ; To prevent initializing twice
 (package-initialize)
-
 
 ;; More options
 (setq package-install-upgrade-built-in t)
