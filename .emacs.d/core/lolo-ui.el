@@ -14,7 +14,7 @@
 
 ;; config font settings
 (custom-set-faces
- '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 143 :width normal)))))
+ '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))
 
 ;; nice scrolling
 (setq scroll-margin 0
@@ -42,7 +42,6 @@
     '("" invocation-name " Lolo - " (:eval (if (buffer-file-name)
                                         (abbreviate-file-name (buffer-file-name))
                                         "%b"))))
-
 (when lolo-theme
     (load-theme lolo-theme t))
 

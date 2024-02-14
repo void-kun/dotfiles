@@ -91,7 +91,14 @@ ins_left {
 ins_left {
   -- mode component
   function()
-    return '󱓻'
+    local mode_show = {
+      n = '󱓻  NORMAL',
+      i = '󱓻  INSERT',
+      v = '󱓻  VIRTUAL',
+      [''] = '󱓻  VIRTUAL',
+      V = '󱓻  VIRTUAL BLOCK',
+    }
+    return mode_show[vim.fn.mode()]
   end,
   color = function()
     -- auto change color according to neovims mode

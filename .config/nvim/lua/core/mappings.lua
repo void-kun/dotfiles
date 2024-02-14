@@ -73,8 +73,6 @@ keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 keymap("n", "<C-a>", "ggVG", opts)
 -- markdown text open
 keymap("n", "<leader>mp", "<cmd>PeekOpen<CR>", opts)
--- open ranger
-keymap("n", "<leader>t", "<cmd>RnvimrToggle<CR>", opts)
 -- resize windows
 keymap("n", "<C-w>z", "<cmd>WindowsMaximize<CR>")
 keymap("n", "<C-w>_", "<cmd>WindowsMaximizeVertically<CR>")
