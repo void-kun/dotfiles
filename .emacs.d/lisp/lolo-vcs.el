@@ -15,22 +15,16 @@
 (use-package magit
   :init (setq magit-diff-refine-hunk t))
 
-  ;; Unbind M-1, M-2, M-3, and M-4 shortcuts due to conflict with `ace-window'
-  (unbind-key "M-1" magit-mode-map)
-  (unbind-key "M-2" magit-mode-map)
-  (unbind-key "M-3" magit-mode-map)
-  (unbind-key "M-4" magit-mode-map)
-
-  ;; Access Git forges from Magit
-  (use-package forge
-    :demand t
-    :custom-face
-    (forge-topic-label ((t (:inherit variable-pitch :height 0.9 :width condensed :weight regular :underline nil))))
-    :init (setq forge-topic-list-columns
-                '(("#" 5 forge-topic-list-sort-by-number (:right-align t) number nil)
-                  ("Title" 60 t nil title  nil)
-                  ("State" 6 t nil nil state)
-                  ("Updated" 10 t nil updated nil)))))
+;; Access Git forges from Magit
+(use-package forge
+  :demand t
+  :custom-face
+  (forge-topic-label ((t (:inherit variable-pitch :height 0.9 :width condensed :weight regular :underline nil))))
+  :init (setq forge-topic-list-columns
+              '(("#" 5 forge-topic-list-sort-by-number (:right-align t) number nil)
+                ("Title" 60 t nil title  nil)
+                ("State" 6 t nil nil state)
+                ("Updated" 10 t nil updated nil))))
 
 ;; Display transient in child frame
 (when (childframe-completion-workable-p)

@@ -31,6 +31,11 @@
 (setq frame-title-format '("Lolo Emacs - %b")
       icon-title-format frame-title-format)
 
+;; Font
+;; config font settings
+(custom-set-faces
+ '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))
+
 
 ;; Theme
 (if (lolo-compatible-theme-p lolo-theme)
@@ -229,6 +234,8 @@
   :ensure nil
   :hook ((prog-mode yaml-mode conf-mode) . display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t))
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode)
 
 ;; Suppress GUI features
 (setq use-file-dialog nil

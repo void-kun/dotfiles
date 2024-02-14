@@ -10,8 +10,8 @@
 (use-package rustic
   :custom (rustic-lsp-client lolo-lsp))
 
-(use-package ron-mode
-  :mode ("\\.ron" . ron-mode))
+;; (use-package ron-mode
+;;   :mode ("\\.ron" . ron-mode))
 
 (provide 'lolo-rust)
 

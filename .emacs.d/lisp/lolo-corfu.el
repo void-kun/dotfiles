@@ -22,6 +22,7 @@
 
 (unless (display-graphic-p)
   (use-package corfu-terminal
+    :load-path (lolo-vendor-dir "/corfu-terminal.el")
     :hook (global-corfu-mode . corfu-terminal-mode)))
 
 (use-package nerd-icons-corfu

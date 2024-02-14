@@ -48,7 +48,6 @@
 (defcustom lolo-package-archives-alist
     (let ((proto (if (gnutls-available-p) "https" "http")))
         `((melpa    . (("gnu"    . ,(format "%s://elpa.gnu.org/packages/" proto))
-                       ("nongnu" . ,(format "%s://elpa.nongnu.org/nongnu/" proto))
                        ("melpa"  . ,(format "%s://melpa.org/packages/" proto))))))
     "A list of the package archives."
     :group 'lolo

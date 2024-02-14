@@ -73,6 +73,7 @@
 
   (when (childframe-completion-workable-p)
     (use-package which-key-posframe
+      :load-path (lolo-vendor-dir "/which-key-posframe.el")
       :diminish
       :functions posframe-poshandler-frame-center-near-bottom
       :custom-face

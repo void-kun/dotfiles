@@ -8,7 +8,7 @@
 
 
 (eval-when-compile
-  (require 'init-custom))
+  (require 'lolo-custom))
 
 ;; Golang
 (use-package go-mode

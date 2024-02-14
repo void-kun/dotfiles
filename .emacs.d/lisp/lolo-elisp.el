@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+(use-package elisp-refs
+  :ensure nil
+  :load-path (lolo-vendor-dir "/elisp-refs.el"))
 
 ;; Emacs lisp mode
 (use-package elisp-mode
@@ -17,6 +20,7 @@
   :config
   ;; Syntax highlighting of known Elisp symbols
   (use-package highlight-defined
+    :load-path (lolo-vendor-dir "/highlight-defined.el")
     :hook ((emacs-lisp-mode inferior-emacs-lisp-mode) . highlight-defined-mode))
 
   (with-no-warnings
@@ -182,6 +186,7 @@ Lisp function does not specify a special indentation."
 
 ;; Interactive macro expander
 (use-package macrostep
+  :load-path (lolo-vendor-dir "/macrostep.el")
   :bind (:map emacs-lisp-mode-map
               ("C-c e" . macrostep-expand)
               :map lisp-interaction-mode-map
@@ -230,6 +235,7 @@ Lisp function does not specify a special indentation."
 
 ;; Integrate Ert-runner
 (use-package overseer
+  :load-path (lolo-vendor-dir "/overseer.el")
   :diminish
   :hook (emacs-lisp-mode . overseer-mode))
 
