@@ -67,15 +67,8 @@
  (run-at-time 5 nil 'lolo-tip-of-the-day))
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(display-line-numbers-type 'relative)
- '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(yaml-mode elisp-slime-nav rainbow-delimiters lsp-ui lsp-mode company consult orderless vertico counsel swiper ivy zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number nlinum move-text monokai-pro-theme magit imenu-anywhere hl-todo guru-mode git-timemachine git-modes gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring anzu ag ace-window))
+   '(lua-mode yaml-mode elisp-slime-nav rainbow-delimiters lsp-ui lsp-mode company consult orderless vertico counsel swiper ivy zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number nlinum move-text monokai-pro-theme magit imenu-anywhere hl-todo guru-mode git-timemachine git-modes gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring anzu ag ace-window))
  '(size-indication-mode t))
 
 ;;; init.el ends here

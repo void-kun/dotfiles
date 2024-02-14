@@ -14,10 +14,7 @@
 
 ;; config font settings
 (custom-set-faces
- '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))
-
-(set-face-attribute 'line-number nil :family "IosevkaLyteTerm" :height 143)
-(set-face-attribute 'line-number-current-line nil :family "IosevkaLyteTerm" :height 143)
+ '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 143 :width normal)))))
 
 ;; nice scrolling
 (setq scroll-margin 0
