@@ -16,6 +16,7 @@
          ((dashboard-mode eshell-mode shell-mode term-mode vterm-mode) .
           (lambda () (setq-local global-hl-line-mode nil)))))
 
+
 ;; Highlight matching parens
 (use-package paren
   :ensure nil
@@ -69,7 +70,8 @@ FACE defaults to inheriting from default and highlight."
                                (display-line-overlay
                                 (window-start) msg ))))))
             (blink-matching-open))))
-      (advice-add #'show-paren-function :after #'show-paren-off-screen)))
+      (advice-add #'show-paren-function :after #'show-paren-off-screen))))
+
 
 ;; Highlight symbols
 (use-package symbol-overlay
@@ -111,6 +113,7 @@ FACE defaults to inheriting from default and highlight."
         (symbol-overlay-mode 1)))
     (advice-add #'deactivate-mark :after #'turn-on-symbol-overlay)))
 
+
 ;; Highlight indentions
 (use-package highlight-indent-guides
   :diminish
@@ -140,6 +143,7 @@ FACE defaults to inheriting from default and highlight."
                   :after (lambda (&rest _)
                            (when (derived-mode-p 'prog-mode 'yaml-mode)
                              (highlight-indent-guides-mode 1)))))))
+
 
 ;; Colorize color names in buffers
 (use-package rainbow-mode
@@ -171,6 +175,7 @@ FACE defaults to inheriting from default and highlight."
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
 
 ;; Highlight TODO and similar keywords in comments and strings
 (use-package hl-todo
@@ -215,6 +220,7 @@ FACE defaults to inheriting from default and highlight."
     (unless (require 'rg nil t)
       (error "`rg' is not installed"))
     (rg-project (replace-regexp-in-string "\\\\[<>]*" "" (hl-todo--regexp)) "everything")))
+
 
 ;; Highlight uncommitted changes using VC
 (use-package diff-hl
