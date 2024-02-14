@@ -1,74 +1,76 @@
-;;; init.el
 
-;; configuration
-(defvar lolo-user "zrik")
+;;; init.el --- Initialize emacs config.	-*- lexical-binding: t -*-
 
-(message "[LOLO] Lolo is powering up...")
+;; Author: hoangzrik
+;; URL: https://github.com/void-kun/dotfiles
 
-;; define dictionaries structure
-(setq load-prefer-newer t)
-(defvar lolo-dir (file-name-directory load-file-name))
-(defvar lolo-core-dir (expand-file-name "core" lolo-dir))
-(defvar lolo-modules-dir (expand-file-name "modules" lolo-dir))
-(defvar lolo-vendor-dir (expand-file-name "vendor" lolo-dir))
-(defvar lolo-savefile-dir (expand-file-name "savefile" user-emacs-directory))
-(defvar lolo-personal-dir (expand-file-name "personal" lolo-dir))
-;; create savefile folder
+;;; Code:
 
-(unless (file-exists-p lolo-savefile-dir)
-  (make-directory lolo-savefile-dir))
+;; Prevent flashing of unstyled modeline at startup
+(setq-default mode-line-format nil)
+;; Don't pass case-insensitive to `auto-mode-alist'
+(setq auto-mode-case-fold nil)
 
-(unless (file-exists-p lolo-vendor-dir)
-  (make-directory lolo-vendor-dir))
+(unless (or (daemonp) noninteractive init-file-debug)
+  ;; Suppress file handlers operations at startup
+  ;; `file-name-handler-alist' is consulted on each call to `require' and `load'
+  (let ((old-value file-name-handler-alist))
+    (setq file-name-handler-alist nil)
+    (set-default-toplevel-value 'file-name-handler-alist file-name-handler-alist)
+    (add-hook 'emacs-startup-hook
+              (lambda ()
+                "Recover file name handlers."
+                (setq file-name-handler-alist
+                      (delete-dups (append file-name-handler-alist old-value))))
+              101)))
 
-;; function load subdirectory
-(defun lolo-add-subfolders-to-load-path (parent-dir)
-  "Add all level PARENT-DIR subdirs to the `load-path'"
-  (dolist (f (directory-files parent-dir))
-    (let ((name (expand-file-name f parent-dir)))
-      (when (and (file-directory-p name)
-                 (not (string-prefix-p "." f)))
-        (add-to-list 'load-path name)
-        (lolo-add-subfolders-to-load-path name)))))
+;; Load path
+;; Optimize: Force "lisp"" and "site-lisp" at the head to reduce the startup time.
+(defun update-load-path (&rest _)
+  "Update `load-path'."
+  (dolist (dir '("site-lisp" "lisp"))
+    (push (expand-file-name dir user-emacs-directory) load-path)))
 
-;; load paths
-(add-to-list 'load-path lolo-core-dir)
-(add-to-list 'load-path lolo-modules-dir)
-(add-to-list 'load-path lolo-vendor-dir)
-(add-to-list 'load-path lolo-personal-dir)
-(lolo-add-subfolders-to-load-path lolo-vendor-dir)
+(defun add-subdirs-to-load-path (&rest _)
+"Add subdirectories to `load-path'.
+Don't put large files in `site-lisp' directory, e.g. EAF.
+Otherwise the startup will be very slow."
+  (let ((default-directory (expand-file-name "site-lisp" user-emacs-directory)))
+    (normal-top-level-add-subdirs-to-load-path)))
 
-(setq gc-cons-threshold 50000000)
-(setq large-file-warning-threshold 100000000)
+(advice-add #'package-initialize :after #'update-load-path)
+(advice-add #'package-initialize :after #'add-subdirs-to-load-path)
 
-(message "[LOLO] Loading Lolo's core modules...")
+(update-load-path)
 
-;; load the core stuff
-(require 'lolo-packages)
+;; Requisites
+(require 'lolo-const)
 (require 'lolo-custom)
+(require 'lolo-funcs)
+;; Packages
+(require 'lolo-package)
+;; Preferences
+(require 'lolo-base)
+(require 'lolo-hydra)
+;; Editor
 (require 'lolo-ui)
-(require 'lolo-core)
-(require 'lolo-mode)
-(require 'lolo-editor)
-(require 'lolo-mappings)
-(require 'lolo-modules)
+(require 'lolo-edit)
+(require 'lolo-completion)
+(require 'lolo-corfu)
+(require 'lolo-yasnippet)
 
-;; load personal modules
-(require 'lolo-personal-mappings)
+(require 'lolo-bookmark)
+(require 'lolo-calendar)
+(require 'lolo-dashboard)
+(require 'lolo-dired)
+(require 'lolo-highlight)
+(require 'lolo-ibuffer)
+(require 'lolo-kill-ring)
+(require 'lolo-workspace)
+(require 'lolo-window)
+(require 'lolo-treemacs)
 
-;; Windows specific settings
-(when (eq system-type 'windows-nt)
-  (require 'lolo-windows))
+(require 'lolo-utils)
 
-(message "[LOLO] Loading Lolo's additional modules...")
-
-(lolo-eval-after-init
- ;; greet the use with some useful tip
- (run-at-time 5 nil 'lolo-tip-of-the-day))
-
-(custom-set-variables
- '(package-selected-packages
-   '(lua-mode yaml-mode elisp-slime-nav rainbow-delimiters lsp-ui lsp-mode company consult orderless vertico counsel swiper ivy zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens projectile operate-on-number nlinum move-text monokai-pro-theme magit imenu-anywhere hl-todo guru-mode git-timemachine git-modes gist flycheck expand-region editorconfig easy-kill discover-my-major diminish diff-hl crux browse-kill-ring anzu ag ace-window))
- '(size-indication-mode t))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

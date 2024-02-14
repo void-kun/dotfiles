@@ -21,10 +21,19 @@ def new_modules(args: argparse.ArgumentParser):
         print(f"The module '{module_path}' already exists")
         return EXIT_FAILURE_CODE
     else:
-        template = f""";;; lolo-{module_name}.el --------------------------------
+        template = f"""
+;;; lolo-{module_name}.el --- xxx.	-*- lexical-binding: t -*-
+
+;; Author: hoangzrik
+;; URL: https://github.com/void-kun/dotfiles
+
+;;; Code:
+
 
 
 (provide 'lolo-{module_name})
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; lolo-{module_name}.el ends here
 """
         with open(module_path, "w", encoding="utf-8") as f_out:
