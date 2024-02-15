@@ -31,7 +31,6 @@ lazy.setup({
 			"hrsh7th/cmp-vsnip",
 			"rafamadriz/friendly-snippets",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-copilot",
         },
         config = function()
             -- LSP config
@@ -190,10 +189,6 @@ lazy.setup({
 		end,
 		ft = { "markdown" },
 	},
-	{ "github/copilot.vim" },
-	{
-		"christoomey/vim-tmux-navigator",
-	},
 	{
 		"max397574/better-escape.nvim",
 		opts = {
@@ -205,25 +200,13 @@ lazy.setup({
 		event = { "CmdlineEnter", "InsertEnter", "CursorHold", "CursorMoved" },
 	},
 	{
-		"folke/twilight.nvim",
-		config = function()
-			require("plugins.configs.ui.twilight")
-			-- vim.cmd("Twilight")
-		end,
-	},
-	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
 			-- add any options here
 		},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
 		},
         config = function ()
           require('plugins.configs.ui.noice')
