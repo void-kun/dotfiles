@@ -5,6 +5,11 @@
 
 (message "[LOLO] Lolo is powering up...")
 
+(setq warning-minimum-level :emergency)
+
+;; (setq-default mode-line-format nil)
+(setq auto-mode-case-fold nil)
+
 ;; define dictionaries structure
 (setq load-prefer-newer t)
 (defvar lolo-dir (file-name-directory load-file-name))
@@ -32,8 +37,8 @@
         (lolo-add-subfolders-to-load-path name)))))
 
 ;; load paths
-(load "/home/zrik/.emacs.d/vendor/go-projectile.el")
-(require 'go-projectile)
+;;(load "/home/zrik/.emacs.d/vendor/go-projectile.el")
+;;(require 'go-projectile)
 
 (add-to-list 'load-path lolo-core-dir)
 (add-to-list 'load-path lolo-vendor-dir)
@@ -45,7 +50,6 @@
 (setq large-file-warning-threshold 100000000)
 
 (message "[LOLO] Loading Lolo's core modules...")
-
 
 ;; load the core stuff
 (require 'lolo-packages)
@@ -69,18 +73,3 @@
 (lolo-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'lolo-tip-of-the-day))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" default))
- '(package-selected-packages
-   '(gruber-darker-theme multiple-cursors smex auto-dim-other-buffers go-impl go-fill-struct go-dlv ron-mode yasnippet tree-sitter-langs tree-sitter flycheck-rust cargo rust-mode gotest go-projectile go-mode rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy lsp-ui lsp-mode company consult orderless vertico zop-to-char monokai-pro-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number nlinum move-text magit projectile imenu-anywhere hl-todo guru-mode git-modes git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))

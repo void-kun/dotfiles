@@ -44,7 +44,7 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 (defmacro queue--when-generators (then)
   "Evaluate THEN if `generator' library is available."
@@ -161,28 +161,28 @@ from the queue. The queue itself is not modified."
 ;;;; ChangeLog:
 
 ;; 2017-08-16  Toby S. Cubitt  <tsc25@cantab.net>
-;; 
+;;
 ;; 	Upgrade data structure packages to latest versions.
-;; 
+;;
 ;; 2014-05-15  Toby S. Cubitt  <tsc25@cantab.net>
-;; 
+;;
 ;; 	queue.el: fix buggy queue-first and queue-empty definitions.
-;; 
+;;
 ;; 2012-04-30  Toby S. Cubitt  <tsc25@cantab.net>
-;; 
+;;
 ;; 	Minor fixes to commentaries, package headers, and whitespace
-;; 
+;;
 ;; 	* queue.el: fix description of data structure in Commentary; add
 ;; 	Maintainer
 ;; 	 header.
-;; 
+;;
 ;; 	* queue.el, heap.el, tNFA.el, trie.el, dict-tree.el: trivial whitespace
 ;; 	fixes.
-;; 
+;;
 ;; 2012-04-29  Toby S. Cubitt  <tsc25@cantab.net>
-;; 
+;;
 ;; 	Add queue.el
-;; 
+;;
 
 
 

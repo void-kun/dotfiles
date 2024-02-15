@@ -57,6 +57,12 @@
       gruber-darker-theme
       auto-dim-other-buffers
       multiple-cursors
+      web-mode
+      js2-mode
+      typescript-mode
+      vue-mode
+      emmet-mode
+      json-mode
       zop-to-char)
     "A list of packages to ensure are installed at launch.")
 

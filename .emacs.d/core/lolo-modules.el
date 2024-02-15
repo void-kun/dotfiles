@@ -15,6 +15,7 @@
 (require 'lolo-go)
 (require 'lolo-rust)
 (require 'lolo-xml)
+(require 'lolo-web)
 
 (provide 'lolo-modules)
 ;;; lolo-modules.el ends here

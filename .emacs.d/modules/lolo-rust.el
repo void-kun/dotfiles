@@ -10,9 +10,6 @@
                          yasnippet
                          ron-mode))
 
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-
 (with-eval-after-load 'rust-mode
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)

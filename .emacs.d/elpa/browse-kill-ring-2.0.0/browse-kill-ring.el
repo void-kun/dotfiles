@@ -49,7 +49,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl)
+  (require 'cl-lib)
   (require 'derived))
 
 (defgroup browse-kill-ring nil
@@ -1063,7 +1063,7 @@ it's turned on."
               ;; display leftmost or rightmost duplicate.
               ;; if `browse-kill-ring-display-leftmost-duplicate' is t,
               ;; display leftmost(last) duplicate.
-              (require 'cl)
+              (require 'cl-lib)
               (delete-duplicates items
                                  :test #'equal
                                  :from-end browse-kill-ring-display-leftmost-duplicate))

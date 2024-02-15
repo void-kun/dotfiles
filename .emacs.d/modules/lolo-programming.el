@@ -43,6 +43,5 @@
     (global-flycheck-mode +1)
   (add-hook 'prog-mode-hook 'flycheck-mode))
 
-
 (provide 'lolo-programming)
 ;;; lolo-programming.el ends here

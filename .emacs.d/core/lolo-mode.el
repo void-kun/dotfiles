@@ -5,7 +5,7 @@
 (require 'crux)
 
 (defvar lolo-mode-map
-    (let ((map (make-sparse-keymap)))
+  (let ((map (make-sparse-keymap)))
 
     (define-key map (kbd "C-c o") 'crux-open-with)
     (define-key map (kbd "C-c C-/ g") 'lolo-google)
@@ -38,7 +38,7 @@
 
     ;; extra prefix for projectile
     (when lolo-super-keybindings
-        (define-key map (kbd "s-p") 'projectile-command-map))
+      (define-key map (kbd "s-p") 'projectile-command-map))
     (define-key map (kbd "C-c p") 'projectile-command-map)
 
     (when lolo-super-keybindings
@@ -93,11 +93,11 @@
 
 ;; define minor mode
 (define-minor-mode lolo-mode
-    "Minor mode to consolidate Emacs Lolo extensions.
+  "Minor mode to consolidate Emacs Lolo extensions.
 \\{lolo-mode-map}"
-    :lighter " Lo"
-    :keymap lolo-mode-map
-    :global t)
+  :lighter " Lo"
+  :keymap lolo-mode-map
+  :global t)
 
 (provide 'lolo-mode)
 ;;; lolo-mode.el ends here
