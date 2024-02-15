@@ -86,3 +86,16 @@
  (run-at-time 5 nil 'lolo-tip-of-the-day))
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(zop-to-char yasnippet which-key web-mode vue-mode volatile-highlights vertico undo-tree typescript-mode tree-sitter-langs super-save smartrep smartparens rust-mode ron-mode rainbow-mode rainbow-delimiters orderless operate-on-number nlinum multiple-cursors move-text monokai-pro-theme magit lsp-ui json-mode js2-mode imenu-anywhere hl-todo guru-mode gruber-darker-theme gotest go-projectile git-timemachine git-modes gist flycheck-rust expand-region epl emmet-mode elisp-slime-nav editorconfig easy-kill discover-my-major diminish diff-hl crux counsel consult company cargo browse-kill-ring auto-dim-other-buffers anzu ag ace-window)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))

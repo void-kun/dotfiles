@@ -75,7 +75,20 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(setq split-height-threshold 0)
+(setq compilation-window-height 10)
 
+(defun my-compilation-hook ()
+  "Change the window height of compilation."
+  (when (not (get-buffer-window "*compilation*"))
+    (save-selected-window
+      (save-excursion
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*compilation*")
+          (shrink-window (- h compilation-window-height)))))))
+(add-hook 'compilation-mode-hook 'my-compilation-hook)
 
 (provide 'lolo-ui)
 ;;; lolo-ui.el ends here
