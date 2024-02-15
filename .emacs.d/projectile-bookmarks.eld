@@ -1,1 +1,1 @@
-("~/sources/dotfiles/")
+("~/sources/dotfiles/" "~/sources/self-learn/")

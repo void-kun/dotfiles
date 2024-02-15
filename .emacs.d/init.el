@@ -1,10 +1,12 @@
 ;;; init.el
 
-;; configuration
+;;; Code:
 (defvar lolo-user "zrik")
 
 (message "[LOLO] Lolo is powering up...")
 
+(setq warning-minimum-level :emergency)
+(setq warning-minimum-log-level :emergency)
 (setq auto-mode-case-fold nil)
 
 ;; define dictionaries structure
