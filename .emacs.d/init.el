@@ -32,16 +32,20 @@
         (lolo-add-subfolders-to-load-path name)))))
 
 ;; load paths
+(load "/home/zrik/.emacs.d/vendor/go-projectile.el")
+(require 'go-projectile)
+
 (add-to-list 'load-path lolo-core-dir)
-(add-to-list 'load-path lolo-modules-dir)
 (add-to-list 'load-path lolo-vendor-dir)
-(add-to-list 'load-path lolo-personal-dir)
 (lolo-add-subfolders-to-load-path lolo-vendor-dir)
+(add-to-list 'load-path lolo-modules-dir)
+(add-to-list 'load-path lolo-personal-dir)
 
 (setq gc-cons-threshold 50000000)
 (setq large-file-warning-threshold 100000000)
 
 (message "[LOLO] Loading Lolo's core modules...")
+
 
 ;; load the core stuff
 (require 'lolo-packages)

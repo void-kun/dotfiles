@@ -3,7 +3,6 @@
 #####################################################################################
 # Setup prefix
 set $mod Mod4
-set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -38,11 +37,11 @@ tiling_drag modifier titlebar
 # Bind application
 
 # terminal
-bindsym $alt+Return exec alacritty
+bindsym $mod+Return exec alacritty
 # rofi
-bindsym $alt+d exec ~/.config/rofi/launchers/type-4/launcher.sh
+bindsym $mod+d exec ~/.config/rofi/launchers/type-4/launcher.sh
 # kill focused window
-bindsym $alt+Shift+q kill
+bindsym $mod+Shift+q kill
 
 
 #####################################################################################

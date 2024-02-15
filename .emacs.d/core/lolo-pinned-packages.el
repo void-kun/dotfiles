@@ -57,7 +57,6 @@
         (go-eldoc . "melpa-stable")
         (go-guru . "melpa-stable")
         (go-mode . "melpa-stable")
-        (go-projectile . "melpa-stable")
         (go-rename . "melpa-stable")
         (gotest . "melpa-stable")
         (goto-chg . "melpa-stable")

@@ -6,7 +6,7 @@
              '("melpa" . "http://melpa.org/packages/") t)
 
 ;; load the pinned packages
-(let ((lolo-pinned-packages-file (expand-file-name "lolo-pinned-packages.el" lolo-dir)))
+(let ((lolo-pinned-packages-file (expand-file-name "lolo-pinned-packages.el" lolo-core-dir)))
     (if (file-exists-p lolo-pinned-packages-file)
         (load lolo-pinned-packages-file)))
 

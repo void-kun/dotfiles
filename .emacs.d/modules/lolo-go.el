@@ -13,50 +13,50 @@
 
 (require 'go-projectile)
 
+;; pkg go installation
+(setq exec-path (append '("/usr/local/go/bin") exec-path))
+(setenv "PATH" (concat "/usr/local/go/bin:" (getenv "PATH")))
+
+;; error highlight
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; ignore go test -c output files
 
 (add-to-list 'completion-ignored-extensions ".test")
 (define-key 'help-command (kbd "G") 'godoc)
 
-;; Golang
-(use-package go-mode
-  :functions (go-install-tools exec-path-from-shell-copy-envs)
-  :autoload godoc-gogetdoc
-  :bind (:map go-mode-map
-              ("<f1>" . godoc))
-  :init
-  (setq godoc-at-point-function #'godoc-gogetdoc)
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
 
-  :config
-  ;; Env vars
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))
+;; config go lang
+(with-eval-after-load 'go-mode
+  (add-hook 'go-mode-hook #'tree-sitter-mode)
+  (add-hook 'go-mode-hook #'tree-sitter-hl-mode)
 
-  ;; Misc
-  (use-package go-dlv)
-  (use-package go-fill-struct)
-  (use-package go-impl)
-
-  (use-package go-tag
-    :bind (:map go-mode-map
-                ("C-c t a" . go-tag-add)
-                ("C-c t r" . go-tag-remove))
-    :init (setq go-tag-args (list "-transform" "camelcase")))
-
-  (use-package go-gen-test
-    :bind (:map go-mode-map
-                ("C-c t g" . go-gen-test-dwim)))
-
-  (use-package gotest
-    :bind (:map go-mode-map
-                ("C-c t f" . go-test-current-file)
-                ("C-c t t" . go-test-current-test)
-                ("C-c t j" . go-test-current-project)
-                ("C-c t b" . go-test-current-benchmark)
+  ;; setup go-lsp mode
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
 
 
-                ("C-c t c" . go-test-current-coverage)
-                ("C-c t x" . go-))))
+  (defun mapping-go-mode-hook()
+    (setq tab-width 2 indent-tabs-mode 1)
+    (go-eldoc-setup)
+    (local-set-key (kbd "M-.") #'godef-jump)
+    (add-hook 'before-save-hook 'gofmt-before-save)
+
+    ;; mapping
+    (let ((map go-mode-map))
+         (define-key map (kbd "C-c a") 'go-test-current-project)
+         (define-key map (kbd "C-c m") 'go-test-current-file)
+         (define-key map (kbd "C-c .") 'go-test-current-test)
+         (define-key map (kbd "C-c b") 'go-run)))
+  (add-hook 'go-mode-hook 'mapping-go-mode-hook)
+
+  ;; start lsp mode
+  (add-hook 'go-mode-hook #'lsp-deferred)
+  (add-hook 'go-mode-hook #'yas-minor-mode))
 
 (provide 'lolo-go)
 ;;; lolo-go.el ends here

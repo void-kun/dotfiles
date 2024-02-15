@@ -16,9 +16,7 @@
 (with-eval-after-load 'rust-mode
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
-
   (add-hook 'rust-mode-hook 'lsp)
-
   (add-hook 'rust-mode-hook #'tree-sitter-mode)
   (add-hook 'rust-mode-hook #'tree-sitter-hl-mode)
 
@@ -33,13 +31,10 @@
      lsp-rust-analyzer-experimental-proc-attr-macros t)
 
     (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
     (yas-minor-mode)
-
     (subword-mode +1))
 
   (setq lolo-rust-mode-hook 'lolo-rust-mode-defaults)
-
   (add-hook 'rust-mode-hook (lambda () (run-hooks 'lolo-rust-mode-hook))))
 
 (provide 'lolo-rust)
