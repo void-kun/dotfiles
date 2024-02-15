@@ -3,6 +3,10 @@
 ;; Align your code in a pretty way.
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
+;; Quit
+(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
 ;; Font size
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
@@ -26,9 +30,6 @@
 
 ;; Start a regular shell if you prefer that.
 (global-set-key (kbd "C-x M-m") 'shell)
-
-;; If you want to be able to M-x without meta
-(global-set-key (kbd "C-x C-m") 'smex)
 
 ;; A complementary binding to the apropos-command (C-h a)
 (define-key 'help-command "A" 'apropos)
@@ -63,6 +64,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; toggle menu-bar visibility
+
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 ;; Magit creates some global keybindings by default

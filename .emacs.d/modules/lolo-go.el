@@ -41,7 +41,7 @@
 
 
   (defun mapping-go-mode-hook()
-    (setq tab-width 2 indent-tabs-mode 1)
+    (setq tab-width 4 indent-tabs-mode 1)
     (go-eldoc-setup)
     (local-set-key (kbd "M-.") #'godef-jump)
     (add-hook 'before-save-hook 'gofmt-before-save)

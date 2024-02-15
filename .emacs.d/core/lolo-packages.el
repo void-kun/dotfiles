@@ -54,6 +54,9 @@
       volatile-highlights
       which-key
       monokai-pro-theme
+      gruber-darker-theme
+      auto-dim-other-buffers
+      multiple-cursors
       zop-to-char)
     "A list of packages to ensure are installed at launch.")
 

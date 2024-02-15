@@ -1,8 +1,4 @@
-.config/yay/*
-.config/systemd/
-
 # emacs elpa
-.emacs.d/elpa/
 .emacs.d/.cache/
 .emacs.d/auto-save-list/
 .emacs.d/savefile/*

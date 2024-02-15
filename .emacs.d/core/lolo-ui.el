@@ -26,12 +26,31 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(setq display-line-numbers-type 'relative)
-(setq linum-format "%d ")
+;; Set padding between line
+(defvar line-padding 2)
+(defun add-line-padding ()
+  "Add extra padding between lines."
+
+  ; remove padding overlays if they already exist
+  (let ((overlays (overlays-at (point-min))))
+    (while overlays
+      (let ((overlay (car overlays)))
+        (if (overlay-get overlay 'is-padding-overlay)
+            (delete-overlay overlay)))
+      (setq overlays (cdr overlays))))
+
+  ; add a new padding overlay
+  (let ((padding-overlay (make-overlay (point-min) (point-max))))
+    (overlay-put padding-overlay 'is-padding-overlay t)
+    (overlay-put padding-overlay 'line-spacing (* .1 line-padding))
+    (overlay-put padding-overlay 'line-height (+ 1 (* .1 line-padding))))
+  (setq mark-active nil))
+(add-hook 'buffer-list-update-hook 'add-line-padding)
 
 ;; show line numbers at the beginning of each line
 (if (fboundp 'global-display-line-numbers-mode)
     (global-display-line-numbers-mode)
+   ;; (display-line-numbers-type 'relative)
     (global-nlinum-mode t))
 
 ;; enable y/n answers
@@ -48,6 +67,17 @@
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook 'which-key-mode)
     (which-key-mode +1))
+
+;; Highlight focus
+(add-hook 'after-init-hook (lambda ()
+                             (when (fboundp 'auto-dim-other-buffers-mode)
+                               (auto-dim-other-buffers-mode t))))
+
+;; Config ui
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (provide 'lolo-ui)
 ;;; lolo-ui.el ends here
