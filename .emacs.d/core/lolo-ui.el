@@ -3,19 +3,15 @@
 ;;; Code:
 (when (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
-
 (menu-bar-mode -1)
 
 ;; disable the annoying bell ring
 (setq ring-bell-function 'ignore)
-
 ;; disable startup screen
 (setq inhibit-startup-screen t)
-
 ;; config font settings
 (custom-set-faces
  '(default ((t (:family "IosevkaLyteTerm" :foundry "UKWN" :slant normal :weight regular :height 120 :width normal)))))
-
 ;; nice scrolling
 (setq scroll-margin 0
       scroll-conservatively 100000
@@ -74,9 +70,6 @@
                                (auto-dim-other-buffers-mode t))))
 
 ;; Config ui
-(global-set-key (kbd "s-.") 'enlarge-window-horizontally)
-(global-set-key (kbd "s-,") 'shrink-window-horizontally)
-
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)

@@ -18,7 +18,7 @@
     :group 'lolo
     :package-version '(lolo . "0.1"))
 
-(defcustom lolo-auto-save t 
+(defcustom lolo-auto-save t
     "Auto save"
     :type 'boolean
     :group 'lolo)
@@ -54,7 +54,7 @@
   :type 'boolean
   :group 'lolo)
 
-(defcustom lolo-theme 'monokai-pro
+(defcustom lolo-theme 'gruber-darker
     "The default color theme"
     :type'string
     :group 'lolo)
