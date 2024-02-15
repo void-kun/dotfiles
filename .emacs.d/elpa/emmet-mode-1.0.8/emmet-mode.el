@@ -67,7 +67,7 @@
 
 (defconst emmet-mode:version "1.0.8")
 
-(require 'cl-lib)
+(require 'cl)
 
 (defmacro emmet-defparameter (symbol &optional initvalue docstring)
   `(progn

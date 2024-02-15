@@ -66,7 +66,7 @@
   :group 'convenience)
 
 (defface auto-dim-other-buffers-face
-  '((((background light)) :background "#eff") (t :background "#403E41"))
+  '((((background light)) :background "#eff") (t :background "#122"))
   "Face with a (presumably) dimmed background for non-selected window.
 
 By default the face is applied to, among others, the ‘default’
@@ -79,7 +79,7 @@ sync.  Which faces are actually modified is configured by the
 
 (defface auto-dim-other-buffers-hide-face
   '((((background light)) :foreground "#eff" :background "#eff")
-    (t                    :foreground "#403E41" :background "#403E41"))
+    (t                    :foreground "#122" :background "#122"))
   "Face with a (presumably) dimmed background and matching foreground.
 
 The intention is that the face has the same foreground and

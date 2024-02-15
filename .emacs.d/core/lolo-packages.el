@@ -63,6 +63,8 @@
       vue-mode
       emmet-mode
       json-mode
+      tree-sitter
+      tree-sitter-langs
       zop-to-char)
     "A list of packages to ensure are installed at launch.")
 

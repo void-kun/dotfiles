@@ -5,7 +5,7 @@
 
 ;; Quit
 ;; (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
-(define-key key-translation-map (kbd "C-<escape>") (kbd "C-g"))
+(define-key key-translation-map (kbd "C-z") (kbd "C-g"))
 
 ;; Font size
 (global-set-key (kbd "C-+") 'text-scale-increase)

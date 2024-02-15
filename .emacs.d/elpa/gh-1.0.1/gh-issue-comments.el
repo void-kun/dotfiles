@@ -33,7 +33,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl-lib))
+  (require 'cl))
 
 (require 'eieio)
 

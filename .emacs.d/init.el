@@ -5,9 +5,6 @@
 
 (message "[LOLO] Lolo is powering up...")
 
-(setq warning-minimum-level :emergency)
-
-;; (setq-default mode-line-format nil)
 (setq auto-mode-case-fold nil)
 
 ;; define dictionaries structure
@@ -68,8 +65,22 @@
 (when (eq system-type 'windows-nt)
   (require 'lolo-windows))
 
+;; disable warning
+(defun fixed-do-after-load-evaluation (abs-file)
+  "Disable warning for cl lib."
+  (dolist (a-l-element after-load-alist)
+    (when (and (stringp (car a-l-element))
+               (string-match-p (car a-l-element) abs-file))
+      (mapc #'funcall (cdr a-l-element))))
+(run-hook-with-args 'after-load-functions abs-file))
+
+(advice-add 'do-after-load-evaluation :override #'fixed-do-after-load-evaluation)
+(advice-remove 'do-after-load-evaluation #'fixed-do-after-load-evaluation)
+
 (message "[LOLO] Loading Lolo's additional modules...")
 
 (lolo-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'lolo-tip-of-the-day))
+
+;;; init.el ends here

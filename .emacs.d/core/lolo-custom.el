@@ -49,7 +49,7 @@
   :type 'boolean
   :group 'lolo)
 
-(defcustom lolo-guru t
+(defcustom lolo-guru nil
   "Guru"
   :type 'boolean
   :group 'lolo)
