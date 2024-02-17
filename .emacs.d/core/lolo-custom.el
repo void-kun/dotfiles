@@ -54,8 +54,11 @@
   :type 'boolean
   :group 'lolo)
 
-(defcustom lolo-theme 'gruber-darker
-    "The default color theme"
+;; themes:
+;; + gruber-darker
+;; + monokai-pro
+(defcustom lolo-theme 'monokai-pro
+    "The default color theme."
     :type'string
     :group 'lolo)
 

@@ -65,6 +65,8 @@
     json-mode
     tree-sitter
     tree-sitter-langs
+    cc-mode
+    clang-format
     zop-to-char)
   "A list of packages to ensure are installed at launch.")
 
@@ -102,7 +104,7 @@
 
 ;; auto install of major modes on demand
 (defmacro lolo-auto-install (extension package mode)
-  "Auto install"
+  "Check auto install."
   `(add-to-list 'auto-mode-alist
                 `(,extension . (lambda ()
                                  (unless (package-installed-p ',package)
@@ -112,6 +114,10 @@
 (defvar lolo-auto-install-alist
   '(("\\.cmake\\'" cmake-mode cmake-mode)
     ("CMakeLists\\.txt\\'" cmake-mode cmake-mode)
+    ("\\.c\\'" c-mode c-mode)
+    ("\\.cc\\'" cc-mode cc-mode)
+    ("\\.cpp\\'" cc-mode cc-mode)
+    ("\\.h\\'" cc-mode cc-mode)
     ("\\.css\\'" css-mode css-mode)
     ("\\.csv\\'" csv-mode csv-mode)
     ("\\.feature\\'" feature-mode feature-mode)

@@ -11,7 +11,7 @@
     (browse-url
         (concat query-url
             (url-hexify-string
-                (if mark-active 
+                (if mark-active
                     (buffer-substring (region-beginning) (region-end))
                     (read-string prompt))))))
 

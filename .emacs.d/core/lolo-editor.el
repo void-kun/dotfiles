@@ -1,9 +1,10 @@
 ;;; lolo-editor.el --------------------------------
 
+;;; Code:
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-(setq reuire-final-newline t)
+(setq require-final-newline t)
 (delete-selection-mode t)
 
 (setq backup-directory-alist
@@ -119,12 +120,12 @@
         (flyspell-mode +1)))
 
 (defun lolo-cleanup-maybe ()
-    "Invoke `whitespace-cleanup'"
+    "Invoke `whitespace-cleanup'."
     (when lolo-clean-whitespace-on-save
         (whitespace-cleanup)))
 
 (defun lolo-enable-whitespace ()
-    "Enable `whitespace-mode' "
+    "Enable `whitespace-mode'."
     (when lolo-whitespace
         (add-hook 'before-save-hook 'lolo-cleanup-maybe nil t)
         (whitespace-mode +1)))
