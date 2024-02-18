@@ -57,7 +57,7 @@
 ;; themes:
 ;; + gruber-darker
 ;; + monokai-pro
-(defcustom lolo-theme 'monokai-pro
+(defcustom lolo-theme 'gruber-darker
     "The default color theme."
     :type'string
     :group 'lolo)
