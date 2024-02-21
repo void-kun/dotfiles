@@ -1,0 +1,25 @@
+2024-02-21 21:30:11.987 [info] Extension host with pid 2273 started
+2024-02-21 21:30:11.988 [info] Skipping acquiring lock for /home/zrik/.config/Code/User/workspaceStorage/d47ba998f6b43226271c07689faff886.
+2024-02-21 21:30:12.050 [info] ExtensionService#_doActivateExtension Vue.volar, startup: false, activationEvent: 'onLanguage:plaintext'
+2024-02-21 21:30:12.061 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-02-21 21:30:12.105 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2024-02-21 21:30:12.107 [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.115 [info] ExtensionService#_doActivateExtension cliffordfajardo.highlight-line-vscode, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.116 [info] ExtensionService#_doActivateExtension EditorConfig.EditorConfig, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.125 [info] ExtensionService#_doActivateExtension naumovs.color-highlight, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.137 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.154 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-02-21 21:30:12.196 [info] Eager extensions activated
+2024-02-21 21:30:12.214 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.215 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.219 [info] ExtensionService#_doActivateExtension bradlc.vscode-tailwindcss, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.226 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.234 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.252 [info] ExtensionService#_doActivateExtension ms-vscode-remote.remote-containers, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.272 [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.276 [info] ExtensionService#_doActivateExtension usernamehw.errorlens, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.278 [info] ExtensionService#_doActivateExtension vscode-icons-team.vscode-icons, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:30:12.501 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2024-02-21 21:30:13.112 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-02-21 21:34:37.143 [info] Extension host terminating: renderer closed the MessagePort
+2024-02-21 21:34:37.157 [info] Extension host with pid 2273 exiting with code 0

@@ -1,0 +1,7 @@
+["INFO" - 9:36:22 PM] Extension Name: esbenp.prettier-vscode.
+["INFO" - 9:36:22 PM] Extension Version: 10.1.0.
+["INFO" - 9:42:05 PM] Formatting vscode-userdata:/home/zrik/.config/Code/User/settings.json
+["ERROR" - 9:42:05 PM] Invalid prettier configuration file detected.
+["ERROR" - 9:42:05 PM] ENOENT: no such file or directory, open '/home/zrik/.config/.prettierrc'
+Error: ENOENT: no such file or directory, open '/home/zrik/.config/.prettierrc'
+["ERROR" - 9:42:05 PM] Invalid prettier configuration file detected. See log for details.

@@ -1,0 +1,73 @@
+2024-02-21 21:36:22.480 [info] Extension host with pid 1690 started
+2024-02-21 21:36:22.480 [info] Skipping acquiring lock for /home/zrik/.config/Code/User/workspaceStorage/d47ba998f6b43226271c07689faff886.
+2024-02-21 21:36:22.539 [info] ExtensionService#_doActivateExtension Vue.volar, startup: false, activationEvent: 'onLanguage:plaintext'
+2024-02-21 21:36:22.550 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2024-02-21 21:36:22.595 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2024-02-21 21:36:22.596 [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.609 [info] ExtensionService#_doActivateExtension cliffordfajardo.highlight-line-vscode, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.611 [info] ExtensionService#_doActivateExtension EditorConfig.EditorConfig, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.619 [info] ExtensionService#_doActivateExtension naumovs.color-highlight, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.631 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.650 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2024-02-21 21:36:22.680 [info] Eager extensions activated
+2024-02-21 21:36:22.721 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.723 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.727 [info] ExtensionService#_doActivateExtension bradlc.vscode-tailwindcss, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.735 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.740 [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.758 [info] ExtensionService#_doActivateExtension ms-vscode-remote.remote-containers, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.776 [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.781 [info] ExtensionService#_doActivateExtension usernamehw.errorlens, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.786 [info] ExtensionService#_doActivateExtension vscode-icons-team.vscode-icons, startup: false, activationEvent: 'onStartupFinished'
+2024-02-21 21:36:22.974 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2024-02-21 21:36:23.450 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2024-02-21 21:36:33.210 [error] Error: [ExtensionListenerError] Extension 'cliffordfajardo.highlight-line-vscode' FAILED to handle event
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:160:19758)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.z (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1972)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2188)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:26595)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at i.acceptDocumentsAndEditorsDelta (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:25486)
+	at i.$acceptDocumentsAndEditorsDelta (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:23857)
+	at d.S (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:5520)
+	at d.Q (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:5286)
+	at d.M (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:4376)
+	at d.L (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:3455)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:2242)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at n.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:105:14073)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:173:8051)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at n.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:105:14073)
+	at MessagePortMain.<anonymous> (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:173:6331)
+	at MessagePortMain.emit (node:events:514:28)
+	at Object.emit (node:electron/js2c/utility_init:2:2285)
+2024-02-21 21:48:36.077 [error] Error: [ExtensionListenerError] Extension 'cliffordfajardo.highlight-line-vscode' FAILED to handle event
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:160:19758)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.z (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1972)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2188)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:26595)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at i.acceptDocumentsAndEditorsDelta (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:25486)
+	at i.$acceptDocumentsAndEditorsDelta (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:152:23857)
+	at d.S (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:5520)
+	at d.Q (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:5286)
+	at d.M (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:4376)
+	at d.L (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:3455)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:147:2242)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at n.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:105:14073)
+	at g.value (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:173:8051)
+	at r.y (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:1902)
+	at r.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:80:2119)
+	at n.fire (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:105:14073)
+	at MessagePortMain.<anonymous> (/usr/share/code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:173:6331)
+	at MessagePortMain.emit (node:events:514:28)
+	at Object.emit (node:electron/js2c/utility_init:2:2285)
