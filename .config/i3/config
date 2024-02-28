@@ -3,7 +3,7 @@
 set $mod Mod4
 set $alt Mod1
 
-font pango:Iosevka Nerd Font 10
+font pango:IosevkaLyteTerm 12
 
 
 # ================================================================================================================
@@ -14,6 +14,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot -solid "#424769"
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+# exec --no-startup-id picom --config ~/.config/i3/picom.conf 
 
 # ================================================================================================================
 # mapping application
@@ -110,7 +111,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-
 # ================================================================================================================
 # windows
 set $ws1 "1"
@@ -171,8 +171,6 @@ bindsym $mod+r mode "resize"
 default_border pixel 1
 default_floating_border pixel 2
 for_window [class="^.*"] border pixel 2
-
-gaps inner 10px
 
 # set border of floating window
 for_window [class="kitty"] border pixel 1
