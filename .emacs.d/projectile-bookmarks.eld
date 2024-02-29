@@ -1,1 +1,0 @@
-("~/" "~/dev/dotfiles/" "~/dev/self-learn/")

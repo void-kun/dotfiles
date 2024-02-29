@@ -56,15 +56,15 @@ or call the function `global-undo-tree-mode'.")
 (custom-autoload 'global-undo-tree-mode "undo-tree" nil)
 (autoload 'global-undo-tree-mode "undo-tree" "\
 Toggle Undo-Tree mode in all buffers.
-With prefix ARG, enable Global Undo-Tree mode if ARG is positive;
-otherwise, disable it.
+With prefix ARG, enable Global Undo-Tree mode if ARG is positive; otherwise,
+disable it.
 
 If called from Lisp, toggle the mode if ARG is `toggle'.
 Enable the mode if ARG is nil, omitted, or is a positive number.
 Disable the mode if ARG is a negative number.
 
-Undo-Tree mode is enabled in all buffers where
-`turn-on-undo-tree-mode' would do it.
+Undo-Tree mode is enabled in all buffers where `turn-on-undo-tree-mode' would do
+it.
 
 See `undo-tree-mode' for more information on Undo-Tree mode.
 
