@@ -1,3 +1,4 @@
+
 import os
 import argparse
 
@@ -9,31 +10,31 @@ def new_modules(args: argparse.ArgumentParser):
     """
     Create a new module for emacs configuration
     """
-    directory = args.directory or os.path.basename(directory)
+    directory = args.directory
     module_name = args.module_name
-    module_path = os.path.join(directory, f"lolo-{module_name}.el")
+    if directory != "":
+        module_path = os.path.join(directory, f"lolo-{module_name}.el")
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    else:
+        module_path = f"lolo-{module_name}.el"
 
     print(f"Creating module '{module_path}'")
-    if not os.path.exists(directory):
-        os.makedirs(directory)
 
     if os.path.exists(module_path):
         print(f"The module '{module_path}' already exists")
         return EXIT_FAILURE_CODE
     else:
         template = f"""
-;;; lolo-{module_name}.el --- xxx.	-*- lexical-binding: t -*-
-
-;; Author: hoangzrik
-;; URL: https://github.com/void-kun/dotfiles
-
+;;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;;
+;;; Commentary:
+;; 
+;;
 ;;; Code:
 
-
-
+        
 (provide 'lolo-{module_name})
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; lolo-{module_name}.el ends here
 """
         with open(module_path, "w", encoding="utf-8") as f_out:
@@ -48,7 +49,7 @@ if __name__ == "__main__":
 
     # create new module
     new_modules_parser = subparsers.add_parser("new", help="new help")
-    new_modules_parser.add_argument("-d", dest="directory", type=str, default=None)
+    new_modules_parser.add_argument("-d", dest="directory", type=str, default="")
     new_modules_parser.add_argument("-t", dest="module_name", type=str)
     new_modules_parser.set_defaults(handler=new_modules)
 

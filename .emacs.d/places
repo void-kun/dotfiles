@@ -1,0 +1,4 @@
+;;; -*- coding: utf-8; mode: lisp-data -*-
+(("/home/zrik/.zshrc" . 57)
+ ("/home/zrik/.emacs.d/"
+  (dired-filename . "/home/zrik/.emacs.d/tree-sitter")))

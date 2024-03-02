@@ -1,0 +1,8 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; -------------------------------------------------------------------------
+;; Tabspaces Session File for Emacs
+;; -------------------------------------------------------------------------
+;; Created Sat Mar  2 11:00:04 2024
+
+;; Tabs and buffers:
+(setq tabspaces--session-list '((("/home/zrik/dev/void-kun.github.io/practice/golang/stack_defer/main.go" "/home/zrik/.emacs.d/modules/lolo-kill-ring.el" "/home/zrik/.emacs.d/modules/lolo-go.el" "/home/zrik/.emacs.d/modules/lolo-ui.el" "/home/zrik/.emacs.d/.cache/treemacs-persist" "/home/zrik/.config/go/env" "/home/zrik/.config/nushell/env.nu" "/home/zrik/.config/nushell/config.nu" "/home/zrik/.config/kitty/kitty.conf" "/home/zrik/.emacs.d/elpa/yaml-mode-20231120.546/yaml-mode-autoloads.el" "/home/zrik/.emacs.d/elpa/yaml-20231211.1501/yaml-autoloads.el" "/home/zrik/.emacs.d/early-init.el" "/home/zrik/.emacs.d/modules/lolo-bookmark.el" "/home/zrik/.emacs.d/.elfeed/index" "/home/zrik/.emacs.d/modules/lolo-c.el" "/home/zrik/.emacs.d/modules/lolo-python.el" "/home/zrik/.emacs.d/modules/lolo-web.el" "/home/zrik/apps/dotfiles/.config/kitty/kitty.conf" "/home/zrik/.emacs.d/core/lolo-funcs.el" "/home/zrik/.emacs.d/modules/lolo-prog.el" "/home/zrik/.emacs.d/modules/lolo-workspace.el" "/home/zrik/.emacs.d/custom.el" "/home/zrik/.config/systemd/user/emacs.service" "/home/zrik/.emacs.d/modules/lolo-base.el" "/home/zrik/.emacs.d/modules/lolo-window.el" "/home/zrik/.emacs.d/core/lolo-package.el" "/home/zrik/.emacs.d/init.el" "/home/zrik/.emacs.d/modules/lolo-lsp.el" "/home/zrik/.emacs.d/core/lolo-const.el" "/home/zrik/.emacs.d/core/lolo-custom.el") . "*scratch*")))
