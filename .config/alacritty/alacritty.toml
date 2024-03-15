@@ -1,0 +1,19 @@
+import = [
+    "~/.config/alacritty/themes/gruvbox_dark.toml"
+]
+
+[shell]
+program = "/usr/bin/zsh"
+args = ["-l"]
+
+[window]
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+opacity = 0.9
+
+[font]
+normal = { family = "IosevkaLyteTerm", style = "Regular" }
+bold = { family = "IosevkaLyteTerm", style = "Bold" }
+italic = { family = "IosevkaLyteTerm", style = "Italic" }
+bold_italic = { family = "IosevkaLyteTerm Regular", style = "Bold Italic" }
+size = 12.0
