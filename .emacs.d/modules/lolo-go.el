@@ -1,88 +1,63 @@
-
 ;;; lolo-go.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
-;;
 ;;; Commentary:
-;;
-;;
 ;;; Code:
 
+(require 'lolo-programming)
+(require 'lolo-lsp)
 
-(eval-when-compile
-  (require 'lolo-custom))
+(lolo-require-packages '(go-mode
+                            go-projectile
+                            lsp-mode
+                            lsp-ui
+                            company
+                            gotest))
 
-;; Golang
-(use-package go-mode
-  :functions (go-install-tools exec-path-from-shell-copy-envs)
-  :autoload godoc-gogetdoc
-  :bind (:map go-mode-map
-         ("<f1>" . godoc))
-  :init
-  (setq godoc-at-point-function #'godoc-gogetdoc)
+(require 'go-projectile)
 
-  ;; Install tools
-  (defconst go--tools
-    '("golang.org/x/tools/gopls"
-      "golang.org/x/tools/cmd/goimports"
-      "honnef.co/go/tools/cmd/staticcheck"
-      "github.com/go-delve/delve/cmd/dlv"
-      "github.com/zmb3/gogetdoc"
-      "github.com/josharian/impl"
-      "github.com/cweill/gotests/..."
-      "github.com/fatih/gomodifytags"
-      "github.com/davidrjenni/reftools/cmd/fillstruct")
-    "All necessary go tools.")
+;; Ignore go test -c output files
+(add-to-list 'completion-ignored-extensions ".test")
 
-  (defun go-install-tools ()
-    "Install or update go tools."
-    (interactive)
-    (unless (executable-find "go")
-      (user-error "Unable to find `go' in `exec-path'!"))
+(define-key 'help-command (kbd "G") 'godoc)
 
-    (message "Installing go tools...")
-    (dolist (pkg go--tools)
-      (set-process-sentinel
-       (start-process "go-tools" "*Go Tools*" "go" "install" "-v" "-x" (concat pkg "@latest"))
-       (lambda (proc _)
-         (let ((status (process-exit-status proc)))
-           (if (= 0 status)
-               (message "Installed %s" pkg)
-             (message "Failed to install %s: %d" pkg status)))))))
-  :config
-  ;; Env vars
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))
+(add-to-list 'super-save-predicates
+             (lambda () (not (eq major-mode 'go-mode))))
 
-  ;; Try to install go tools if `gopls' is not found
-  (unless (executable-find "gopls")
-    (go-install-tools))
+(with-eval-after-load 'go-mode
+  (defun lolo-go-mode-defaults ()
+    ;; Add to default go-mode key bindings
+    (let ((map go-mode-map))
+      (define-key map (kbd "C-c a") 'go-test-current-project) ;; current package, really
+      (define-key map (kbd "C-c m") 'go-test-current-file)
+      (define-key map (kbd "C-c .") 'go-test-current-test)
+      (define-key map (kbd "C-c b") 'go-run)
+      (define-key map (kbd "C-h f") 'godoc-at-point))
 
-  ;; Misc
-  (use-package go-dlv)
-  (use-package go-fill-struct)
-  (use-package go-impl)
+    ;; Prefer goimports to gofmt if installed
+    (let ((goimports (executable-find "goimports")))
+      (when goimports
+        (setq gofmt-command goimports)))
 
-  (use-package go-tag
-    :bind (:map go-mode-map
-           ("C-c t a" . go-tag-add)
-           ("C-c t r" . go-tag-remove))
-    :init (setq go-tag-args (list "-transform" "camelcase")))
+    ;; stop whitespace being highlighted
+    (whitespace-toggle-options '(tabs))
 
-  (use-package go-gen-test
-    :bind (:map go-mode-map
-           ("C-c t g" . go-gen-test-dwim)))
+    ;; CamelCase aware editing operations
+    (subword-mode +1))
 
-  (use-package gotest
-    :bind (:map go-mode-map
-           ("C-c t f" . go-test-current-file)
-           ("C-c t t" . go-test-current-test)
-           ("C-c t j" . go-test-current-project)
-           ("C-c t b" . go-test-current-benchmark)
-           ("C-c t c" . go-test-current-coverage)
-           ("C-c t x" . go-run))))
+  ;; if yas is present, this enables yas-global-mode
+  ;; which provides completion via company
+  (if (fboundp 'yas-global-mode)
+      (yas-global-mode))
 
-(when (lolo-treesit-available-p)
-  (use-package go-ts-mode
-    :init (setq go-ts-mode-indent-offset 4)))
+  ;; configure lsp for go
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+  (add-hook 'go-mode-hook #'lsp-deferred)
+
+  (setq lolo-go-mode-hook 'lolo-go-mode-defaults)
+  (add-hook 'go-mode-hook (lambda ()
+                            (run-hooks 'lolo-go-mode-hook))))
 
 (provide 'lolo-go)
 ;;; lolo-go.el ends here

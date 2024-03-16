@@ -25,15 +25,11 @@ def new_modules(args: argparse.ArgumentParser):
         print(f"The module '{module_path}' already exists")
         return EXIT_FAILURE_CODE
     else:
-        template = f"""
-;;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
-;;
+        template = f""";;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;; 
-;;
 ;;; Code:
 
-        
+
 (provide 'lolo-{module_name})
 ;;; lolo-{module_name}.el ends here
 """
