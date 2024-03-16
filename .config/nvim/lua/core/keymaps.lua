@@ -14,7 +14,8 @@ keymap.set("n", "H", "^", { noremap = true })
 keymap.set("n", "L", "$", { noremap = true })
 
 -- telescope
-keymap.set("n", "<C-j>", "<cmd>Telescope buffers<cr>")
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+keymap.set("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<cr>")
 keymap.set("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<cr>")
@@ -23,7 +24,6 @@ keymap.set("n", "<C-t>", "<cmd>Telescope lsp_document_symbols<cr>")
 
 -- lsp and rust
 keymap.set("n", "<leader>x", "<cmd>RustRunnables<cr>")
--- keymap.set("n", "<leader>y", "<cmd>lua require'runst'.run_test()<cr>", { noremap = true, silent = true })
 
 -- buffers
 keymap.set("n", "]b", "<cmd>bnext<cr>")
@@ -35,3 +35,5 @@ keymap.set("n", "<leader><leader>", "<cmd>b#<cr>")
 keymap.set("n", "|", "<cmd>vsplit<cr><c-w><c-w>")
 keymap.set("n", "_", "<cmd>split<cr>")
 keymap.set("n", "=", "<cmd>wincmd =<cr>")
+
+-- ends

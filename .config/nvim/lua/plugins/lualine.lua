@@ -22,7 +22,7 @@ return {
 
 			require("lualine").setup({
 				options = {
-					theme = "onedark",
+					theme = "gruvbox-material",
 				},
 				sections = {
 					lualine_a = { "mode" },

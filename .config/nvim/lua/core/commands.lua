@@ -44,7 +44,6 @@ autocmd("BufEnter", {
 	desc = "Disable diagnostic for a while",
 })
 
--- augroup('formatonsave', { clear = true })
 autocmd("BufWritePost", {
 	group = augroup("formatonsave"),
 	desc = "Trigger format on save",
@@ -52,15 +51,6 @@ autocmd("BufWritePost", {
 	callback = function()
 		vim.lsp.buf.format()
 	end,
-})
-
-autocmd({ "VimEnter", "CursorMoved" }, {
-	group = augroup("yankpost"),
-	pattern = "*",
-	callback = function()
-		cursor_pos = vim.fn.getpos(".")
-	end,
-	desc = "Stores cursor position",
 })
 
 autocmd("TextYankPost", {
@@ -84,22 +74,6 @@ autocmd({ "VimResized" }, {
 	desc = "wondows in equal size",
 })
 
-autocmd({ "CursorHold" }, {
-	group = augroup("start_luasnip"),
-	callback = function()
-		local status_ok, luasnip = pcall(require, "luasnip")
-		if not status_ok then
-			return
-		end
-		if luasnip.expand_or_jumpable() then
-			-- ask maintainer for option to make this silent
-			-- luasnip.unlink_current()
-			vim.cmd([[silent! lua require("luasnip").unlink_current()]])
-		end
-	end,
-	desc = "Start luasnip",
-})
-
 autocmd("FileType", {
 	group = augroup("easy_quit"),
 	pattern = {
@@ -110,37 +84,7 @@ autocmd("FileType", {
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
-		-- vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { buffer = event.buf, silent = true })
 		vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { buffer = true, silent = true })
-	end,
-})
-
-autocmd("BufWritePre", {
-	group = augroup("write_pre"),
-	callback = function(event)
-		if event.match:match("^%w%w+://") then
-			return
-		end
-		local file = vim.loop.fs_realpath(event.match) or event.match
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-	end,
-	desc = "Create dir during file save",
-})
-
--- Check for spelling in text filetypes and enable wrapping, and set gj and gk keymaps
-autocmd("FileType", {
-	group = augroup("set_wrap"),
-	pattern = {
-		"gitcommit",
-		"markdown",
-		"text",
-	},
-	callback = function()
-		local opts = { noremap = true, silent = true }
-		vim.opt_local.spell = true
-		vim.opt_local.wrap = true
-		vim.api.nvim_buf_set_keymap(0, "n", "j", "gj", opts)
-		vim.api.nvim_buf_set_keymap(0, "n", "k", "gk", opts)
 	end,
 })
 
@@ -160,78 +104,4 @@ autocmd("BufReadPost", {
 		end
 	end,
 	desc = "Go to the last loc when opening a buffer",
-})
-
-autocmd({
-	"FocusGained",
-	"TermClose",
-	"TermLeave",
-}, {
-	group = augroup("checktime"),
-	command = "checktime",
-	group = "userconf",
-	desc = "Check if the file needs to be reloaded when it's changed",
-})
-
-autocmd({
-	"BufEnter",
-	"FocusGained",
-	"InsertLeave",
-	"CmdlineLeave",
-	"WinEnter",
-}, {
-	pattern = "*",
-	group = augroup("EnableRelativenumber"),
-	callback = function()
-		if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
-			vim.opt.relativenumber = true
-		end
-	end,
-	desc = "Enable relative number in normal mode",
-})
-
-autocmd({
-	"BufLeave",
-	"FocusLost",
-	"InsertEnter",
-	"CmdlineEnter",
-	"WinLeave",
-}, {
-	pattern = "*",
-	group = augroup("DisableRelativenumber"),
-	callback = function()
-		if vim.o.nu then
-			vim.opt.relativenumber = false
-			vim.cmd("redraw")
-		end
-	end,
-	desc = "Disable relative number in insert mode",
-})
-
-autocmd("RecordingEnter", {
-	group = augroup("record_action"),
-	pattern = "*",
-	command = "lua vim.opt_local.cmdheight = 1",
-	desc = "Show recording status",
-})
-
-autocmd("RecordingLeave", {
-	group = augroup("record_leave"),
-	pattern = "*",
-	command = "lua vim.opt_local.cmdheight = 0",
-	desc = "Show recording status",
-})
-
-autocmd("BufWritePost", {
-	group = augroup("make-executable"),
-	pattern = { "*.sh", "*.zsh", "*.py" },
-	-- command = [[!chmod +x %]],
-	callback = function()
-		local file = vim.fn.expand("%p")
-		local status = require("core.utils").is_executable()
-		if status ~= true then
-			vim.fn.setfperm(file, "rwxr-x---")
-		end
-	end,
-	desc = "Make files ended with *.sh, *.py executable",
 })

@@ -16,4 +16,6 @@ normal = { family = "IosevkaLyteTerm", style = "Regular" }
 bold = { family = "IosevkaLyteTerm", style = "Bold" }
 italic = { family = "IosevkaLyteTerm", style = "Italic" }
 bold_italic = { family = "IosevkaLyteTerm Regular", style = "Bold Italic" }
-size = 12.0
+size = 14.0
+offset.x = 0
+offset.y = 2
