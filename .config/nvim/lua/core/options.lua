@@ -1,7 +1,6 @@
 -- config
 local vim = vim
 local opt = vim.opt
-local g = vim.g
 
 vim.g.matchparen_timeout = 20
 vim.g.matchparen_insert_timeout = 20
@@ -59,7 +58,7 @@ local options = {
 	scrolloff = 3,
 	sidescrolloff = 3,
 	wrap = true,
-	list = true,
+	list = false,
 	lazyredraw = true,
 	updatetime = 250,
 	laststatus = 3,
@@ -71,8 +70,6 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("tab:- ")
 
 vim.cmd("set clipboard+=unnamedplus")
 
@@ -104,25 +101,25 @@ vim.g.mapleader = " "
 vim.fn.sign_define({
 	{
 		name = "DiagnosticSignError",
-		text = " ",
+		text = " ",
 		texthl = "DiagnosticSignError",
 		linehl = "ErrorLine",
 	},
 	{
 		name = "DiagnosticSignWarn",
-		text = " ",
+		text = " ",
 		texthl = "DiagnosticSignWarn",
 		linehl = "WarningLine",
 	},
 	{
 		name = "DiagnosticSignInfo",
-		text = " ",
+		text = " ",
 		texthl = "DiagnosticSignInfo",
 		linehl = "InfoLine",
 	},
 	{
 		name = "DiagnosticSignHint",
-		text = " ",
+		text = "󱐍 ",
 		texthl = "DiagnosticSignHint",
 		linehl = "HintLine",
 	},

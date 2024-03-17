@@ -17,9 +17,9 @@ return {
 		local lspkind = require("lspkind")
 
 		cmp.setup({
-			completion = {
-				completeopt = "menu,menuone,preview,noselect",
-			},
+			-- completion = {
+			-- 	completeopt = "menu,menuone,preview,noselect",
+			-- },
 			formatting = {
 				format = lspkind.cmp_format({
 					maxwidth = 50,

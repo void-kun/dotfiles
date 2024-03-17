@@ -3,18 +3,18 @@ import = [
 ]
 
 [shell]
-program = "/usr/bin/tmux"
-args = ["new-session", "-A", "-s", "general"]
+program = "/usr/bin/zsh"
 
 [window]
-padding = { x = 3, y = 3 }
-dynamic_padding = true
+padding = { x = 2, y = 2 }
 
 [font]
 normal = { family = "IosevkaLyteTerm", style = "Regular" }
 bold = { family = "IosevkaLyteTerm", style = "Bold" }
-italic = { family = "IosevkaLyteTerm", style = "Italic" }
-bold_italic = { family = "IosevkaLyteTerm Regular", style = "Bold Italic" }
-size = 11.0
+italic = { family = "IosevkaLyteTerm", style = "Book" }
+bold_italic = { family = "Iosevka Nerd Font", style = "Bold Oblique" }
+
+size = 12.0
 offset.x = 0
 offset.y = 2
+
