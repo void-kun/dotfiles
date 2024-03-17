@@ -4,17 +4,16 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
-		"L3MON4D3/LuaSnip", -- snippet engine
-		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"hrsh7th/cmp-nvim-lua",
+		"hrsh7th/cmp-vsnip",
+		"hrsh7th/vim-vsnip",
 	},
 	config = function()
 		local cmp = require("cmp")
-
-		local luasnip = require("luasnip")
-
 		local lspkind = require("lspkind")
 
 		cmp.setup({
@@ -29,26 +28,35 @@ return {
 			},
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					vim.fn["vsnip#anonymous"](args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- For luasnip users.
+				{ name = "path" },
+				{ name = "nvim_lsp", keyword_length = 3 },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "nvim_lua", keyword_length = 2 },
+				{ name = "buffer", keyword_length = 2 },
+				{ name = "vsnip", keyword_length = 2 },
+				{ name = "calc" },
 				{ name = "crates" },
 			}, {
 				{ name = "buffer" },
 			}),
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
 		})
 
 		-- Set configuration for specific filetype.
 		cmp.setup.filetype("gitcommit", {
 			sources = cmp.config.sources({
-				{ name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+				{ name = "git" },
 			}, {
 				{ name = "buffer" },
 			}),
@@ -75,10 +83,6 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		require("lspconfig")["gopls"].setup({
 			capabilities = capabilities,
-		})
-		-- snippets
-		require("luasnip.loaders.from_vscode").load({
-			paths = { "~/.config/nvim/snippets" },
 		})
 	end,
 }

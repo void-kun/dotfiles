@@ -22,7 +22,9 @@ return {
 
 			require("lualine").setup({
 				options = {
-					theme = "gruvbox-material",
+					theme = "monokai-pro",
+					section_separators = { left = "  ", right = "  " },
+					component_separators = { left = "  ", right = "  " },
 				},
 				sections = {
 					lualine_a = { "mode" },
@@ -34,7 +36,13 @@ return {
 					lualine_c = {
 						{ "filename", file_status = true, path = 1 },
 					},
-					lualine_x = { "require'lsp-status'.status()", "encoding", "fileformat", "filetype" },
+					lualine_x = {
+						"branch",
+						"require'lsp-status'.status()",
+						"encoding",
+						"fileformat",
+						"filetype",
+					},
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},

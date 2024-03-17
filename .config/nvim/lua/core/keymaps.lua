@@ -36,4 +36,7 @@ keymap.set("n", "|", "<cmd>vsplit<cr><c-w><c-w>")
 keymap.set("n", "_", "<cmd>split<cr>")
 keymap.set("n", "=", "<cmd>wincmd =<cr>")
 
+vim.keymap.set("n", "<C-;>", function()
+	require("Comment.api").toggle.linewise.current()
+end, { noremap = true, silent = true })
 -- ends

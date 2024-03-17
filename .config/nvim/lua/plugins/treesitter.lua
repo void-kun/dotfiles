@@ -20,6 +20,7 @@ return {
 				"yaml",
 				"regex",
 				"rust",
+				"go",
 				"markdown",
 				"markdown_inline",
 			},
@@ -27,6 +28,11 @@ return {
 			auto_install = true,
 			highlight = { enable = true, additional_vim_regex_highlighting = false },
 			indent = { enable = true },
+			rainbow = {
+				enable = true,
+				extended_mode = true,
+				max_file_lines = nil,
+			},
 			autotag = {
 				enable = true,
 			},
@@ -50,4 +56,3 @@ return {
 		opt.foldenable = false
 	end,
 }
-

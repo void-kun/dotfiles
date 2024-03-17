@@ -14,7 +14,7 @@ local options = {
 	modelines = 5,
 	modelineexpr = false,
 	modeline = true,
-	cursorline = false,
+	cursorline = true,
 	cursorcolumn = false,
 	splitright = true,
 	splitbelow = true,
@@ -28,7 +28,7 @@ local options = {
 	termguicolors = true,
 	showmode = false,
 	showmatch = true,
-	matchtime = 2,
+	matchtime = 4,
 	wildmode = "longest:full,full",
 	number = true,
 	linebreak = true,
@@ -37,21 +37,21 @@ local options = {
 	isfname = vim.opt.isfname:append("@-@"),
 	autochdir = true,
 	relativenumber = true,
-	numberwidth = 2,
+	numberwidth = 8,
 	shada = "!,'50,<50,s10,h,r/tmp",
 	expandtab = true,
 	smarttab = true,
 	smartindent = true,
 	shiftround = true,
-	shiftwidth = 2,
-	tabstop = 2,
+	shiftwidth = 4,
+	tabstop = 4,
 	foldenable = false,
 	foldlevel = 99,
 	foldlevelstart = 99,
 	foldcolumn = "1",
 	foldmethod = "expr",
 	foldexpr = "nvim_treesitter#foldexpr()",
-	undodir = os.getenv("HOME") .. "/.vim/undodir",
+	undodir = os.getenv("HOME") .. "/.config/nvim/undodir",
 	undofile = true,
 	showtabline = 0,
 	mouse = "a",
@@ -59,23 +59,24 @@ local options = {
 	scrolloff = 3,
 	sidescrolloff = 3,
 	wrap = true,
-	list = false,
+	list = true,
 	lazyredraw = true,
 	updatetime = 250,
 	laststatus = 3,
 	confirm = false,
 	conceallevel = 3,
-	cmdheight = 0,
+	cmdheight = 1,
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("tab:- ")
 
 vim.cmd("set clipboard+=unnamedplus")
 
 if vim.fn.executable("rg") then
-	-- if ripgrep installed, use that as a grepper
 	vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 	vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 end
@@ -99,47 +100,67 @@ vim.wo.number = true
 
 vim.g.mapleader = " "
 
+-- LSP diagnostic opthons setup
 vim.fn.sign_define({
 	{
 		name = "DiagnosticSignError",
-		text = "",
+		text = " ",
 		texthl = "DiagnosticSignError",
 		linehl = "ErrorLine",
 	},
 	{
 		name = "DiagnosticSignWarn",
-		text = "",
+		text = " ",
 		texthl = "DiagnosticSignWarn",
 		linehl = "WarningLine",
 	},
 	{
 		name = "DiagnosticSignInfo",
-		text = "",
+		text = " ",
 		texthl = "DiagnosticSignInfo",
 		linehl = "InfoLine",
 	},
 	{
 		name = "DiagnosticSignHint",
-		text = "",
+		text = " ",
 		texthl = "DiagnosticSignHint",
 		linehl = "HintLine",
 	},
 })
 
 vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	update_in_insert = true,
+	underline = true,
+	serverity_sort = false,
 	float = {
 		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
 	},
 })
 
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.shortmess = vim.opt.shortmess + { c = true }
+vim.api.nvim_set_option("updatetime", 300)
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
 -- window-local options
-window_options = {
-	numberwidth = 2,
+local window_options = {
+	numberwidth = 4,
 	number = true,
 	relativenumber = true,
 	linebreak = true,
-	cursorline = false,
+	cursorline = true,
 	foldenable = false,
+	foldmethod = "expr",
+	foldexpr = "nvim_treesitter#foldexpr()",
 }
 
 for k, v in pairs(window_options) do

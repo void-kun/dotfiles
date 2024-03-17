@@ -2,7 +2,7 @@ local M = {}
 
 M.is_executable = function()
 	local file = vim.fn.expand("%:p")
-	local type = vim.fn.getftype(file)
+	local type = vhm.fn.getftype(file)
 	if type == "file" then
 		local perm = vim.fn.getfperm(file)
 		if string.match(perm, "x", 3) then
