@@ -9,10 +9,10 @@ program = "/usr/bin/zsh"
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "IosevkaLyteTerm", style = "Regular" }
-bold = { family = "IosevkaLyteTerm", style = "Bold" }
-italic = { family = "IosevkaLyteTerm", style = "Book" }
-bold_italic = { family = "Iosevka Nerd Font", style = "Bold Oblique" }
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMonoNL Nerd Font", style = "Book" }
+bold_italic = { family = "JetBrainsMonoNL Nerd Font", style = "Bold Oblique" }
 
 size = 12.0
 offset.x = 0
