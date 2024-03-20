@@ -9,6 +9,7 @@ end
 safeRequire("core.options")
 safeRequire("core.keymaps")
 safeRequire("core.commands")
+safeRequire("core.neovide")
 
 -- Install lazy.nvim automatically
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

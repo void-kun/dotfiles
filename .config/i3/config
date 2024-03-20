@@ -9,10 +9,13 @@ set $win Mod4
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id xsetroot -solid "#424769"
+
+exec_always --no-startup-id killall wall-gif.sh
+exec_always --no-startup-id $HOME/.config/i3/wall-gif.sh 0.1 $HOME/.config/i3/wall/beautycity.gif
+
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
-# exec --no-startup-id picom --config ~/.config/i3/picom.conf 
+exec --no-startup-id picom --config ~/.config/i3/picom.conf 
 
 # ================================================================================================================
 # mapping application
@@ -72,11 +75,21 @@ bindsym $win+Down focus down
 bindsym $win+Up focus up
 bindsym $win+Right focus right
 
+bindsym $win+h focus left
+bindsym $win+j focus down
+bindsym $win+k focus up
+bindsym $win+l focus right
+
 # alternatively, you can use the cursor keys:
 bindsym $win+Shift+Left move left
 bindsym $win+Shift+Down move down
 bindsym $win+Shift+Up move up
 bindsym $win+Shift+Right move right
+
+bindsym $win+Shift+h move left
+bindsym $win+Shift+j move down
+bindsym $win+Shift+k move up
+bindsym $win+Shift+l move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -99,15 +112,14 @@ bindsym $mod+a focus parent
 
 # ================================================================================================================
 # windows
-set $ws1 1❶ 
-set $ws2 2❷ 
-set $ws3 3❸ 
-set $ws4 4❹ 
-set $ws5 5❺ 
-set $ws6 6❻ 
-set $ws7 7❼ ☘
-set $ws8 8❽ 
-set $ws9 9❾ 
+set $ws1 1❶
+set $ws2 2❷
+set $ws3 3❸
+set $ws4 4❹
+set $ws5 5❺
+set $ws6 6❻
+set $ws7 7❼
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -191,7 +203,7 @@ client.placeholder          $bg     $bg         $bg     $bg
 # ================================================================================================================
 # window bar
 bar {
-    position bottom
+    position top
     strip_workspace_numbers yes
     #tray_output none
     font pango:Iosevka Nerd Font, FontAwesome 10
