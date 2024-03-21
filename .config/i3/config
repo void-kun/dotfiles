@@ -11,7 +11,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 exec_always --no-startup-id killall wall-gif.sh
-exec_always --no-startup-id $HOME/.config/i3/wall-gif.sh 0.1 $HOME/.config/i3/wall/beautycity.gif
+exec_always --no-startup-id $HOME/.config/i3/wall-gif.sh 0.01 $HOME/.config/i3/wall/13.gif
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
