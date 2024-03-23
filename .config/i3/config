@@ -1,7 +1,6 @@
 # ================================================================================================================
 # i3 config file 
 set $mod Mod1
-set $win Mod4
 
 
 # ================================================================================================================
@@ -10,8 +9,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
-exec_always --no-startup-id killall wall-gif.sh
-exec_always --no-startup-id $HOME/.config/i3/wall-gif.sh 0.01 $HOME/.config/i3/wall/13.gif
+exec_always --no-startup-id xgifwallpaper -d 2 $HOME/.config/i3/wall/13.gif
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
@@ -70,31 +68,31 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # alternatively, you can use the cursor keys:
-bindsym $win+Left focus left
-bindsym $win+Down focus down
-bindsym $win+Up focus up
-bindsym $win+Right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-bindsym $win+h focus left
-bindsym $win+j focus down
-bindsym $win+k focus up
-bindsym $win+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $win+Shift+Left move left
-bindsym $win+Shift+Down move down
-bindsym $win+Shift+Up move up
-bindsym $win+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-bindsym $win+Shift+h move left
-bindsym $win+Shift+j move down
-bindsym $win+Shift+k move up
-bindsym $win+Shift+l move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym Control+$mod+h split h
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym Control+$mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -112,13 +110,13 @@ bindsym $mod+a focus parent
 
 # ================================================================================================================
 # windows
-set $ws1 1❶
-set $ws2 2❷
-set $ws3 3❸
-set $ws4 4❹
-set $ws5 5❺
-set $ws6 6❻
-set $ws7 7❼
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
 
 
 # switch to workspace
@@ -172,13 +170,12 @@ for_window [class="^.*"] border pixel 2
 
 # set position of floating window
 for_window [class=".*"] move position center
-# for_window [class=".*"] resize set 1200px 800px
 
 
 # Window color settings
 
 # ceeriously styled i3
-set $bg     #2f343f
+set $bg     #2a2826
 set $fg     #404552
 set $hi     #fce94f
 set $ac     #4084d6
@@ -190,7 +187,7 @@ set $gn     #81c181
 set $rd     #bf9b76
 set $id     #f9f8ff
 set $ce     #ceecee
-set $sl     #7f7f7f
+set $sl     #fafafa
 
 # set some nice colors      border  background  text    indicator
 client.focused              $ac     $ac         $tx     $id
@@ -203,11 +200,11 @@ client.placeholder          $bg     $bg         $bg     $bg
 # ================================================================================================================
 # window bar
 bar {
-    position top
+    position bottom
     strip_workspace_numbers yes
     #tray_output none
     font pango:Iosevka Nerd Font, FontAwesome 10
-    separator_symbol "⋆"
+    separator_symbol "⋆⋆"
 
     status_command i3status --config ~/.config/i3/i3status.conf
 
@@ -215,7 +212,7 @@ bar {
     colors {
         background          $bg
         statusline          $sl
-        separator           $tx
+        separator           $bg
         focused_workspace   $ia        $ia        $tx
         active_workspace    $gn        $ac        $tx
         inactive_workspace  $bg        $fg        $ia

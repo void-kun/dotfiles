@@ -22,7 +22,7 @@ return {
 
 			require("lualine").setup({
 				options = {
-					theme = "gruvbox",
+					theme = "ayu_dark",
 					section_separators = { left = "  ", right = "  " },
 					component_separators = { left = "  ", right = "  " },
 				},
