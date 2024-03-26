@@ -17,7 +17,7 @@
 
 ;; Setting text size based on the computer I am on.
 (setq lolo-text-height 150)
-(set-frame-font "IosevkaLyteTerm:size=14" nil t)
+(set-frame-font "RobotoMono Nerd Font:size=14" nil t)
 
 (use-package mixed-pitch
   :defer t
@@ -51,7 +51,7 @@
         doom-modeline-bar-width 6))
 
 (setq lolo-doom-modeline-text-height 100)
-(setq doom-modeline-height 32)
+(setq doom-modeline-height 30)
 
 (setq default-frame-alist '((left . 170)
                                 (width . 173)

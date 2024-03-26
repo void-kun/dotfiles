@@ -44,5 +44,6 @@ Otherwise the startup will be very slow."
 (require 'lolo-web)
 (require 'lolo-emacs-lisp)
 (require 'lolo-go)
+(require 'lolo-rust)
 
 ;;; init.el ends here
