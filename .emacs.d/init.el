@@ -34,7 +34,7 @@ Otherwise the startup will be very slow."
 
 ;; modules
 (require 'lolo-which-key)
-(require 'lolo-general)
+;; (require 'lolo-general)
 (require 'lolo-hydra)
 (require 'lolo-completion)
 (require 'lolo-org)

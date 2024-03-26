@@ -57,9 +57,7 @@
                         (group (dir "~/code/fun/org/"))
                         ;; Group remaining buffers by directory, then major mode.
                         (auto-directory)
-                        (auto-mode)))
-  :general
-  (:keymaps 'bufler-list-mode-map "Q" 'kill-this-buffer))
+                        (auto-mode))))
 
 (use-package hl-prog-extra
   :commands (hl-prog-extra-mode)
@@ -74,23 +72,13 @@
          '("\\(TK\\)+" 0 nil '(:weight bold :inherit font-lock-warning-face))))
   (global-hl-prog-extra-mode))
 
-(use-package xwidget
-  :general
-  (general-define-key :states 'normal :keymaps 'xwidget-webkit-mode-map 
-                      "j" 'xwidget-webkit-scroll-up-line
-                      "k" 'xwidget-webkit-scroll-down-line
-                      "gg" 'xwidget-webkit-scroll-top
-                      "G" 'xwidget-webkit-scroll-bottom))
+(use-package xwidget)
 
 (use-package mw-thesaurus
   :defer t)
 
 (use-package ansi-term
-  :ensure nil
-  :general
-  (:keymaps 'term-mode-map
-            "<up>" 'term-previous-input
-            "<down>" 'term-next-input))
+  :ensure nil)
 
 ;; https://github.com/oantolin/epithet
 ;; (use-package epithet
@@ -117,15 +105,6 @@
 
   ;; Removes :PROPERTIES: from descriptions
   (setq deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n")
-  :general
-
-  (general-define-key :states 'normal :keymaps 'deft-mode-map
-                      ;; 'q' kills Deft in normal mode
-                      "q" 'kill-this-buffer)
-
-  (general-define-key :states 'insert :keymaps 'deft-mode-map
-                      "C-j" 'next-line
-                      "C-k" 'previous-line)
   )
 
 (use-package mu4e-views
@@ -136,50 +115,6 @@
   (setq mu4e-views-default-view-method "html") ;; make xwidgets default
   (mu4e-views-mu4e-use-view-msg-method "html") ;; select the default
   )
-
-;; (use-package pdf-tools
-;;   :defer t
-;;   ;; stop pdf-tools being automatically updated when I update the
-;;   ;; rest of my packages, since it would need the installation command and restart
-;;   ;; each time it updated.
-;;   :pin manual
-;;   :mode  ("\\.pdf\\'" . pdf-view-mode)
-;;   :config
-;;   (pdf-loader-install)
-;;   (setq-default pdf-view-display-size 'fit-height)
-;;   (setq pdf-view-continuous nil) ;; Makes it so scrolling down to the bottom/top of a page doesn't switch to the next page
-;;   (setq pdf-view-midnight-colors '("#ffffff" . "#121212" )) ;; I use midnight mode as dark mode, dark mode doesn't seem to work
-;;   :general
-;;   (general-define-key :states 'motion :keymaps 'pdf-view-mode-map
-;;                       "j" 'pdf-view-next-page
-;;                       "k" 'pdf-view-previous-page
-
-;;                       "C-j" 'pdf-view-next-line-or-next-page
-;;                       "C-k" 'pdf-view-previous-line-or-previous-page
-
-;;                       ;; Arrows for movement as well
-;;                       (kbd "<down>") 'pdf-view-next-line-or-next-page
-;;                       (kbd "<up>") 'pdf-view-previous-line-or-previous-page
-
-;;                       (kbd "<down>") 'pdf-view-next-line-or-next-page
-;;                       (kbd "<up>") 'pdf-view-previous-line-or-previous-page
-
-;;                       (kbd "<left>") 'image-backward-hscroll
-;;                       (kbd "<right>") 'image-forward-hscroll
-
-;;                       "H" 'pdf-view-fit-height-to-window
-;;                       "0" 'pdf-view-fit-height-to-window
-;;                       "W" 'pdf-view-fit-width-to-window
-;;                       "=" 'pdf-view-enlarge
-;;                       "-" 'pdf-view-shrink
-
-;;                       "q" 'quit-window
-;;                       "Q" 'kill-this-buffer
-;;                       "g" 'revert-buffer
-
-;;                       "C-s" 'isearch-forward
-;;                       )
-;;   )
 
 (use-package popper
   :bind (("C-`"   . popper-toggle-latest)

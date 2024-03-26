@@ -7,10 +7,6 @@
 
 (use-package company
   :diminish company-mode
-  :general
-  (general-define-key :keymaps 'company-active-map
-                      "C-j" 'company-select-next
-                      "C-k" 'company-select-previous)
   :init
   ;; These configurations come from Doom Emacs:
   (add-hook 'after-init-hook 'global-company-mode)
@@ -33,38 +29,6 @@
   (setq company-idle-delay 0.1)
   :custom-face
   (company-tooltip ((t (:family "RobotoMono Nerd Font")))))
-
-;; (use-package corfu
-;;   :init
-;;   (global-corfu-mode)
-;;   :config
-;;   (setq corfu-auto t
-;;         corfu-echo-documentation t
-;;         corfu-scroll-margin 0
-;;         corfu-count 8
-;;         corfu-max-width 50
-;;         corfu-min-width corfu-max-width
-;;         corfu-auto-prefix 2)
-
-;;   (corfu-history-mode 1)
-;;   (savehist-mode 1)
-;;   (add-to-list 'savehist-additional-variables 'corfu-history)
-
-;;   (defun corfu-enable-always-in-minibuffer ()
-;;     (setq-local corfu-auto nil)
-;;     (corfu-mode 1))
-;;   (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
-
-;;   :general
-;;   (:keymaps 'corfu-map
-;;             :states 'insert
-;;             "C-n" 'corfu-next
-;;             "C-p" 'corfu-previous
-;;             "C-j" 'corfu-next
-;;             "C-k" 'corfu-previous
-;;             "RET" 'corfu-complete
-;;             "<escape>" 'corfu-quit
-;;             ))
 
 (use-package cape
   :init
@@ -100,18 +64,7 @@
   (ivy-mode 1)
 
   ;; Shows a preview of the face in counsel-describe-face
-  (add-to-list 'ivy-format-functions-alist '(counsel-describe-face . counsel--faces-format-function))
-
-  :general
-  (general-define-key
-   ;; Also put in ivy-switch-buffer-map b/c otherwise switch buffer map overrides and C-k kills buffers
-   :keymaps '(ivy-minibuffer-map ivy-switch-buffer-map)
-   "S-SPC" 'nil
-   "C-SPC" 'ivy-restrict-to-matches ;; Default is S-SPC, changed this b/c sometimes I accidentally hit S-SPC
-   ;; C-j and C-k to move up/down in Ivy
-   "C-k" 'ivy-previous-line
-   "C-j" 'ivy-next-line)
-  )
+  (add-to-list 'ivy-format-functions-alist '(counsel-describe-face . counsel--faces-format-function)))
 
 ;; Nice icons in Ivy. Replaces all-the-icons-ivy.
 (use-package all-the-icons-ivy-rich
@@ -151,10 +104,6 @@
   ;; Use fd
   (setq find-program "fd")
   (setq counsel-file-jump-args (split-string "-L --type f -H")) ;; follow symlinks, files, show hidden
-
-  :general
-  (general-define-key :keymaps 'counsel-find-file-map
-                      "C-c f" 'counsel-file-jump-from-find) ;; when in counsel-find-file, run this to search the whole directory recursively
   )
 
 (use-package prescient
@@ -233,11 +182,6 @@
 
   (setq flyspell-issue-welcome-flag nil
         flyspell-issue-message-flag nil)
-
-  :general ;; Switches correct word from middle click to right click
-  (general-define-key :keymaps 'flyspell-mouse-map
-                      "<mouse-3>" #'ispell-word
-                      "<mouse-2>" nil)
   )
 
 ;; (use-package flyspell-correct

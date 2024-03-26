@@ -7,11 +7,7 @@
 
 (use-package rainbow-mode :defer t)
 
-(use-package quickrun :defer t
-  :general
-  (general-define-key :states 'normal :keymaps 'quickrun--mode-map
-                      "q" 'quit-window
-                      "s-9" 'quickrun-shell))
+(use-package quickrun :defer t)
 
 (use-package lsp-mode
   :init

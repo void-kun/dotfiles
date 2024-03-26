@@ -17,7 +17,7 @@
 
 ;; Setting text size based on the computer I am on.
 (setq lolo-text-height 150)
-(set-frame-font "IosevkaLyteTerm:size=15" nil t)
+(set-frame-font "IosevkaLyteTerm:size=14" nil t)
 
 (use-package mixed-pitch
   :defer t
@@ -140,8 +140,8 @@
 ;; loading theme based on the time.
 (let ((hour (string-to-number (substring (current-time-string) 11 13))))
   (if (or (> hour 19) (< hour 7))
-      (load-theme 'doom-one t) ;; Night
-    (load-theme 'doom-opera-light t))) ;; Day
+      (load-theme 'kaolin-dark t) ;; Night
+    (load-theme 'kaolin-light t))) ;; Day
 
 (setq-default fringes-outside-margins nil)
 (setq-default indicate-buffer-boundaries nil) ;; Otherwise shows a corner icon on the edge

@@ -75,9 +75,6 @@
 
 (use-package org-ql
   :defer t
-  :general
-  (general-define-key :keymaps 'org-ql-view-map
-                      "q" 'kill-buffer-and-window)
   )
 
 (use-package org-preview-html

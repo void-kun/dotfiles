@@ -177,6 +177,13 @@
 
 (setq reb-re-syntax 'string)
 
+;; LOAD PATH FROM SHELL
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; ===================================================================
 (provide 'lolo-package)
 ;;; lolo-package.el ends here

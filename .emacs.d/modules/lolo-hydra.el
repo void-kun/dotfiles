@@ -21,7 +21,6 @@
 ----------------------------------------------
 _1_ one              _z_ one-light 
 _2_ vivendi          _x_ operandi
-_3_ molokai          _c_ jake-plain
 _4_ snazzy           _v_ flatwhite
 _5_ old-hope         _b_ tomorrow-day
 _6_ henna                ^
