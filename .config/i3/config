@@ -1,6 +1,6 @@
 # ================================================================================================================
 # i3 config file 
-set $mod Mod1
+set $mod Mod4
 
 
 # ================================================================================================================
@@ -26,7 +26,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec ~/.config/rofi/launchers/type-1/launcher.sh
+# bindsym $mod+d exec ~/.config/rofi/launchers/type-1/launcher.sh
+bindsym $mod+d exec dmenu_run
 # lock screen
 bindsym Control+$mod+l exec "i3lock -c 1B1D1E"
 
@@ -200,7 +201,7 @@ client.placeholder          $bg     $bg         $bg     $bg
 # ================================================================================================================
 # window bar
 bar {
-    position bottom
+    position top
     strip_workspace_numbers yes
     #tray_output none
     font pango:Iosevka Nerd Font, FontAwesome 10

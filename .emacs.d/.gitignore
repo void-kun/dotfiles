@@ -1,0 +1,13 @@
+.cache/
+auto-save-list/
+transient/
+tree-sitter/
+var/
+.last-package-update-day
+.lsp-session-v1
+.org-generic-id-locations
+custom.el
+history
+places
+recentf
+typescript

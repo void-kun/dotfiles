@@ -1,7 +1,7 @@
 local vim = vim
 
 if vim.g.neovide then
-	vim.o.guifont = "JetBrainsMono Nerd Font:h10"
+	vim.o.guifont = "Iosevka Nerd Font:h12"
 	vim.opt.linespace = 0
 	vim.g.neovide_scale_factor = 1.0
 
