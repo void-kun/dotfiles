@@ -17,7 +17,7 @@
 
 ;; Setting text size based on the computer I am on.
 (setq lolo-text-height 150)
-(set-frame-font "RobotoMono Nerd Font:size=14" nil t)
+(set-frame-font "RobotoMono Nerd Font:size=16" nil t)
 
 (use-package mixed-pitch
   :defer t
@@ -109,8 +109,8 @@
         modus-themes-org-blocks 'gray-background
         modus-themes-mode-line '(moody borderless)) ;; moody or accented is what I use
 
-  ;; (setq modus-themes-headings ;; Makes org headings more colorful
-  ;;       '((t . (rainbow))))
+  (setq modus-themes-headings ;; Makes org headings more colorful
+        '((t . (rainbow))))
 
   (setq modus-themes-headings
         (quote ((1 . (variable-pitch 1.1 rainbow))
@@ -138,10 +138,11 @@
 
 
 ;; loading theme based on the time.
-(let ((hour (string-to-number (substring (current-time-string) 11 13))))
-  (if (or (> hour 19) (< hour 7))
-      (load-theme 'kaolin-dark t) ;; Night
-    (load-theme 'kaolin-light t))) ;; Day
+;; (let ((hour (string-to-number (substring (current-time-string) 11 13))))
+;;   (if (or (> hour 19) (< hour 7))
+;;       (load-theme 'kaolin-dark t) ;; Night
+;;     (load-theme 'kaolin-light t))) ;; Day
+(load-theme 'kaolin-dark t)
 
 (setq-default fringes-outside-margins nil)
 (setq-default indicate-buffer-boundaries nil) ;; Otherwise shows a corner icon on the edge

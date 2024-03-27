@@ -72,13 +72,23 @@
          '("\\(TK\\)+" 0 nil '(:weight bold :inherit font-lock-warning-face))))
   (global-hl-prog-extra-mode))
 
-(use-package xwidget)
+(use-package xwidget
+  :general
+    (general-define-key :states 'normal :keymaps 'xwidget-webkit-mode-map 
+                        "s-j" 'xwidget-webkit-scroll-up-line
+                        "s-k" 'xwidget-webkit-scroll-down-line
+                        "s-g s-g" 'xwidget-webkit-scroll-top
+                        "s-G" 'xwidget-webkit-scroll-bottom))
 
 (use-package mw-thesaurus
   :defer t)
 
 (use-package ansi-term
-  :ensure nil)
+  :ensure nil
+  :general
+  (:keymaps 'term-mode-map
+            "s-<up>" 'term-previous-input
+            "s-<down>" 'term-next-input))
 
 ;; https://github.com/oantolin/epithet
 ;; (use-package epithet
@@ -128,6 +138,9 @@
           help-mode
           compilation-mode))
   (popper-mode +1))
+
+(use-package multiple-cursors
+  :ensure t)
 
 (provide 'lolo-misc)
 ;;; lolo-misc.el ends here

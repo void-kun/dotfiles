@@ -7,6 +7,10 @@
 
 (use-package company
   :diminish company-mode
+  :general
+  (general-define-key :keymaps 'company-active-map
+                      "C-c C-j" 'company-select-next
+                      "C-c C-k" 'company-select-previous)
   :init
   ;; These configurations come from Doom Emacs:
   (add-hook 'after-init-hook 'global-company-mode)
@@ -34,12 +38,6 @@
   :init
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-keyword)
-  ;; kinda confusing re length, WIP/TODO
-  ;; :hook (org-mode . (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
-  ;; :config
-  ;; (setq dabbrev-check-other-buffers nil
-  ;;       dabbrev-check-all-buffers nil
-  ;;       cape-dabbrev-min-length 6)
   )
 
 
@@ -104,6 +102,10 @@
   ;; Use fd
   (setq find-program "fd")
   (setq counsel-file-jump-args (split-string "-L --type f -H")) ;; follow symlinks, files, show hidden
+
+  :general
+  (general-define-key :keymaps 'counsel-find-file-map
+                      "C-c f" 'counsel-file-jump-from-find)
   )
 
 (use-package prescient
@@ -182,6 +184,13 @@
 
   (setq flyspell-issue-welcome-flag nil
         flyspell-issue-message-flag nil)
+
+  :general ;; Switches correct word from middle click to right click
+  (general-define-key :keymaps 'flyspell-mouse-map
+                      "<mouse-3>" #'ispell-word
+                      "<mouse-2>" nil)
+  (general-define-key :keymaps 'evil-motion-state-map
+                      "zz" #'ispell-word)
   )
 
 ;; (use-package flyspell-correct

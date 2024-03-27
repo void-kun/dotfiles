@@ -1,9 +1,12 @@
+# folder
 .cache/
 auto-save-list/
 transient/
 tree-sitter/
 var/
 elpa/
+
+# files
 .last-package-update-day
 .lsp-session-v1
 .org-generic-id-locations
@@ -12,3 +15,7 @@ history
 places
 recentf
 typescript
+.dap-breakpoints
+.mc-lists.el
+projects
+curl-cookie-jar

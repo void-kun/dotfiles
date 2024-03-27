@@ -576,5 +576,51 @@ Version 2020-10-17"
 (fset 'lolo|SubListify
       (kmacro-lambda-form [?A M-return tab S-right escape ?j ?0] 0 "%d"))
 
+(defun lolo/move-text-internal (arg)
+  (cond
+  ((and mark-active transient-mark-mode)
+    (if (> (point) (mark))
+          (exchange-point-and-mark))
+    (let ((column (current-column))
+            (text (delete-and-extract-region (point) (mark))))
+      (forward-line arg)
+      (move-to-column column t)
+      (set-mark (point))
+      (insert text)
+      (exchange-point-and-mark)
+      (setq deactivate-mark nil)))
+  (t
+    (beginning-of-line)
+    (when (or (> arg 0) (not (bobp)))
+      (forward-line)
+      (when (or (< arg 0) (not (eobp)))
+          (transpose-lines arg))
+      (forward-line -1)))))
+
+(defun lolo/move-text-down (arg)
+  "Move region (transient-mark-mode active) or current line
+arg lines down."
+  (interactive "*p")
+  (lolo/move-text-internal arg))
+
+(defun lolo/move-text-up (arg)
+  "Move region (transient-mark-mode active) or current line
+arg lines up."
+  (interactive "*p")
+  (lolo/move-text-internal (- arg)))
+
+(defun lolo/newline-with-indent-below ()
+  "Insert newline with indent below."
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+(defun lolo/newline-with-indent-above ()
+  "Insert newline with indent above."
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (previous-line))
+
 (provide 'lolo-funcs)
 ;;; lolo-funcs.el ends here
