@@ -1,8 +1,9 @@
--- load env
 local vim = vim
--- load env for golang
+-- load env
 vim.env.PATH = "/usr/local/go/bin:" .. vim.env.PATH
 vim.env.PATH = "/home/zrik/.go/bin:" .. vim.env.PATH
+
+vim.fn.setenv("TERM", "tmux-256color")
 
 local function safeRequire(module)
 	local success, loadedModule = pcall(require, module)

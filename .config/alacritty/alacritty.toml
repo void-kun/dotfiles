@@ -1,20 +1,17 @@
-import = [
-    "~/.config/alacritty/themes/gruvbox_dark.toml"
-]
-
 [shell]
-program = "/usr/bin/zsh"
+program = "/usr/bin/tmux"
+args = ["-2"]
 
 [window]
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
-bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
-italic = { family = "JetBrainsMonoNL Nerd Font", style = "Book" }
-bold_italic = { family = "JetBrainsMonoNL Nerd Font", style = "Bold Oblique" }
+normal = { family = "RobotoMono Nerd Font", style = "Regular" }
+bold = { family = "RobotoMono Nerd Font", style = "Bold" }
+italic = { family = "RobotoMono Nerd Font", style = "Book" }
+bold_italic = { family = "RobotoMono Nerd Font", style = "Bold Oblique" }
 
-size = 12.0
+size = 10.0
 offset.x = 0
-offset.y = 2
+offset.y = 0
 

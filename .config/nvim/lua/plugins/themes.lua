@@ -9,13 +9,13 @@ function ColorMyPencils(color)
 end
 
 return {
-	{
-		"jacoborus/tender.vim",
-		name = "tender",
-		config = function()
-			-- require("tender").setup({})
+	"rose-pine/neovim",
+	name = "rose-pine",
+	config = function()
+		require("rose-pine").setup({
+			disable_background = true,
+		})
 
-			vim.cmd("colorscheme tender")
-		end,
-	},
+		ColorMyPencils()
+	end,
 }
