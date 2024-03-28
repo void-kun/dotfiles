@@ -40,10 +40,11 @@ Otherwise the startup will be very slow."
 (require 'lolo-org)
 (require 'lolo-misc)
 (require 'lolo-programming)
-(require 'lolo-python)
-(require 'lolo-web)
-(require 'lolo-emacs-lisp)
-(require 'lolo-go)
+;; (require 'lolo-emacs-lisp)
+;; (require 'lolo-python)
+;; (require 'lolo-web)
+;; (require 'lolo-go)
 (require 'lolo-rust)
 
 ;;; init.el ends here
+(put 'scroll-left 'disabled nil)

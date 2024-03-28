@@ -30,7 +30,7 @@
         company-dabbrev-downcase nil)
 
   :config
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.3)
   :custom-face
   (company-tooltip ((t (:family "RobotoMono Nerd Font")))))
 
@@ -177,28 +177,19 @@
   (add-to-list 'ispell-skip-region-alist '("^#\\+BEGIN_EXPORT" . "^#\\+END_EXPORT"))
   (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 
-  (dolist (mode '(
-                  ;;org-mode-hook
-                  mu4e-compose-mode-hook))
-    (add-hook mode (lambda () (flyspell-mode 1))))
+  (dolist (mode '(rust-mode-hook
+				  go-mode-hook
+				  c++-mode-hook
+				  c-mode-hook
+				  html-mode-hook
+				  css-mode-hook
+				  js-mode-hook))
+    (add-hook mode (lambda () (flyspell-prog-mode 1))))
 
+  
   (setq flyspell-issue-welcome-flag nil
         flyspell-issue-message-flag nil)
-
-  :general ;; Switches correct word from middle click to right click
-  (general-define-key :keymaps 'flyspell-mouse-map
-                      "<mouse-3>" #'ispell-word
-                      "<mouse-2>" nil)
-  (general-define-key :keymaps 'evil-motion-state-map
-                      "zz" #'ispell-word)
   )
-
-;; (use-package flyspell-correct
-;;   :after flyspell
-;;   :bind (:map flyspell-mode-map ("C-;" . flyspell-correct-wrapper)))
-
-;; (use-package flyspell-correct-ivy
-;;   :after flyspell-correct)
 
 (use-package avy
   :defer t
@@ -213,25 +204,6 @@
 (add-hook 'minibuffer-setup-hook 'lolo/paste-in-minibuffer)
 
 (use-package undo-fu)
-
-(use-package super-save
-  :diminish super-save-mode
-  :defer 2
-  :config
-  (setq super-save-auto-save-when-idle t
-        super-save-idle-duration 5 ;; after 5 seconds of not typing autosave
-        super-save-max-buffer-size 10000000)
-  (super-save-mode +1))
-
-;; After super-save autosaves, wait __ seconds and then clear the buffer. I don't like
-;; the save message just sitting in the echo area.
-(defun lolo-clear-echo-area-timer ()
-  (run-at-time "2 sec" nil (lambda () (message " "))))
-(advice-add 'super-save-command :after 'lolo-clear-echo-area-timer)
-
-(use-package saveplace
-  :init (setq save-place-limit 100)
-  :config (save-place-mode))
 
 (use-package yasnippet
   :diminish yas-minor-mode

@@ -1,7 +1,9 @@
 # ================================================================================================================
 # i3 config file 
+# win Mod4
+# alt Mod1
 set $mod Mod4
-
+set $alt Mod1
 
 # ================================================================================================================
 # autostart
@@ -25,9 +27,9 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
-# A more modern dmenu replacement is rofi:
+# A more mode dmenu replacement is rofi:
 # bindsym $mod+d exec ~/.config/rofi/launchers/type-1/launcher.sh
-bindsym $mod+d exec dmenu_run
+bindsym $alt+d exec dmenu_run
 # lock screen
 bindsym Control+$mod+l exec "i3lock -c 1B1D1E"
 

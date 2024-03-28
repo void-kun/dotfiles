@@ -6,16 +6,18 @@
 ;;; Code:
 
 (use-package rust-mode
-  :defer t
-  :init
-  (setq rust-mode-treesitter-derive t)
-  :mode "\\.rs\\'"
+  :ensure t)
+
+(use-package rust-ts-mode
+  :ensure t
+  :after (eglot)
+  :hook ((rust-ts-mode . eglot-ensure)
+	   (rust-ts-mode . company-tng-mode)
+	   (rust-ts-mode . (lambda ()
+						 (eglot-inlay-hints-mode -1))))
   :config
-  (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook 'lsp-deferred)
-  (add-hook 'rust-mode-hook 
-                (lambda () (prettify-symbols-mode)))
-  )
-        
-(provide 'lolo-rust)
-;;; lolo-rust.el ends here
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
+  (add-to-list 'eglot-server-programs '(rust-ts-mode . ("rust-analyzer"))))
+
+  (provide 'lolo-rust)
+  ;;; lolo-rust.el ends here

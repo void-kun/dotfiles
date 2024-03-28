@@ -1,4 +1,4 @@
-;;; lolo-package.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;; lolo-package.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;; 

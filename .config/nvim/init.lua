@@ -1,39 +1,58 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
-vim.g.mapleader = " "
+-- load env
+local vim = vim
+-- load env for golang
+vim.env.PATH = "/usr/local/go/bin:" .. vim.env.PATH
+vim.env.PATH = "/home/zrik/.go/bin:" .. vim.env.PATH
 
--- bootstrap lazy and all plugins
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
-  local repo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+local function safeRequire(module)
+	local success, loadedModule = pcall(require, module)
+	if success then
+		return loadedModule
+	end
+	print("Error loading " .. module)
 end
 
+safeRequire("core.options")
+safeRequire("core.keymaps")
+safeRequire("core.commands")
+safeRequire("core.neovide")
+
+-- Install lazy.nvim automatically
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
+local opts = {
+	git = { log = { "--since=3 days ago" } },
+	ui = { custom_keys = { false } },
+	install = { colorscheme = { "onedarkpro" } },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"rplugin",
+				"editorconfig",
+				"matchparen",
+				"matchit",
+			},
+		},
+	},
+	checker = { enabled = false },
+}
 
--- load plugins
-require("lazy").setup({
-  {
-    "NvChad/NvChad",
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-    config = function()
-      require "options"
-    end,
-  },
-
-  { import = "plugins" },
-}, lazy_config)
-
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
-require "nvchad.autocmds"
-
-vim.schedule(function()
-  require "mappings"
-end)
+-- Load the plugins and options
+require("lazy").setup("plugins", opts)

@@ -622,5 +622,11 @@ arg lines up."
   (newline)
   (previous-line))
 
+(defun lolo/kill-line ()
+  "kill current line."
+  (interactive)
+  (beginning-of-line)
+  (kill-line))
+
 (provide 'lolo-funcs)
 ;;; lolo-funcs.el ends here

@@ -1,7 +1,7 @@
 ;;; lolo-general.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
@@ -10,7 +10,6 @@
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
 (general-define-key
  :keymaps 'override
-
  ;; Top level functions
 ;;  "C-/"      '(lolo/rg :which-key "ripgrep")
  "C-:"      '(project-find-file :which-key "p-find file")
@@ -19,19 +18,22 @@
  "C-<tab>"  '(switch-to-prev-buffer :which-key "previous buffer")
  "C-q"      '(save-buffers-kill-terminal :which-key "quit emacs")
  "C-r"      '(jump-to-register :which-key "registers")
+ "C-k"      '(lolo/kill-line :which-key "kill line")
 
+ "s-<tab>" '(company-capf :which-key "show company diag")
+ 
  "M-s-<left>"  '(move-beginning-of-line :which-key "move beginning of line")
  "M-s-<right>" '(move-end-of-line :which-key "move end of line")
  "M-s-<up>" '(lolo/move-text-up :which-key "move text up")
  "M-s-<down>" '(lolo/move-text-down :which-key "move text down")
-
+ 
  "M-s-<return>" '(lolo/newline-with-indent-below :which-key "newline with indent below")
  "C-M-s-<return>" '(lolo/newline-with-indent-above :which-key "newline with indent above")
-
+ 
  "C-S-c C-S-c" '(mc/edit-lines :which-key "edit lines")
  "C->" '(mc/mark-next-like-this :which-key "mark next like this")
  "C-<" '(mc/mark-previous-like-this :which-key "mark previous like this")
- "C-c C-<" '(mc/mark-all-like-this :which-key "mark all like this")
+ "C-s-<" '(mc/mark-all-like-this :which-key "mark all like this")
 
 ;;  ;; "Applications"
  "C-a" '(nil :which-key "applications")
@@ -44,11 +46,17 @@
  "C-b" '(nil :which-key "buffer")
  "C-b C-b" '(counsel-switch-buffer :which-key "switch buffers")
  "C-b C-s" '(lolo/switch-to-scratch-buffer :which-key "scratch buffer")
- "C-b C-m" '(lolo/kill-other-buffers :which-key "kill other buffers")
+ "C-b C-o" '(lolo/kill-other-buffers :which-key "kill other buffers")
  "C-b C-i" '(clone-indirect-buffer  :which-key "indirect buffer")
  "C-b C-r" '(revert-buffer :which-key "revert buffer")
  "C-b C-w" '(kill-this-buffer :which-key "kill this buffer")
 
+ ;; Coding
+ "C-c C-d" '(lsp-ui-doc-toggle :which-key "lsp ui toggle doc")
+ "C-c C-d" '(lsp-ui-doc-toggle :which-key "lsp ui toggle doc")
+ "C-c C-f" '(lsp-find-references :which-key "lsp find reference")
+
+ 
  ;; Files
  "C-f" '(nil :which-key "files")
  "C-f C-b" '(counsel-bookmark :which-key "bookmarks")

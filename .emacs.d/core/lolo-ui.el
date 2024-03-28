@@ -17,7 +17,7 @@
 
 ;; Setting text size based on the computer I am on.
 (setq lolo-text-height 150)
-(set-frame-font "RobotoMono Nerd Font:size=16" nil t)
+(set-frame-font "RobotoMono Nerd Font:size=14" nil t)
 
 (use-package mixed-pitch
   :defer t
@@ -28,6 +28,8 @@
 
 ;; Disables showing system load in modeline, useless anyway
 (setq display-time-default-load-average nil)
+
+(global-visual-line-mode t)
 
 (line-number-mode)
 (column-number-mode)
@@ -138,11 +140,10 @@
 
 
 ;; loading theme based on the time.
-;; (let ((hour (string-to-number (substring (current-time-string) 11 13))))
-;;   (if (or (> hour 19) (< hour 7))
-;;       (load-theme 'kaolin-dark t) ;; Night
-;;     (load-theme 'kaolin-light t))) ;; Day
-(load-theme 'kaolin-dark t)
+(let ((hour (string-to-number (substring (current-time-string) 11 13))))
+  (if (or (> hour 17) (< hour 6))
+      (load-theme 'kaolin-valley-dark t) ;; Night
+    (load-theme 'kaolin-valley-light t))) ;; Day
 
 (setq-default fringes-outside-margins nil)
 (setq-default indicate-buffer-boundaries nil) ;; Otherwise shows a corner icon on the edge
