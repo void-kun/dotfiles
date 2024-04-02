@@ -65,6 +65,7 @@ local options = {
 	confirm = false,
 	conceallevel = 3,
 	cmdheight = 1,
+	smoothscroll = true,
 }
 
 for k, v in pairs(options) do

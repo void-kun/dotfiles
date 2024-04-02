@@ -1,9 +1,4 @@
 local vim = vim
--- load env
-vim.env.PATH = "/usr/local/go/bin:" .. vim.env.PATH
-vim.env.PATH = "/home/zrik/.go/bin:" .. vim.env.PATH
-
-vim.fn.setenv("TERM", "tmux-256color")
 
 local function safeRequire(module)
 	local success, loadedModule = pcall(require, module)
@@ -35,7 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {
 	git = { log = { "--since=3 days ago" } },
 	ui = { custom_keys = { false } },
-	install = { colorscheme = { "onedarkpro" } },
+	install = { colorscheme = { "rose-pine" } },
 	performance = {
 		rtp = {
 			disabled_plugins = {

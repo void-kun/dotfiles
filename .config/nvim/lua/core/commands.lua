@@ -9,7 +9,7 @@ end
 autocmd("BufWritePost", {
 	group = augroup("formatonsave"),
 	desc = "Trigger format on save",
-	pattern = { "*.go", "*.lua", "*.py", "*.rs", "*.ts", "*.tsx", "*.sh", "*.md" },
+	pattern = { "*.go", "*.lua", "*.py", "*.rs", "*.ts", "*.tsx", "*.sh" },
 	callback = function()
 		vim.lsp.buf.format()
 	end,

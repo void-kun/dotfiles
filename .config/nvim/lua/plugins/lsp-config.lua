@@ -10,7 +10,14 @@ return {
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "biome", "tsserver" },
+				ensure_installed = {
+					"lua_ls",
+					"rust_analyzer",
+					"biome",
+					"tsserver",
+					"gopls",
+					"marksman",
+				},
 			})
 			require("mason-tool-installer").setup({
 				ensure_installed = {
@@ -50,39 +57,20 @@ return {
 			keymap.set("n", "]d", vim.diagnostic.goto_next)
 
 			-- Define the color
-			-- local bg_color = "#ffffff"
-			-- local fg_color = "white" -- For the border foreground color
-			--
-			-- -- Create an autocmd that sets the highlight groups when the colorscheme changes
-			-- vim.api.nvim_create_autocmd("ColorScheme", {
-			-- 	pattern = "*",
-			-- 	callback = function()
-			-- 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg_color })
-			-- 		vim.api.nvim_set_hl(0, "FloatBorder", { fg = fg_color, bg = bg_color })
-			-- 	end,
-			-- })
-			--
-			-- -- Trigger the autocmd to apply the color immediately
-			-- vim.cmd("doautocmd ColorScheme")
+			local bg_color = "#1a1a1a"
+			local fg_color = "#31748f" -- For the border foreground color
 
-			local lsp_handlers = vim.lsp.handlers
+			-- Create an autocmd that sets the highlight groups when the colorscheme changes
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "*",
+				callback = function()
+					vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg_color })
+					vim.api.nvim_set_hl(0, "FloatBorder", { fg = fg_color, bg = bg_color })
+				end,
+			})
 
-			-- Define the border style
-			local border_style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
-			-- Wrap the original handlers with a border
-			lsp_handlers["textDocument/hover"] = function(err, result, ctx, config)
-				config = config or {}
-				config.border = border_style
-				config.focusable = false
-				vim.lsp.handlers.hover(err, result, ctx, config)
-			end
-
-			lsp_handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
-				config = config or {}
-				config.border = border_style
-				vim.lsp.handlers.signature_help(err, result, ctx, config)
-			end
+			-- Trigger the autocmd to apply the color immediately
+			vim.cmd("doautocmd ColorScheme")
 
 			-- lsp actions with telescope
 			local builtin = require("telescope.builtin")

@@ -3,7 +3,7 @@ return {
 	opts = {
 		projects = { -- define project roots
 			"~/code/*",
-			-- "~/.config/*",
+			"~/source/*",
 		},
 	},
 	init = function()

@@ -48,3 +48,4 @@ Otherwise the startup will be very slow."
 
 ;;; init.el ends here
 (put 'scroll-left 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)

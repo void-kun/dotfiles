@@ -8,5 +8,4 @@ return {
 			require("ibl").setup()
 		end,
 	},
-	{ "romainl/vim-cool", lazy = false },
 }

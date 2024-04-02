@@ -18,6 +18,7 @@ return {
 						"lazy-lock.json",
 						"node_modules",
 						"yarn.lock",
+						"target",
 					},
 					dynamic_preview_title = true,
 					path_display = { "smart" },
@@ -37,6 +38,26 @@ return {
 					},
 				},
 			})
+
+			local bg_col = "#1b1b1b"
+			local colors = require("rose-pine.palette")
+			local telescope_color = {
+				-- TelescopeMatching = { fg = colors.base },
+				-- TelescopeSelection = { fg = colors.text, bg = colors.surface, bold = true },
+				-- TelescopePromptPrefix = { bg = colors.surface },
+				-- TelescopePromptNormal = { bg = colors.surface },
+				-- TelescopeResultsNormal = { bg = colors.subtle },
+				-- TelescopePreviewNormal = { bg = colors.subtle },
+				TelescopePromptBorder = { bg = bg_col, fg = colors.rose },
+				TelescopeResultsBorder = { bg = bg_col, fg = colors.rose },
+				TelescopePreviewBorder = { bg = bg_col, fg = colors.rose },
+				-- TelescopePromptTitle = { bg = colors.pine, fg = colors.subtle },
+				-- TelescopeResultsTitle = { fg = colors.subtle },
+				-- TelescopePreviewTitle = { bg = colors.pine, fg = colors.subtle },
+			}
+			for hl, col in pairs(telescope_color) do
+				vim.api.nvim_set_hl(0, hl, col)
+			end
 		end,
 	},
 	{
@@ -51,8 +72,6 @@ return {
 					},
 				},
 			})
-			-- To get ui-select loaded and working with telescope, you need to call
-			-- load_extension, somewhere after setup function:
 			require("telescope").load_extension("ui-select")
 		end,
 	},
