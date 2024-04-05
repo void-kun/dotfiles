@@ -1,0 +1,9 @@
+auto-save-list/
+eln-cache/
+elpa/
+transient/
+.session
+custom.el
+history
+projectile-bookmarks.eld
+recentf

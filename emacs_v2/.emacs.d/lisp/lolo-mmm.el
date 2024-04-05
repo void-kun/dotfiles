@@ -1,0 +1,14 @@
+;;; lolo-mmm.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;;
+;;; Commentary:
+;; 
+;;
+;;; Code:
+
+(require-package 'mmm-mode)
+(require 'mmm-auto)
+(setq mmm-global-mode 'buffers-with-submode-classes)
+(setq mmm-submode-decoration-level 2)
+
+(provide 'lolo-mmm)
+;;; lolo-mmm.el ends here
