@@ -128,14 +128,12 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
       (forward-line -1)))))
 
 (defun lolo/move-text-down (arg)
-  "Move region (transient-mark-mode active) or current line
-arg lines down."
+  "Move region (transient-mark-mode active) or current line down."
   (interactive "*p")
   (lolo/move-text-internal arg))
 
 (defun lolo/move-text-up (arg)
-  "Move region (transient-mark-mode active) or current line
-arg lines up."
+  "Move region (transient-mark-mode active) or current line up."
   (interactive "*p")
   (lolo/move-text-internal (- arg)))
 
@@ -150,7 +148,7 @@ arg lines up."
   (interactive)
   (beginning-of-line)
   (newline)
-  (previous-line))
+  (forward-line))
 
 (defun lolo/kill-line ()
   "kill current line."

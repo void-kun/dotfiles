@@ -1,7 +1,7 @@
 ;;; lolo-windows.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
@@ -14,7 +14,7 @@
 (require-package 'switch-window)
 (setq-default switch-window-shortcut-style 'qwerty)
 (setq-default switch-window-timeout nil)
-(global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "C-x C-o") 'switch-window)
 
 
 ;; When splitting window, show (other-buffer) in the new window
@@ -94,6 +94,11 @@ Call a second time to restore the original window configuration."
 
 (global-set-key (kbd "C-c <down>") 'sanityinc/toggle-current-window-dedication)
 
+
+(maybe-require-package 'auto-dim-other-buffers)
+(add-hook 'after-init-hook (lambda ()
+                             (when (fboundp 'auto-dim-other-buffers-mode)
+                               (auto-dim-other-buffers-mode t))))
 
 (provide 'lolo-windows)
 ;;; lolo-windows.el ends here

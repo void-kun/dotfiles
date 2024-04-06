@@ -140,6 +140,9 @@
             (unless (server-running-p)
               (server-start))))
 
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode
+;;                                 "\\.go\\'" . go-mode))
+
 ;; Variables configured via the interactive 'customize' interface
 (when (file-exists-p custom-file)
   (load custom-file))
