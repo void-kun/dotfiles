@@ -1,7 +1,7 @@
 ;;; lolo-themes.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
@@ -14,7 +14,7 @@
 (setq custom-safe-themes t)
 
 ;; If you don't customize it, this is the theme you get.
-(setq-default custom-enabled-themes '(kaolin-valley-dark))
+(setq-default custom-enabled-themes '(kaolin-valley-light))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()

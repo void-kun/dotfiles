@@ -1,5 +1,8 @@
 local keymap = vim.keymap
 
+-- map for normal mode
+keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
 -- remaps ; to act as :
 keymap.set("n", ";", "<cmd>FineCmdline<cr>", { noremap = true })
 

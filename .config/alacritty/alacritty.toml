@@ -9,8 +9,5 @@ normal = { family = "RobotoMono Nerd Font", style = "Regular" }
 bold = { family = "RobotoMono Nerd Font", style = "Bold" }
 italic = { family = "RobotoMono Nerd Font", style = "Book" }
 bold_italic = { family = "RobotoMono Nerd Font", style = "Bold Oblique" }
-
 size = 10.0
-offset.x = 0
-offset.y = 0
 

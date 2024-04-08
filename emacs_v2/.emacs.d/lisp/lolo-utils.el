@@ -148,7 +148,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   (interactive)
   (beginning-of-line)
   (newline)
-  (forward-line))
+  (previous-line))
 
 (defun lolo/kill-line ()
   "kill current line."

@@ -35,8 +35,8 @@ local options = {
 	path = vim.opt.path + "**",
 	isfname = vim.opt.isfname:append("@-@"),
 	autochdir = true,
-	relativenumber = true,
-	numberwidth = 8,
+	relativenumber = false,
+	numberwidth = 4,
 	shada = "!,'50,<50,s10,h,r/tmp",
 	expandtab = true,
 	smarttab = true,
@@ -65,7 +65,6 @@ local options = {
 	confirm = false,
 	conceallevel = 3,
 	cmdheight = 1,
-	smoothscroll = true,
 }
 
 for k, v in pairs(options) do
