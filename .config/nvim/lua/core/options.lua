@@ -7,6 +7,7 @@ vim.g.matchparen_insert_timeout = 20
 
 local options = {
 	equalalways = true,
+	swapfile = false,
 	winbar = "%=%m %F",
 	nrformats = { "alpha", "octal", "hex" },
 	virtualedit = "block",

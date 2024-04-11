@@ -1,7 +1,7 @@
 ;;; lolo-whitespace.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
