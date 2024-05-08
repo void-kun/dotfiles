@@ -5,41 +5,49 @@ import argparse
 EXIT_SUCCESS_CODE = 0
 EXIT_FAILURE_CODE = 1
 
+def create_modules_info(module_names: list[str], directory: str) -> list[str]:
+    """
+    Create a list of module paths
+    """
+    module_paths = []
+    for module_name in module_names:
+        module_path = os.path.join(os.getcwd(), directory, f"lolo-{module_name}.el")
+        module_paths.append((module_name, module_path))
+    return module_paths
+
 
 def new_modules(args: argparse.ArgumentParser):
     """
     Create a new module for emacs configuration
     """
     directory = args.directory
-    module_name = args.module_name
-    if directory != "":
-        module_path = os.path.join(directory, f"lolo-{module_name}.el")
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-    else:
-        module_path = f"lolo-{module_name}.el"
+    module_names = args.module_name
 
-    print(f"Creating module '{module_path}'")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    modules_info = create_modules_info(module_names, directory)
 
-    if os.path.exists(module_path):
-        print(f"The module '{module_path}' already exists")
-        return EXIT_FAILURE_CODE
-    else:
-        template = f""";;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+    print(f"Creating modules: '{modules_info}'")
+
+    for module_name, module_path in modules_info:
+        if os.path.exists(module_path):
+            print(f"The module '{module_path}' already exists")
+        else:
+            template = f""";;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
-;; 
+;;
 ;;
 ;;; Code:
 
-        
+
 (provide 'lolo-{module_name})
 ;;; lolo-{module_name}.el ends here
 """
-        with open(module_path, "w", encoding="utf-8") as f_out:
-            f_out.write(template)
+            with open(module_path, "w", encoding="utf-8") as f_out:
+                f_out.write(template)
 
-        return EXIT_SUCCESS_CODE
+    return EXIT_SUCCESS_CODE
 
 
 if __name__ == "__main__":
@@ -47,9 +55,8 @@ if __name__ == "__main__":
     subparsers = parser.add_subparsers(help="sub-command help")
 
     # create new module
-    #new_modules_parser = subparsers.add_parser("new", help="new help") 
     parser.add_argument("-d", dest="directory", type=str, default="")
-    parser.add_argument("-t", dest="module_name", type=str)
+    parser.add_argument("-t", nargs='+', dest="module_name", type=str, required=True)
     parser.set_defaults(handler=new_modules)
 
     try:
