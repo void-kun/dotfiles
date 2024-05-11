@@ -81,7 +81,7 @@
 (nyan-mode)
 
 (setq lolo-doom-modeline-text-height 100)
-(setq doom-modeline-height 60)
+(setq doom-modeline-height 35)
 
 (setq default-frame-alist
       '((left . 170)

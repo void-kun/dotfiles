@@ -85,5 +85,6 @@
 (require 'lolo-web)
 
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
 ;;; lolo-init.el ends here
