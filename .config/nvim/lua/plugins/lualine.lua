@@ -22,7 +22,7 @@ return {
 
 			require("lualine").setup({
 				options = {
-					theme = "base16",
+					theme = "jellybeans",
 					section_separators = { left = "  ", right = "  " },
 					component_separators = { left = "  ", right = "  " },
 				},

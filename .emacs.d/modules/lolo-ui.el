@@ -17,10 +17,9 @@
 (menu-bar-mode -1)
 
 ;; config font settings
-(set-face-attribute 'default nil
-                    :font "ZedMono Nerd Font"
-                    :height 100
-                    :weight 'regular)
+(custom-set-faces
+ '(default ((t (:family "ZedMono Nerd Font" :foundry "UKWN" :slant normal :weight regular :height 122 :width normal)))))
+
 
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
@@ -156,7 +155,9 @@
 ;; A minor-mode menu for mode-line
 (use-package minions :hook (doom-modeline-mode . minions-mode))
 
-(load-theme 'modus-operandi-deuteranopia t)
+(use-package monokai-pro-theme)
+
+(load-theme 'monokai-pro-ristretto t)
 
 (setq-default fringes-outside-margins nil)
 (setq-default indicate-buffer-boundaries nil) ;; Otherwise shows a corner icon on the edge

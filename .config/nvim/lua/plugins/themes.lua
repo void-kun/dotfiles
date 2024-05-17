@@ -6,7 +6,6 @@ return {
 	config = function()
 		require("rose-pine").setup({
 			disable_background = true,
-			-- variant = "dawn",
 		})
 
 		vim.cmd.colorscheme("rose-pine")

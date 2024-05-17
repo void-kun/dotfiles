@@ -88,3 +88,4 @@
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
 ;;; lolo-init.el ends here
+(put 'set-goal-column 'disabled nil)

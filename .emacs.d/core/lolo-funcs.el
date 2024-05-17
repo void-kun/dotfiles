@@ -533,7 +533,5 @@ Return the fastest package archive."
   (beginning-of-line)
   (kill-line))
 
-
-
 (provide 'lolo-funcs)
 ;;; lolo-funcs.el ends here
