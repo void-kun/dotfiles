@@ -157,7 +157,8 @@
 
 (use-package monokai-pro-theme)
 
-(load-theme 'monokai-pro-ristretto t)
+;; (load-theme 'monokai-pro-ristretto t)
+(load-theme 'modus-operandi-deuteranopia t)
 
 (setq-default fringes-outside-margins nil)
 (setq-default indicate-buffer-boundaries nil) ;; Otherwise shows a corner icon on the edge

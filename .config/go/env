@@ -1,0 +1,5 @@
+GOPATH=/home/zrik/.go/
+GOBIN=/home/zrik/.go/bin/
+GOMODCACHE=/home/zrik/.go/pkg/mod/
+
+
