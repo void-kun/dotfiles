@@ -1,3 +1,6 @@
+--- cmp.lua --- Zrik's neovim setup.
+--- Code:
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -17,9 +20,9 @@ return {
 		local lspkind = require("lspkind")
 
 		cmp.setup({
-			-- completion = {
-			-- 	completeopt = "menu,menuone,preview,noselect",
-			-- },
+			completion = {
+				completeopt = "menu,menuone,preview,noselect",
+			},
 			formatting = {
 				format = lspkind.cmp_format({
 					maxwidth = 50,
@@ -79,10 +82,7 @@ return {
 				{ name = "cmdline" },
 			}),
 		})
-
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		require("lspconfig")["gopls"].setup({
-			capabilities = capabilities,
-		})
 	end,
 }
+
+--- cmp.lua ends here

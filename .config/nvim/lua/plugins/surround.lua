@@ -1,3 +1,6 @@
+--- surround.lua --- Zrik's neovim setup.
+--- Code:
+
 return {
 	"kylechui/nvim-surround",
 	version = "*",
@@ -7,3 +10,4 @@ return {
 	end,
 }
 
+--- surround.lua ends here

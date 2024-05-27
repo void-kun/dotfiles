@@ -1,3 +1,6 @@
+--- lazygit.lua --- Zrik's neovim setup.
+--- Code:
+
 return {
 	"kdheepak/lazygit.nvim",
 	cmd = {
@@ -17,3 +20,5 @@ return {
 		{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 	},
 }
+
+--- lazygit.lua ends here

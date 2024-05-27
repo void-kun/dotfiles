@@ -1,3 +1,6 @@
+--- colorizer.lua --- Zrik's neovim setup.
+--- Code:
+
 return {
 	"norcalli/nvim-colorizer.lua",
 	config = function()
@@ -10,3 +13,5 @@ return {
 		})
 	end,
 }
+
+--- colorizer.lua ends here

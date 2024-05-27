@@ -1,3 +1,6 @@
+--- fine-cmdline.lua --- Zrik's neovim setup.
+--- Code:
+
 return {
 	"VonHeikemen/fine-cmdline.nvim",
 	dependencies = { "MunifTanjim/nui.nvim" },
@@ -27,3 +30,5 @@ return {
 		})
 	end,
 }
+
+--- fine-cmdline.lua ends here

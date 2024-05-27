@@ -1,3 +1,6 @@
+--- nvimtree.lua --- Zrik's neovim setup.
+--- Code:
+
 local vim = vim
 
 return {
@@ -45,12 +48,14 @@ return {
 				enable = true,
 				show_on_dirs = true,
 				icons = {
-					hint = "",
-					info = "",
-					warning = "",
-					error = "",
+					hint = " ",
+					info = " ",
+					warning = " ",
+					error = " ",
 				},
 			},
 		})
 	end,
 }
+
+--- nvimtree.lua ends here

@@ -1,3 +1,6 @@
+--- init.lua --- Zrik's neovim setup.
+--- Code:
+
 local vim = vim
 
 local function safeRequire(module)
@@ -51,3 +54,5 @@ local opts = {
 
 -- Load the plugins and options
 require("lazy").setup("plugins", opts)
+
+--- init.lua ends here

@@ -1,4 +1,5 @@
 .config/dconf/
+.config/go/telemetry/*
 
 .emacs.d/*
 !.emacs.d/core/*
@@ -7,4 +8,8 @@
 !.emacs.d/init.el
 !.emacs.d/early-init.el
 !.emacs.d/script.py
+
+.config/nvim/undodir/*
+.config/nvim/.luarc.json
+.config/nvim/lazy-lock.json
 
