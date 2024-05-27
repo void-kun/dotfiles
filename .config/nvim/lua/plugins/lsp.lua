@@ -45,7 +45,8 @@ return {
                     "gopls",
                     "golangci-lint",
                     "goimports",
-                    "clang-format"
+                    "clang-format",
+                    "black"
                 },
                 start_delay = 3000, -- 3 second delay
                 debounce_hours = 5,
@@ -75,7 +76,10 @@ return {
         }
     },
     {
-        "HallerPatrick/py_lsp.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
+        opts = function()
+            return require("plugins.lsp.null-ls")
+        end
     }
 }
 

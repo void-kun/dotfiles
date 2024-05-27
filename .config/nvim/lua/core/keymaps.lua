@@ -42,6 +42,7 @@ keymap.set({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<cr>")
 keymap.set("n", "<leader>dc", "<cmd>Lspsaga code_action<cr>")
 keymap.set("n", "<leader>dp", "<cmd>Lspsaga goto_definition<cr>")
 keymap.set("n", "<leader>ds", "<cmd>Lspsaga finder tyd+ref+imp+def<cr>")
+keymap.set({ "n", "i" }, "<C><leader>", "<cmd>Lspsaga hover_doc<cr>")
 
 -- buffers
 keymap.set("n", "<leader>c", "<cmd>bd<cr>")

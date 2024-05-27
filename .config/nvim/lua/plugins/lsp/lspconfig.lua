@@ -72,39 +72,6 @@ lspconfig.pyright.setup({
     capabilities = capabilities,
 })
 
-local py_lsp_installed, py_lsp = pcall(require, "py_lsp")
-if py_lsp_installed then
-    local py_lsp_loaded = false
-    local py_cwd = nil
-    local augroup = vim.api.nvim_create_augroup("py_lsp", { clear = true })
-    vim.api.nvim_create_autocmd("BufReadPost", {
-        group = augroup,
-        pattern = { "*.py" },
-        desc = "Lazy load py_lsp after *.py file opened and activate venv",
-        callback = function()
-            if not py_lsp_loaded then
-                py_lsp_loaded = true
-                py_cwd = vim.fn.getcwd()
-                vim.defer_fn(function()
-                    -- python lsp with venv using pyrigth
-                    py_lsp.setup({
-                        host_python = "~/environment/pyenv/bin/python",
-                        language_server = "pyright",
-                        default_venv_name = "pyenv",
-                    })
-                end, 500)
-            else
-                -- change venv if cwd changed since setup
-                local cwd = vim.fn.getcwd()
-                if cwd ~= py_cwd then
-                    vim.api.nvim_command("PyLspActivateVenv")
-                    py_cwd = cwd
-                end
-            end
-        end,
-    })
-end
-
 -- rust
 lspconfig.rust_analyzer.setup({
     capabilities = capabilities
