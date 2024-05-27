@@ -1,4 +1,4 @@
---- options.lua --- Zrik's neovim setup.
+-- options.lua --- Zrik's neovim setup.
 --- Code:
 
 local vim = vim
@@ -61,6 +61,7 @@ local options = {
     scrolloff = 3,
     sidescrolloff = 3,
     wrap = true,
+    wrapmargin = 10,
     lazyredraw = true,
     updatetime = 250,
     laststatus = 3,
@@ -97,66 +98,8 @@ if vim.fn.executable("prettier") then
     opt.formatprg = "prettier --stdin-filepath=%"
 end
 
-opt.guicursor = {
-    "n-v:block",
-    "i-c-ci-ve:ver25",
-    "r-cr:hor20",
-    "o:hor50",
-    "i:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
-    "sm:block-blinkwait175-blinkoff150-blinkon175",
-}
-
 vim.wo.relativenumber = true
 vim.wo.number = true
-
--- LSP diagnostic opthons setup
-vim.fn.sign_define({
-    {
-        name = "DiagnosticSignError",
-        text = " ",
-        texthl = "DiagnosticSignError",
-        linehl = "ErrorLine",
-    },
-    {
-        name = "DiagnosticSignWarn",
-        text = " ",
-        texthl = "DiagnosticSignWarn",
-        linehl = "WarningLine",
-    },
-    {
-        name = "DiagnosticSignInfo",
-        text = " ",
-        texthl = "DiagnosticSignInfo",
-        linehl = "InfoLine",
-    },
-    {
-        name = "DiagnosticSignHint",
-        text = "󱐍 ",
-        texthl = "DiagnosticSignHint",
-        linehl = "HintLine",
-    },
-})
-
-vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true,
-    underline = true,
-    serverity_sort = false,
-    float = {
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
-})
-
-vim.api.nvim_set_option("updatetime", 300)
-
-vim.cmd([[
-set signcolumn=yes
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
 
 -- window-local options
 local window_options = {

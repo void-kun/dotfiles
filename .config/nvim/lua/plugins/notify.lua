@@ -8,17 +8,5 @@ return {
             require("notify").setup({})
         end
     },
-    {
-        'mrded/nvim-lsp-notify',
-        config = function()
-            require('lsp-notify').setup({
-                notify = require("notify"),
-                icons = {
-                    spinner = { '|', '/', '-', '\\' },
-                    done = '!'
-                }
-            })
-        end
-    }
 }
 --- notify.lua ends here

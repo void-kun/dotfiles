@@ -11,7 +11,7 @@ local sagaconfig = {
             tyd = 'textDocument/typeDefinition'
         },
         ui = {
-            code_action = ''
+            code_action = ' '
         }
     }
 }

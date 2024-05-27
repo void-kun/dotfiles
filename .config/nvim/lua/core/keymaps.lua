@@ -19,14 +19,6 @@ keymap.set("n", "U", "<C-r>", { noremap = true })
 keymap.set("n", "H", "^", { noremap = true })
 keymap.set("n", "L", "$", { noremap = true })
 
--- search panel
-keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<cr>', { desc = "Toggle Spectre" })
-keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<cr>',
-    { desc = "Search current word" })
-keymap.set('v', '<leader>sw', '<cmd>lua require("spectre").open_visual()<cr>', { desc = "Search current word" })
-keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<cr>',
-    { desc = "Search on current file" })
-
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 keymap.set("n", "<leader>lg", "<cmd>Telescope live_grep<cr>")
@@ -42,7 +34,7 @@ keymap.set({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<cr>")
 keymap.set("n", "<leader>dc", "<cmd>Lspsaga code_action<cr>")
 keymap.set("n", "<leader>dp", "<cmd>Lspsaga goto_definition<cr>")
 keymap.set("n", "<leader>ds", "<cmd>Lspsaga finder tyd+ref+imp+def<cr>")
-keymap.set({ "n", "i" }, "<C><leader>", "<cmd>Lspsaga hover_doc<cr>")
+keymap.set({ "n", "i" }, "<C-escape>", "<cmd>Lspsaga hover_doc<cr>")
 
 -- buffers
 keymap.set("n", "<leader>c", "<cmd>bd<cr>")

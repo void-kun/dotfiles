@@ -6,8 +6,78 @@ if not lsp_installed then
     return
 end
 
--- enable logging
-vim.lsp.set_log_level("info")
+-- Specify how the border looks like
+local border = {
+    { '┌', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '┐', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+    { '┘', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '└', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+}
+
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = '■ ',
+    },
+    float = { border = border },
+})
+
+-- LSP diagnostic opthons setup
+vim.fn.sign_define({
+    {
+        name = "DiagnosticSignError",
+        text = " ",
+        texthl = "DiagnosticSignError",
+        linehl = "ErrorLine",
+    },
+    {
+        name = "DiagnosticSignWarn",
+        text = " ",
+        texthl = "DiagnosticSignWarn",
+        linehl = "WarningLine",
+    },
+    {
+        name = "DiagnosticSignInfo",
+        text = " ",
+        texthl = "DiagnosticSignInfo",
+        linehl = "InfoLine",
+    },
+    {
+        name = "DiagnosticSignHint",
+        text = "󰛩 ",
+        texthl = "DiagnosticSignHint",
+        linehl = "HintLine",
+    },
+})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    serverity_sort = false,
+    float = {
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
+})
+
+vim.api.nvim_set_option("updatetime", 200)
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8A8786" })
+vim.api.nvim_set_hl(0, "NormalFloat", { fg = "#8a8786" })
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff" })
 
 ----------------------------- language servers --------------------------------
 
@@ -74,7 +144,14 @@ lspconfig.pyright.setup({
 
 -- rust
 lspconfig.rust_analyzer.setup({
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            }
+        }
+    }
 })
 
 --- lspconfig.lua ends here
