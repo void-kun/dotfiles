@@ -16,8 +16,8 @@ keymap.set("n", "<C-a>", "ggVG")           -- select all
 keymap.set("n", "<leader>w", "<cmd>w<cr>") -- save current file
 keymap.set("n", "<leader>q", "<cmd>q<cr>") -- quit
 keymap.set("n", "U", "<C-r>", { noremap = true })
-keymap.set("n", "H", "^", { noremap = true })
-keymap.set("n", "L", "$", { noremap = true })
+keymap.set({ "n", "v" }, "H", "^", { noremap = true })
+keymap.set({ "n", "v" }, "L", "$", { noremap = true })
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
@@ -34,7 +34,6 @@ keymap.set({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<cr>")
 keymap.set("n", "<leader>dc", "<cmd>Lspsaga code_action<cr>")
 keymap.set("n", "<leader>dp", "<cmd>Lspsaga goto_definition<cr>")
 keymap.set("n", "<leader>ds", "<cmd>Lspsaga finder tyd+ref+imp+def<cr>")
-keymap.set({ "n", "i" }, "<C-escape>", "<cmd>Lspsaga hover_doc<cr>")
 
 -- buffers
 keymap.set("n", "<leader>c", "<cmd>bd<cr>")
@@ -44,5 +43,11 @@ keymap.set("n", "<leader><leader>", "<cmd>b#<cr>")
 keymap.set("n", "|", "<cmd>vsplit<cr><c-w><c-w>")
 keymap.set("n", "_", "<cmd>split<cr>")
 keymap.set("n", "=", "<cmd>wincmd =<cr>")
+
+-- move lines
+keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true })
+keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true })
+keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true })
+keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
 
 --- keymaps.lua ends here

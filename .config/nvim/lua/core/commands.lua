@@ -1,4 +1,4 @@
---- commands.lua --- Zrik's neovim setup.
+-- commands.lua --- Zrik's neovim setup.
 --- Code:
 
 local vim = vim

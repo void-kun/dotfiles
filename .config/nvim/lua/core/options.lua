@@ -1,6 +1,7 @@
 -- options.lua --- Zrik's neovim setup.
 --- Code:
 
+-- Option =================================================================
 local vim = vim
 local opt = vim.opt
 
@@ -76,18 +77,41 @@ local options = {
     shortmess = vim.opt.shortmess + { c = true },
 }
 
--- show listchars
-opt.list = true
-opt.listchars = {
-    -- show tabs as ▸
-    tab = "▸ ",
-    -- show tailing spaces as ·
-    trail = "·",
-}
-
 for k, v in pairs(options) do
     opt[k] = v
 end
+
+local cmd = vim.cmd
+local api = vim.api
+local nvim_create_autocmd = api.nvim_create_autocmd
+local nvim_set_hl = api.nvim_set_hl
+
+-- Whitespace =================================================================
+opt.list = true
+local space = "·"
+opt.listchars:append {
+    tab = "│─",
+    multispace = space,
+    lead = space,
+    trail = space,
+    nbsp = space
+}
+
+cmd([[match TrailingWhitespace /\s\+$/]])
+nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
+nvim_create_autocmd("InsertEnter", {
+    callback = function()
+        opt.listchars.trail = nil
+        nvim_set_hl(0, "TrailingWhitespace", { link = "Whitespace" })
+    end
+})
+
+nvim_create_autocmd("InsertLeave", {
+    callback = function()
+        opt.listchars.trail = space
+        nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
+    end
+})
 
 if vim.fn.executable("rg") then
     opt.grepprg = "rg --vimgrep --no-heading --smart-case"
@@ -98,9 +122,9 @@ if vim.fn.executable("prettier") then
     opt.formatprg = "prettier --stdin-filepath=%"
 end
 
+-- Window Option ==============================================================
 vim.wo.relativenumber = true
 vim.wo.number = true
-
 -- window-local options
 local window_options = {
     numberwidth = 4,
@@ -116,4 +140,75 @@ local window_options = {
 for k, v in pairs(window_options) do
     vim.wo[k] = v
 end
+
+-- Diagnostic =================================================================
+-- Specify how the border looks like
+local border = {
+    { '┌', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '┐', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+    { '┘', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '└', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+}
+
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = '■ ',
+    },
+    float = { border = border },
+})
+
+-- LSP diagnostic opthons setup
+vim.fn.sign_define({
+    {
+        name = "DiagnosticSignError",
+        text = " ",
+        texthl = "DiagnosticSignError",
+        linehl = "ErrorLine",
+    },
+    {
+        name = "DiagnosticSignWarn",
+        text = " ",
+        texthl = "DiagnosticSignWarn",
+        linehl = "WarningLine",
+    },
+    {
+        name = "DiagnosticSignInfo",
+        text = " ",
+        texthl = "DiagnosticSignInfo",
+        linehl = "InfoLine",
+    },
+    {
+        name = "DiagnosticSignHint",
+        text = "󰛩 ",
+        texthl = "DiagnosticSignHint",
+        linehl = "HintLine",
+    },
+})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    underline = true,
+    serverity_sort = true,
+    float = {
+        show_header = true,
+        border = "rounded",
+        source = "always",
+        header = "",
+    },
+})
+
+vim.api.nvim_set_option("updatetime", 200)
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+
 --- options.lua ends here

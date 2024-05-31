@@ -5,11 +5,11 @@ return {
     "coffebar/neovim-project",
     opts = {
         projects = {
-            -- neovim config
-            "~/source/dotfiles/.config/nvim/",
+            "~/.config/nvim",
             -- personal projects
+            "~/source/*/*",
             "~/code/*",
-            "~/source/*",
+            "~/code/bookcrawler/bws"
         },
         last_session_on_startup = false,
         filetype_autocmd_timeout = 200,
