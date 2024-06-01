@@ -11,12 +11,12 @@ local function safeRequire(module)
     print("Error loading " .. module)
 end
 
-vim.o.background = 'light'
+-- vim.o.background = 'light'
 
 safeRequire("core.options")
 safeRequire("core.keymaps")
 safeRequire("core.commands")
-
+safeRequire("core.neovide")
 
 -- Install lazy.nvim automatically
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

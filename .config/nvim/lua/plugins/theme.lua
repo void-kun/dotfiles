@@ -8,7 +8,7 @@ return {
         name = "monokai-pro",
         config = function()
             require("monokai-pro").setup({
-                transparent_background = false,
+                transparent_background = true,
                 terminal_colors = true,
                 devicons = true, -- highlight the icons of `nvim-web-devicons`
                 styles = {
@@ -24,12 +24,13 @@ return {
                 filter = "ristretto",                  -- classic | octagon | pro | machine | ristretto | spectrum
                 inc_search = "background",             -- underline | background
                 background_clear = {
+                    "float_win",
                     "toggleterm",
                     "telescope",
                     "renamer",
                     "notify",
                     "nvim-tree",
-                }, -- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree", "nvim-tree", "bufferline"
+                },
                 plugins = {
                     bufferline = {
                         underline_selected = false,
@@ -40,22 +41,15 @@ return {
                         context_start_underline = false,
                     },
                 },
+                override = function()
+                    return {
+                        WinSeparator = { fg = "#cacaca" }
+                    }
+                end
             })
-            -- vim.cmd.colorscheme("monokai-pro")
+            vim.cmd.colorscheme("monokai-pro")
         end
     },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-        config = function()
-            require("catppuccin").setup({
-                flavour = "mocha",
-                -- flavour = "latte",
-            })
-            -- vim.cmd.colorscheme("catppuccin")
-        end
-    }
 }
 
 --- theme.lua ends here

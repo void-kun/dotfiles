@@ -13,8 +13,8 @@ return {
         vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
         vim.o.foldenable = true
 
-        vim.keymap.set('n', "zR", require('ufo').openAllFolds)
-        vim.keymap.set('n', "zM", require('ufo').closeAllFolds)
+        vim.keymap.set('n', "zr", require('ufo').openAllFolds)
+        vim.keymap.set('n', "zm", require('ufo').closeAllFolds)
 
         -- Setup UFO with treesitter
         require('ufo').setup({

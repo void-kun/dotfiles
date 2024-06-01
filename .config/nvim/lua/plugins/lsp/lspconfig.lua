@@ -1,6 +1,7 @@
 --- lspconfig.lua --- Zrik's neovim setup.
 --- Code:
 
+local util = require("lspconfig/util")
 local lsp_installed, lspconfig = pcall(require, "lspconfig")
 if not lsp_installed then
     return
@@ -34,7 +35,19 @@ lspconfig.biome.setup({
 
 -- go
 lspconfig.gopls.setup({
-    capabilities = capabilities
+    capabilities = capabilities,
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+        gopls = {
+            completeUnimportd = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            }
+        }
+    }
 })
 
 -- c/cpp
