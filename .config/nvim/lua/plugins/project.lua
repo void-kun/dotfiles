@@ -7,8 +7,8 @@ return {
         projects = {
             "~/.config/nvim",
             -- personal projects
-            "~/source/*/*",
             "~/code/*",
+            "~/source/*/*",
             "~/code/bookcrawler/bws"
         },
         last_session_on_startup = false,
