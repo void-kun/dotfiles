@@ -5,41 +5,49 @@
 ;;
 ;;; Code:
 
-;; Defer garbage collection further back in the startup process
-(setq gc-cons-threshold most-positive-fixnum)
+(when (or (daemonp)
+          noninteractive)
+  (setq package-enable-at-startup nil))
 
-;; Package initialize occurs automatically, before `user-init-file' is
-;; loaded, but after `early-init-file'. We handle package
-;; initialization, so we must prevent Emacs from doing it early!
-(setq package-enable-at-startup nil)
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      gc-cons-percentage 0.6)
 
-;; Compile warnings
-(setq warning-minimum-level :emergency)
-(setq native-comp-async-report-warnings-errors 'silent) ;; native-comp warning
-(setq byte-compile-warnings
-      '(not free-vars unresolved noruntime lexical make-local))
+;; Garbage Collector Optimization Hack
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 16 1024 1024) ; 16mb
+                  gc-cons-percentage 0.1)))
 
-;; `use-package' is builtin since 29.
-;; It must be set before loading `use-package'.
-(setq use-package-enable-imenu-support t)
 
+;; The command-line option ‘-batch’ makes Emacs to run noninteractively.
 ;; In noninteractive sessions, prioritize non-byte-compiled source files to
-;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
-;; to skip the mtime checks on every *.elc file.
+;; prevent the use of stale byte-code.  Otherwise, skipping the mtime checks
+;; on every *.elc file saves a bit of IO time.
 (setq load-prefer-newer noninteractive)
 
-;; Inhibit resizing frame
+;; Contrary to common configurations, this is all that's needed to set UTF-8
+;; as the default coding system:
+(set-language-environment "UTF-8")
+
+;; `set-language-enviornment' sets `default-input-method', which is unwanted.
+(setq default-input-method nil)
+
+;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
+(setq tool-bar-mode nil)
+(when (fboundp 'set-scroll-bar-mode)
+  (set-scroll-bar-mode nil))
+
+;; Currently I use menubar on graphical mode.
+(when (and (not (display-graphic-p)) (fboundp 'menu-bar-mode))
+  (menu-bar-mode -1))
+
+;; Resizing the Emacs frame can be a terribly expensive part of changing the
+;; font.  By inhibiting this, the startup time is significantly reduced,
+;; especially with fonts larger than the system default.
 (setq frame-inhibit-implied-resize t)
 
-;; Faster to disable these here (before they've been initialized)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(vertical-scroll-bars) default-frame-alist)
-(when (featurep 'ns)
-  (push '(ns-transparent-titlebar . t) default-frame-alist))
+;; disable warnings
+(setq warning-minimum-level :emergency)
 
-(setq-default mode-line-format nil)
-(setq auto-mode-case-fold nil)
-
-
-;;; lolo-early-init.el ends here
+(provide 'early-init)
+;;; early-init.el ends here

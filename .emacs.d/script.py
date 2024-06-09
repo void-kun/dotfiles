@@ -11,7 +11,7 @@ def create_modules_info(module_names: list[str], directory: str) -> list[str]:
     """
     module_paths = []
     for module_name in module_names:
-        module_path = os.path.join(os.getcwd(), directory, f"lolo-{module_name}.el")
+        module_path = os.path.join(os.getcwd(), directory, f"init-{module_name}.el")
         module_paths.append((module_name, module_path))
     return module_paths
 
@@ -33,7 +33,7 @@ def new_modules(args: argparse.ArgumentParser):
         if os.path.exists(module_path):
             print(f"The module '{module_path}' already exists")
         else:
-            template = f""";;; lolo-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+            template = f""";;; init-{module_name}.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;
@@ -41,8 +41,8 @@ def new_modules(args: argparse.ArgumentParser):
 ;;; Code:
 
 
-(provide 'lolo-{module_name})
-;;; lolo-{module_name}.el ends here
+(provide 'init-{module_name})
+;;; init-{module_name}.el ends here
 """
             with open(module_path, "w", encoding="utf-8") as f_out:
                 f_out.write(template)

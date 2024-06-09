@@ -1,10 +1,36 @@
-;;; lolo-init.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;;; init.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;
 ;;
 ;;; Code:
 
+;; ============================================================================
+;; Profiling and Debug.
+(defconst emacs-debug-mode (or (getenv "DEBUG") init-file-debug)
+  "If non-nil, Emacs will be verbose.
+Set DEBUG=1 in the command line or use --debug-init to enable this.")
+
+;; Set the `debug-on-error' variable as per the runtime context:
+;; - Enable debugging on error if Emacs is running in interactive mode, and the
+;;   custom variable `emacs-debug-mode' is true.
+;; - Do not enable debugging on error in non-interactive mode, regardless of the
+;;   `emacs-debug-mode' value.
+(setq-default debug-on-error (and (not noninteractive) emacs-debug-mode))
+
+;; ============================================================================
+;; Measure the current start up time.
+(add-hook
+ 'emacs-startup-hook
+ #'(lambda ()
+     (message "Emacs ready in %s with %d garbage collections."
+              (format "%.2f seconds"
+                      (float-time
+                       (time-subtract after-init-time before-init-time)))
+              gcs-done)))
+
+;; ============================================================================
+;; Load modules.
 (unless (or (daemonp) noninteractive init-file-debug)
   ;; Suppress file handlers operations at startup
   ;; `file-name-handler-alist' is consulted on each call to `require' and `load'
@@ -22,7 +48,7 @@
 ;; Load path
 (defun update-load-path (&rest _)
   "Update `load-path'."
-  (dolist (dir '("site-lisp" "core" "modules"))
+  (dolist (dir '("site-lisp" "core" "modules" "programs"))
     (push (expand-file-name dir user-emacs-directory) load-path)))
 
 (defun add-subdirs-to-load-path (&rest _)
@@ -35,58 +61,33 @@
 
 (update-load-path)
 
-;; Requisites
-(require 'lolo-const)
-(require 'lolo-custom)
-(require 'lolo-funcs)
+;; Required
+(require 'init-custom)
+(require 'init-funcs)
+(require 'init-package)
+(require 'init-core)
+(require 'init-keymap)
 
-;; Packages
-(require 'lolo-package)
-(require 'lolo-keymap)
+;; Modules
+(require 'init-ui)
+(require 'init-modeline)
+(require 'init-completion)
+(require 'init-shell)
+(require 'init-utils)
+(require 'init-workspace)
+(require 'init-highlight)
+(require 'init-edit)
+(require 'init-dired)
+(require 'init-treemacs)
 
-;; Preferences
-(require 'lolo-base)
-(require 'lolo-hydra)
+;; Programs
+(require 'init-snippet)
+(require 'init-prog)
+(require 'init-rust)
+(require 'init-go)
+(require 'init-python)
+(require 'init-web)
+(require 'init-cpp)
 
-(require 'lolo-ui)
-(require 'lolo-edit)
-(require 'lolo-completion)
-(require 'lolo-snippet)
-
-(require 'lolo-bookmark)
-(require 'lolo-calendar)
-(require 'lolo-dashboard)
-(require 'lolo-dired)
-(require 'lolo-highlight)
-(require 'lolo-ibuffer)
-(require 'lolo-kill-ring)
-(require 'lolo-workspace)
-(require 'lolo-window)
-(require 'lolo-treemacs)
-
-(require 'lolo-eshell)
-(require 'lolo-shell)
-(require 'lolo-markdown)
-(require 'lolo-reader)
-(require 'lolo-docker)
-(require 'lolo-utils)
-
-;; Programming
-(require 'lolo-vcs)
-(require 'lolo-check)
-(require 'lolo-lsp)
-(require 'lolo-dap)
-(require 'lolo-prog)
-(require 'lolo-elisp)
-(require 'lolo-c)
-(require 'lolo-go)
-(require 'lolo-rust)
-(require 'lolo-python)
-(require 'lolo-web)
-
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-
-;;; lolo-init.el ends here
-(put 'set-goal-column 'disabled nil)
-(put 'downcase-region 'disabled nil)
+(provide 'init)
+;;; init.el ends here
