@@ -26,7 +26,6 @@ return {
                     "html",
                     "biome",
                     "lua_ls",
-                    "autotools_ls",
                     "marksman",
                     "pyright",
                     "rust_analyzer",
