@@ -7,9 +7,8 @@ return {
         projects = {
             "~/.config/nvim",
             -- personal projects
-            "~/code/*",
-            "~/source/*/*",
-            "~/code/bookcrawler/bws"
+            "~/workspace/dev/*",
+            "~/workspace/source/*"
         },
         last_session_on_startup = false,
         filetype_autocmd_timeout = 200,

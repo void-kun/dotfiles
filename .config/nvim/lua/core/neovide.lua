@@ -12,9 +12,6 @@ if vim.g.neovide then
     vim.g.neovide_padding_right = 0
     vim.g.neovide_padding_left = 0
 
-    -- Helper function for transparency formatting
-    vim.g.neovide_transparency = 0.9
-
     vim.g.neovide_floating_shadow = true
     vim.g.neovide_floating_z_height = 10
     vim.g.neovide_light_angle_degrees = 45
