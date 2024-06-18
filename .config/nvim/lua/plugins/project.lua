@@ -6,8 +6,9 @@ return {
     opts = {
         projects = {
             "~/.config/nvim",
+
             -- personal projects
-            "~/workspace/dev/*",
+            "~/workspace/code/*",
             "~/workspace/source/*"
         },
         last_session_on_startup = false,

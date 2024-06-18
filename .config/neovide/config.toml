@@ -1,5 +1,5 @@
 [font]
-normal = ["ZedMono Nerd Font"] 
-bold = ["ZedMono Nerd Font"] 
-italic = ["ZedMono Nerd Font"] 
-size = 12.0
+normal = ["RobotoMono Nerd Font"]
+bold = ["RobotoMono Nerd Font"]
+italic = ["RobotoMono Nerd Font"]
+size = 14.0

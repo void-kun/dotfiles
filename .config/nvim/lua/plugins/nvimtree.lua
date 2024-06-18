@@ -54,6 +54,21 @@ return {
                     error = " ",
                 },
             },
+            view = {
+                side = "right",
+                width = 40,
+            },
+            renderer = {
+                icons = {
+                    show = {
+                        file = false,
+                        folder = false
+                    }
+                },
+                indent_markers = {
+                    enable = true
+                }
+            }
         })
     end,
 }

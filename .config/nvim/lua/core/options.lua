@@ -88,7 +88,7 @@ local nvim_set_hl = api.nvim_set_hl
 
 -- Whitespace =================================================================
 local space = "·"
-opt.list = false
+opt.list = true
 opt.listchars:append {
     tab = "│─",
     multispace = space,

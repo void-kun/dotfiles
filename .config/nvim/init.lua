@@ -3,6 +3,8 @@
 
 local vim = vim
 
+vim.g.python_host_prog = '/home/zrik/environment/pyenv/bin/python'
+
 local function safeRequire(module)
     local success, loadedModule = pcall(require, module)
     if success then
@@ -10,8 +12,6 @@ local function safeRequire(module)
     end
     print("Error loading " .. module)
 end
-
--- vim.o.background = 'light'
 
 safeRequire("core.options")
 safeRequire("core.keymaps")

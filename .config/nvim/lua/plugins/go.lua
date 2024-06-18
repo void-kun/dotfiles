@@ -1,6 +1,8 @@
 --- go.lua --- Zrik's neovim setup.
 --- Code:
 
+local vim = vim
+
 return {
     {
         "leoluz/nvim-dap-go",

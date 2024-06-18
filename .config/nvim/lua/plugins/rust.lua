@@ -1,6 +1,7 @@
 --- rust.lua --- Zrik's neovim setup.
 --- Code:
 
+local vim = vim
 
 return {
     -- lsp rust =================================================
