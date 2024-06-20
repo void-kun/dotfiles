@@ -29,6 +29,12 @@ Set DEBUG=1 in the command line or use --debug-init to enable this.")
                        (time-subtract after-init-time before-init-time)))
               gcs-done)))
 
+;; Define Lolo's directory structure
+(defvar lolo-dir (file-name-directory load-file-name)
+  "The root dir of emacs config")
+(defvar lolo-savefile-dir (expand-file-name "savefile" user-emacs-directory)
+  "This folder stores all the automatically generated save/history-files.")
+
 ;; ============================================================================
 ;; Load modules.
 (unless (or (daemonp) noninteractive init-file-debug)
@@ -48,12 +54,12 @@ Set DEBUG=1 in the command line or use --debug-init to enable this.")
 ;; Load path
 (defun update-load-path (&rest _)
   "Update `load-path'."
-  (dolist (dir '("site-lisp" "core" "modules" "programs"))
-    (push (expand-file-name dir user-emacs-directory) load-path)))
+  (dolist (dir '("site-lisp" "core" "modules"))
+    (push (expand-file-name dir lolo-dir) load-path)))
 
 (defun add-subdirs-to-load-path (&rest _)
   "Add subdirectories to `load-path'."
-  (let ((default-directory (expand-file-name "site-lisp" user-emacs-directory)))
+  (let ((default-directory (expand-file-name "site-lisp" lolo-dir)))
     (normal-top-level-add-subdirs-to-load-path)))
 
 (advice-add #'package-initialize :after #'update-load-path)
@@ -63,31 +69,49 @@ Set DEBUG=1 in the command line or use --debug-init to enable this.")
 
 ;; Required
 (require 'init-custom)
-(require 'init-funcs)
-(require 'init-package)
+(require 'init-funs)
+(require 'init-packages)
+(require 'init-lolo-mode)
 (require 'init-core)
-(require 'init-keymap)
+(require 'init-keybindings)
+(require 'init-ui)
+
+;; Linux specific settings
+(when (eq system-type 'gnu/linux)
+  (require 'init-linux))
 
 ;; Modules
-(require 'init-ui)
-(require 'init-modeline)
-(require 'init-completion)
-(require 'init-shell)
-(require 'init-utils)
-(require 'init-workspace)
-(require 'init-highlight)
-(require 'init-edit)
-(require 'init-dired)
-(require 'init-treemacs)
+(require 'init-vertico)
+(require 'init-company)
 
-;; Programs
-(require 'init-snippet)
-(require 'init-prog)
+(require 'init-lsp)
+
+(require 'init-c)
+(require 'init-css)
+(require 'init-emacs-lisp)
+(require 'init-js)
+(require 'init-lisp)
+(require 'init-perl)
+(require 'init-shell)
+(require 'init-web)
+(require 'init-xml)
+(require 'init-yaml)
+(require 'init-python)
 (require 'init-rust)
 (require 'init-go)
-(require 'init-python)
-(require 'init-web)
-(require 'init-cpp)
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(ron-mode yasnippet tree-sitter-langs tree-sitter flycheck-rust company-anaconda anaconda-mode zop-to-char which-key volatile-highlights vertico undo-tree super-save smartrep smartparens rust-mode pythonic projectile orderless operate-on-number nlinum move-text magit lsp-ui imenu-anywhere hl-todo guru-mode gruber-darker-theme git-timemachine git-modes gist flycheck expand-region exec-path-from-shell epl editorconfig easy-kill diminish diff-hl crux consult company cargo browse-kill-ring anzu ace-window)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "VictorMono Nerd Font Propo" :foundry "UKWN" :slant normal :weight regular :height 200 :width normal)))))

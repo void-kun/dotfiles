@@ -1,6 +1,6 @@
-#!/usr/bin/python
 import os
 import argparse
+
 
 EXIT_SUCCESS_CODE = 0
 EXIT_FAILURE_CODE = 1
