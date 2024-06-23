@@ -48,6 +48,7 @@
 
 ;; disable warnings
 (setq warning-minimum-level :emergency)
+(setq byte-compile-warnings '(cl-functions))
 
 (provide 'early-init)
 ;;; early-init.el ends here

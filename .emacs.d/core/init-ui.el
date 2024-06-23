@@ -6,13 +6,11 @@
 ;;; Code:
 
 ;; config font settings
-(custom-set-faces
- '(default ((t (:family "VictorMono Nerd Font Propo" :foundry "UKWN" :slant normal :weight regular :height 200 :width normal)))))
 
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
-(add-to-list 'default-frame-alist '(font . "ZedMono Nerd Font-20"))
+(add-to-list 'default-frame-alist '(font . "VictorMono Nerd Font-14"))
 ;; Uncomment the following line if line spacing needs adjusting.
 (setq-default line-spacing 0.12)
 
@@ -21,9 +19,6 @@
 
 (when lolo-minimalistic-ui
   (menu-bar-mode -1))
-
-;; the blinking cursor is nothing, but an annoyance
-(blink-cursor-mode -1)
 
 ;; disable the annoying bell ring
 (setq ring-bell-function 'ignore)

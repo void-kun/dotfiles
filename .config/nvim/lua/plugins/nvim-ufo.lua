@@ -1,6 +1,8 @@
 --- nvim-ufo.lua --- Zrik's neovim setup.
 --- Code:
 
+local vim = vim
+
 return {
     "kevinhwang91/nvim-ufo",
     dependencies = {

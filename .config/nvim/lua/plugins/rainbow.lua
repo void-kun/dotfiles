@@ -1,6 +1,8 @@
 --- rainbow.lua --- Zrik's neovim setup.
 --- Code:
 
+local vim = vim
+
 return {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()

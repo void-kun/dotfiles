@@ -51,7 +51,6 @@
       magit
       nlinum
       operate-on-number
-      smartparens
       smartrep
       super-save
       undo-tree
@@ -185,6 +184,11 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
      (unless (package-installed-p package)
        (lolo-auto-install extension package mode))))
  lolo-auto-install-alist)
+
+(use-package smartparens
+  :load-path "../site-lisp/smartparens"
+  :defer t
+  :ensure t)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

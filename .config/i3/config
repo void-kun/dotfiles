@@ -27,7 +27,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 # A more mode dmenu replacement is rofi:
-bindsym $mod+d exec dmenu_run
+bindsym $win+d exec dmenu_run
 # lock screen
 bindsym Control+$mod+l exec "i3lock -c 1B1D1E"
 

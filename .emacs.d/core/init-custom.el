@@ -85,5 +85,9 @@ Note that the toolbar is always hidden regardless of this settings."
     :group 'lolo
     :type 'symbol)
 
+;; Load `custom-file'
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+
 (provide 'init-custom)
 ;;; init-custom.el ends here

@@ -87,8 +87,9 @@ local nvim_create_autocmd = api.nvim_create_autocmd
 local nvim_set_hl = api.nvim_set_hl
 
 -- Whitespace =================================================================
+-- TODO: Need write the function to switch whitespace
 local space = "·"
-opt.list = true
+opt.list = false
 opt.listchars:append {
     tab = "│─",
     multispace = space,

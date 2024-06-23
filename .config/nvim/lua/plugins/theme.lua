@@ -3,15 +3,15 @@
 
 local vim = vim
 
+vim.opt.background = "light"
+
 return {
-    "arzg/vim-colors-xcode",
+    "loctvl842/monokai-pro.nvim",
     config = function()
-        -- vim.cmd.colorscheme("xcodelight")
-        -- vim.cmd.colorscheme("xcodelighthc")
-        -- vim.cmd.colorscheme("xcodewwdc")
-        -- vim.cmd.colorscheme("xcodedark")
-        vim.cmd.colorscheme("xcodedarkhc")
+        require("monokai-pro").setup({
+            transparent_background = true,
+            filter = "ristretto",
+        })
     end
 }
-
 --- theme.lua ends here

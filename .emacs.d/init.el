@@ -73,7 +73,6 @@ Set DEBUG=1 in the command line or use --debug-init to enable this.")
 (require 'init-packages)
 (require 'init-lolo-mode)
 (require 'init-core)
-(require 'init-keybindings)
 (require 'init-ui)
 
 ;; Linux specific settings
@@ -100,18 +99,9 @@ Set DEBUG=1 in the command line or use --debug-init to enable this.")
 (require 'init-rust)
 (require 'init-go)
 
+(require 'init-keybindings)
+;; Load `custom-file'
+(and (file-readable-p custom-file) (load custom-file))
+
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(ron-mode yasnippet tree-sitter-langs tree-sitter flycheck-rust company-anaconda anaconda-mode zop-to-char which-key volatile-highlights vertico undo-tree super-save smartrep smartparens rust-mode pythonic projectile orderless operate-on-number nlinum move-text magit lsp-ui imenu-anywhere hl-todo guru-mode gruber-darker-theme git-timemachine git-modes gist flycheck expand-region exec-path-from-shell epl editorconfig easy-kill diminish diff-hl crux consult company cargo browse-kill-ring anzu ace-window)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "VictorMono Nerd Font Propo" :foundry "UKWN" :slant normal :weight regular :height 200 :width normal)))))
