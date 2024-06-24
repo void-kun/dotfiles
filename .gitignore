@@ -13,6 +13,15 @@
 !.emacs.d/script.py
 !.emacs.d/pinned-packages.el
 
+.emacs.d_v2/*
+!.emacs.d_v2/core
+!.emacs.d_v2/modules
+!.emacs.d_v2/site-elisp
+!.emacs.d_v2/banner.txt
+!.emacs.d_v2/early-init.el
+!.emacs.d_v2/init.el
+!.emacs.d_v2/script.py
+
 # git for neovim
 .config/nvim/undodir
 .config/nvim/.luarc.json

@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/modus_operandi.toml"]
+import = ["~/.config/alacritty/themes/modus_vivendi.toml"]
 
 [shell]
 program = "/usr/bin/tmux"
@@ -7,8 +7,8 @@ program = "/usr/bin/tmux"
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "RobotoMono Nerd Font", style = "Regular" }
-bold = { family = "RobotoMono Nerd Font", style = "Bold" }
-italic = { family = "RobotoMono Nerd Font", style = "Book" }
-bold_italic = { family = "RobotoMono Nerd Font", style = "Bold Oblique" }
+normal = { family = "XD", style = "Regular" }
+bold = { family = "XD", style = "Bold" }
+italic = { family = "XD", style = "Book" }
+bold_italic = { family = "XD", style = "Bold Oblique" }
 size = 14.0
