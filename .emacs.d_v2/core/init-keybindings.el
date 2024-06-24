@@ -20,7 +20,7 @@
 ;; Revert buffer
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 
-;; Quick escape quit 
+;; Quick escape
 (global-set-key (kbd "<escape><escape>") 'keyboard-escape-quit)
 
 ;; remap copy/paste
@@ -32,6 +32,20 @@
 ;; improved window navigation with ace-window
 (global-set-key (kbd "C-w") 'ace-window)
 (global-set-key [remap other-window] 'ace-window)
+
+;; remap move line
+(global-set-key (kbd "M-s-<left>") 'move-beginning-of-line)
+(global-set-key (kbd "M-s-<right>") 'move-end-of-line)
+(global-set-key (kbd "M-s-<up>") 'lolo/move-text-up)
+(global-set-key (kbd "M-s-<down>") 'lolo/move-text-down)
+
+(global-set-key (kbd "M-s-<return>") 'crux-smart-open-line)
+(global-set-key (kbd "C-M-s-<return>") 'crux-smart-open-line-above)
+
+;; kill lines backward
+(global-set-key (kbd "C-<backspace>") 'crux-kill-line-backwards)
+
+(global-set-key [remap kill-whole-line] 'crux-kill-whole-line)
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

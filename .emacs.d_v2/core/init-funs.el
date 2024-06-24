@@ -26,7 +26,9 @@ The original function deletes trailing whitespace of the current line."
           (widen))))))
 
 (defun smart-delete-trailing-whitespace ()
-  "Invoke `delete-trailing-whitespace-except-current-line' on selected major modes only."
+  "Invoke `delete-trailing-whitespace-except-current-line' on selected.
+
+major modes only."
   (unless (member major-mode '(diff-mode))
     (delete-trailing-whitespace-except-current-line)))
 
@@ -126,18 +128,22 @@ FACE defaults to inheriting from default and highlight."
 
 ;; Setup shorcuts for window resize width and height
 (defun window-width-increase ()
+  "Increase window width."
   (interactive)
   (resize-window t 5))
 
 (defun window-width-decrease ()
+  "Decrease window width."
   (interactive)
   (resize-window t -5))
 
 (defun window-height-increase ()
+  "Increase window height."
   (interactive)
   (resize-window nil 5))
 
 (defun window-height-decrease ()
+  "Desincrease window height."
   (interactive)
   (resize-window nil -5))
 
@@ -151,6 +157,36 @@ FACE defaults to inheriting from default and highlight."
 (global-set-key (kbd "M-Q -") #'window-height-decrease)
 (global-set-key (kbd "M-Q M-_") #'window-height-decrease)
 
+(defun lolo/move-text-internal (arg)
+  (cond
+   ((and mark-active transient-mark-mode)
+    (if (> (point) (mark))
+        (exchange-point-and-mark))
+    (let ((column (current-column))
+          (text (delete-and-extract-region (point) (mark))))
+      (forward-line arg)
+      (move-to-column column t)
+      (set-mark (point))
+      (insert text)
+      (exchange-point-and-mark)
+      (setq deactivate-mark nil)))
+   (t
+    (beginning-of-line)
+    (when (or (> arg 0) (not (bobp)))
+      (forward-line)
+      (when (or (< arg 0) (not (eobp)))
+        (transpose-lines arg))
+      (forward-line -1)))))
+
+(defun lolo/move-text-down (arg)
+  "Move region (transient-mark-mode active) or current line down."
+  (interactive "*p")
+  (lolo/move-text-internal arg))
+
+(defun lolo/move-text-up (arg)
+  "Move region (transient-mark-mode active) or current line up."
+  (interactive "*p")
+  (lolo/move-text-internal (- arg)))
 
 (provide 'init-funs)
 ;;; init-funs.el ends here

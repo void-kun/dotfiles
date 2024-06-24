@@ -30,32 +30,32 @@
   :link '(url-link :tag "Homepage" "https://github.com/void-kun/dotfiles"))
 
 (defcustom lolo-proxy "127.0.0.1:1087"
-  "Set HTTP/HTTPS proxy"
+  "Set HTTP/HTTPS proxy."
   :group 'lolo
   :type 'string)
 
 (defcustom lolo-socks-proxy "127.0.0.1:1086"
-  "Set SOCKS proxy"
+  "Set SOCKS proxy."
   :group 'lolo
   :type 'string)
 
 (defcustom lolo-server t
-  "Enable server"
+  "Enable server."
   :group 'lolo
   :type 'boolean)
 
 (defcustom lolo-auto-save t
-  "Enable autosave"
+  "Enable autosave."
   :group 'lolo
   :type 'boolean)
 
 (defcustom lolo-format-on-save t
-  "Enable format on save"
+  "Enable format on save."
   :group 'lolo
   :type 'boolean)
 
 (defcustom lolo-whitespace t
-  "Enable whitespace"
+  "Enable whitespace."
   :group 'lolo
   :type 'boolean)
 
@@ -66,12 +66,12 @@ Will only occur if `lolo-whitespace' is also enabled."
   :type 'boolean)
 
 (defcustom lolo-flyspell t
-  "Enable flyspell support"
+  "Enable flyspell support."
   :group 'lolo
   :type 'boolean)
 
 (defcustom lolo-super-keybindings t
-  "Enable flyspell support"
+  "Enable flyspell support."
   :group 'lolo
   :type 'boolean)
 
@@ -99,10 +99,18 @@ Note that the toolbar is always hidden regardless of this settings."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-theme 'nano-light
-  "The default color theme"
+(defcustom lolo-theme 'modus
+  "The default color theme."
   :group 'lolo
-  :type 'symbol)
+   :type '(choice :tag "Set of themes to load" :value modus
+                 (const :tag "The `ef-themes' module" ef)
+                 (const :tag "The `modus-themes' module" modus)
+                 (const :tag "The `standard-themes' module" standard)
+                 (const :tag "Do not load a theme module" nil)))
+
+(defun prot-emacs-theme-environment-dark-p ()
+  "Return non-nil if environment theme is dark."
+  nil)
 
 ;; Load `custom-file'
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
