@@ -35,7 +35,8 @@ The original function deletes trailing whitespace of the current line."
   (interactive)
   (if (member #'smart-delete-trailing-whitespace before-save-hook)
       (progn
-        (remove-hook 'before-save-hook #'smart-delete-trailing-whitespace)
+        (remove-hook
+         'before-save-hook #'smart-delete-trailing-whitespace)
         (message "Disabled auto remove trailing whitespace."))
     (add-hook 'before-save-hook #'smart-delete-trailing-whitespace)
     (message "Enabled auto remove trailing whitespace.")))
@@ -53,45 +54,65 @@ The original function deletes trailing whitespace of the current line."
 (add-hook 'mouse-leave-buffer-hook 'abort-minibuffer-using-mouse)
 
 ;; keep the point out of the minibuffer
-(setq-default minibuffer-prompt-properties '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
+(setq-default minibuffer-prompt-properties
+              '(read-only
+                t
+                point-entered
+                minibuffer-avoid-prompt
+                face
+                minibuffer-prompt))
 
 (defun display-line-overlay+ (pos str &optional face)
   "Display line at POS as STR with FACE.
 
 FACE defaults to inheriting from default and highlight."
-  (let ((ol (save-excursion
-              (goto-char pos)
-              (make-overlay (line-beginning-position)
-                            (line-end-position)))))
+  (let ((ol
+         (save-excursion
+           (goto-char pos)
+           (make-overlay
+            (line-beginning-position) (line-end-position)))))
     (overlay-put ol 'display str)
-    (overlay-put ol 'face
-                 (or face '(:background null :inherit highlight)))
+    (overlay-put
+     ol 'face (or face '(:background null :inherit highlight)))
     ol))
 
 (defun read-lines (file-path)
   "Return a list of lines of a file at FILE-PATH."
-  (with-temp-buffer (insert-file-contents file-path)
-                    (split-string (buffer-string) "\n" t)))
+  (with-temp-buffer
+    (insert-file-contents file-path)
+    (split-string (buffer-string) "\n" t)))
 
 ;; ============================================================================
 ;; Resize window width/height functions.
 ;; Resizes the window width based on the input
 (defun resize-window-width (w)
   "Resizes the window width based on W."
-  (interactive (list (if (> (count-windows) 1)
-                         (read-number "Set the current window width in [1~9]x10%: ")
-                       (error "You need more than 1 window to execute this function!"))))
+  (interactive
+   (list
+    (if (> (count-windows) 1)
+        (read-number "Set the current window width in [1~9]x10%: ")
+      (error
+       "You need more than 1 window to execute this function!"))))
   (message "%s" w)
-  (window-resize nil (- (truncate (* (/ w 10.0) (frame-width))) (window-total-width)) t))
+  (window-resize nil
+                 (- (truncate (* (/ w 10.0) (frame-width)))
+                    (window-total-width))
+                 t))
 
 ;; Resizes the window height based on the input
 (defun resize-window-height (h)
   "Resizes the window height based on H."
-  (interactive (list (if (> (count-windows) 1)
-                         (read-number "Set the current window height in [1~9]x10%: ")
-                       (error "You need more than 1 window to execute this function!"))))
+  (interactive
+   (list
+    (if (> (count-windows) 1)
+        (read-number "Set the current window height in [1~9]x10%: ")
+      (error
+       "You need more than 1 window to execute this function!"))))
   (message "%s" h)
-  (window-resize nil (- (truncate (* (/ h 10.0) (frame-height))) (window-total-height)) nil))
+  (window-resize nil
+                 (- (truncate (* (/ h 10.0) (frame-height)))
+                    (window-total-height))
+                 nil))
 
 ;; Setup shorcuts for window resize width and height
 (global-set-key (kbd "C-z w") #'resize-window-width)

@@ -10,16 +10,18 @@
 (add-hook
  'emacs-startup-hook
  #'(lambda ()
-     (message "Emacs ready in %s with %d garbage collections."
-              (format "%.2f seconds"
-                      (float-time
-                       (time-subtract after-init-time before-init-time)))
-              gcs-done)))
+     (message
+      "Emacs ready in %s with %d garbage collections."
+      (format "%.2f seconds"
+              (float-time
+               (time-subtract after-init-time before-init-time)))
+      gcs-done)))
 
 ;; Define Lolo's directory structure
 (defvar lolo-dir (file-name-directory load-file-name)
   "The root dir of emacs config")
-(defvar lolo-savefile-dir (expand-file-name "savefile" user-emacs-directory)
+(defvar lolo-savefile-dir
+  (expand-file-name "savefile" user-emacs-directory)
   "This folder stores all the automatically generated save/history-files.")
 
 ;; ============================================================================
@@ -35,7 +37,8 @@
               (lambda ()
                 "Recover file name handlers."
                 (setq file-name-handler-alist
-                      (delete-dups (append file-name-handler-alist o-value))))
+                      (delete-dups
+                       (append file-name-handler-alist o-value))))
               101)))
 
 ;; Load path

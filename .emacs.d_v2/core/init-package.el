@@ -7,21 +7,22 @@
 
 ;; ============================================================================
 ;; Config package.
-(setq package-user-dir (expand-file-name "elpa" user-emacs-directory)
-      package-archives
-      '(("gnu"   . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
-        ("cselpa" . "https://elpa.thecybershadow.net/packages/")
-        ))
+(setq
+ package-user-dir (expand-file-name "elpa" user-emacs-directory)
+ package-archives
+ '(("gnu" . "https://elpa.gnu.org/packages/")
+   ("melpa" . "https://melpa.org/packages/")
+   ("cselpa" . "https://elpa.thecybershadow.net/packages/")))
 
 (unless (bound-and-true-p package--initialized)
-  (setq package-enable-at-startup nil)          ; To prevent initializing twice
+  (setq package-enable-at-startup nil) ; To prevent initializing twice
   (package-initialize))
 
 ;; set use-package-verbose to t for interpreted .emacs,
 ;; and to nil for byte-compiled .emacs.elc.
 (eval-and-compile
-  (setq use-package-verbose (not (bound-and-true-p byte-compile-current-file))))
+  (setq use-package-verbose
+        (not (bound-and-true-p byte-compile-current-file))))
 
 ;; Install use-package if not installed
 (unless (package-installed-p 'use-package)
@@ -40,15 +41,15 @@
 
 ;; ============================================================================
 ;; Base packages.
-(use-package auto-package-update
-  :if (not (daemonp))
-  :custom
-  (auto-package-update-interval 7) ;; in days
-  (auto-package-update-prompt-before-update t)
-  (auto-package-update-delete-old-versions t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe))
+(use-package
+ auto-package-update
+ :if (not (daemonp))
+ :custom
+ (auto-package-update-interval 7) ;; in days
+ (auto-package-update-prompt-before-update t)
+ (auto-package-update-delete-old-versions t)
+ (auto-package-update-hide-results t)
+ :config (auto-package-update-maybe))
 
 (use-package diminish)
 

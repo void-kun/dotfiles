@@ -5,15 +5,17 @@
 ;;
 ;;; Code:
 
-(use-package shell-here
-  :bind ("M-~" . shell-here)
-  :config
-  (when *sys/linux*
-    (setq explicit-shell-file-name "/usr/bin/zsh")))
+(use-package
+ shell-here
+ :bind ("M-~" . shell-here)
+ :config
+ (when *sys/linux*
+   (setq explicit-shell-file-name "/usr/bin/zsh")))
 
-(use-package term-keys
-  :if (not (display-graphic-p))
-  :config (term-keys-mode t))
+(use-package
+ term-keys
+ :if (not (display-graphic-p))
+ :config (term-keys-mode t))
 
 (provide 'init-terminal)
 ;;; init-terminal.el ends here

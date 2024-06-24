@@ -76,109 +76,111 @@
 
 ;; ============================================================================
 ;; Move around text.
-(use-package avy
-  :defer t
-  :bind
-  (("C-z c" . avy-goto-char-timer)
-   ("C-z l" . avy-goto-line))
-  :custom
-  (avy-timeout-seconds 0.3)
-  (avy-style 'pre)
-  :custom-face
-  (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold)))));
+(use-package
+ avy
+ :defer t
+ :bind (("C-z c" . avy-goto-char-timer) ("C-z l" . avy-goto-line))
+ :custom (avy-timeout-seconds 0.3) (avy-style 'pre)
+ :custom-face
+ (avy-lead-face
+  ((t (:background "#51afef" :foreground "#870000" :weight bold))))) ;
 
 ;; ============================================================================
 ;; a Collection of Ridiculously Useful eXtensions for Emacs
-(use-package crux
-  :bind
-  (("C-a" . crux-move-beginning-of-line)
-   ("C-x 4 t" . crux-transpose-windows)
-   ("C-x K" . crux-kill-other-buffers)
-   ("C-k" . crux-smart-kill-line))
-  :config
-  (crux-with-region-or-buffer indent-region)
-  (crux-with-region-or-buffer untabify)
-  (crux-with-region-or-point-to-eol kill-ring-save)
-  (defalias 'rename-file-and-buffer #'crux-rename-file-and-buffer))
+(use-package
+ crux
+ :bind
+ (("C-a" . crux-move-beginning-of-line)
+  ("C-x 4 t" . crux-transpose-windows)
+  ("C-x K" . crux-kill-other-buffers)
+  ("C-k" . crux-smart-kill-line))
+ :config
+ (crux-with-region-or-buffer indent-region)
+ (crux-with-region-or-buffer untabify)
+ (crux-with-region-or-point-to-eol kill-ring-save)
+ (defalias 'rename-file-and-buffer #'crux-rename-file-and-buffer))
 
 ;; ============================================================================
 ;; a generic completion mechanism for Emacs
-(use-package ivy
-  :diminish
-  :init
-  (use-package amx :defer t)
-  (use-package counsel :diminish :config (counsel-mode 1))
-  (use-package swiper :defer t)
-  (ivy-mode 1)
-  :bind
-  (("C-s" . swiper-isearch)
-   ("C-z s" . counsel-rg)
-   ("C-z b" . counsel-buffer-or-recentf)
-   ("C-z C-b" . counsel-ibuffer)
-   ("M-y" . counsel-yank-pop)
-   (:map ivy-minibuffer-map
-         ("M-RET" . ivy-immediate-done))
-   (:map counsel-find-file-map
-         ("C-~" . counsel-goto-local-home)))
-  :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-height 10)
-  (ivy-on-del-error-function nil)
-  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
-  (ivy-count-format "【%d/%d】")
-  (ivy-wrap t)
-  :config
-  (defun counsel-goto-local-home ()
-      "Go to the $HOME of the local machine."
-      (interactive)
-    (ivy--cd "~/")))
+(use-package
+ ivy
+ :diminish
+ :init
+ (use-package amx :defer t)
+ (use-package counsel :diminish :config (counsel-mode 1))
+ (use-package swiper :defer t)
+ (ivy-mode 1)
+ :bind
+ (("C-s" . swiper-isearch)
+  ("C-z s" . counsel-rg)
+  ("C-z b" . counsel-buffer-or-recentf)
+  ("C-z C-b" . counsel-ibuffer)
+  ("M-y" . counsel-yank-pop)
+  (:map ivy-minibuffer-map ("M-RET" . ivy-immediate-done))
+  (:map counsel-find-file-map ("C-~" . counsel-goto-local-home)))
+ :custom
+ (ivy-use-virtual-buffers t)
+ (ivy-height 10)
+ (ivy-on-del-error-function nil)
+ (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
+ (ivy-count-format " %d/%d  ")
+ (ivy-wrap t)
+ :config
+ (defun counsel-goto-local-home ()
+   "Go to the $HOME of the local machine."
+   (interactive)
+   (ivy--cd "~/")))
 
 ;; ============================================================================
 ;; color ripgrep
-(use-package color-rg
-  :load-path (lambda () (expand-file-name "site-elisp/color-rg" user-emacs-directory))
-  :if (executable-find "rg")
-  :bind ("C-M-s" . color-rg-search-input))
+(use-package
+ color-rg
+ :load-path
+ (lambda ()
+   (expand-file-name "site-elisp/color-rg" user-emacs-directory))
+ :if (executable-find "rg")
+ :bind ("C-M-s" . color-rg-search-input))
 
 ;; ============================================================================
 ;; Winner, a mode to restore previous window layouts
-(use-package winner
-  :ensure nil
-  :custom
-  (winner-boring-buffers
-   '("*Completions*"
-     "*Compile-Log*"
-     "*inferior-lisp*"
-     "*Fuzzy Completions*"
-     "*Apropos*"
-     "*Help*"
-     "*cvs*"
-     "*Buffer List*"
-     "*Ibuffer*"
-     "*esh command on file*"))
-  :config
-  (winner-mode 1))
+(use-package
+ winner
+ :ensure nil
+ :custom
+ (winner-boring-buffers
+  '("*Completions*"
+    "*Compile-Log*"
+    "*inferior-lisp*"
+    "*Fuzzy Completions*"
+    "*Apropos*"
+    "*Help*"
+    "*cvs*"
+    "*Buffer List*"
+    "*Ibuffer*"
+    "*esh command on file*"))
+ :config (winner-mode 1))
 
 ;; ============================================================================
 ;; Which Key, a feature that displays the key bindings following the incomplete command.
-(use-package which-key
-  :diminish
-  :custom
-  (which-key-separator " ")
-  (which-key-prefix-prefix "+")
-  :config
-  (which-key-mode))
+(use-package
+ which-key
+ :diminish
+ :custom
+ (which-key-separator " ")
+ (which-key-prefix-prefix "+")
+ :config (which-key-mode))
 
 ;; ============================================================================
 ;; Undo tree, a feature that provides a visualization of the undos in a file.
-(use-package undo-tree
-  :defer t
-  :diminish undo-tree-mode
-  :init (global-undo-tree-mode)
-  :custom
-  (undo-tree-visualizer-diff t)
-  (undo-tree-history-directory-alist `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
-  (undo-tree-visualizer-timestamps t))
+(use-package
+ undo-tree
+ :defer t
+ :diminish undo-tree-mode
+ :init (global-undo-tree-mode)
+ :custom (undo-tree-visualizer-diff t)
+ (undo-tree-history-directory-alist
+  `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
+ (undo-tree-visualizer-timestamps t))
 
 ;; ============================================================================
 ;; Ace Window, a package for selecting windows to switch to.
@@ -186,24 +188,26 @@
 
 ;; ============================================================================
 ;; History.
-(use-package recentf
-  :ensure nil
-  :hook (after-init . recentf-mode)
-  :custom
-  (recentf-auto-cleanup "05:00am")
-  (recentf-max-saved-items 200)
-  (recentf-exclude '((expand-file-name package-user-dir)
-                     ".cache"
-                     ".cask"
-                     ".elfeed"
-                     "bookmarks"
-                     "cache"
-                     "ido.*"
-                     "persp-confs"
-                     "recentf"
-                     "undo-tree-hist"
-                     "url"
-                     "COMMIT_EDITMSG\\'")))
+(use-package
+ recentf
+ :ensure nil
+ :hook (after-init . recentf-mode)
+ :custom
+ (recentf-auto-cleanup "05:00am")
+ (recentf-max-saved-items 200)
+ (recentf-exclude
+  '((expand-file-name package-user-dir)
+    ".cache"
+    ".cask"
+    ".elfeed"
+    "bookmarks"
+    "cache"
+    "ido.*"
+    "persp-confs"
+    "recentf"
+    "undo-tree-hist"
+    "url"
+    "COMMIT_EDITMSG\\'")))
 
 ;; When buffer is closed, saves the cursor location
 (save-place-mode 1)
@@ -212,7 +216,8 @@
 (setq-default history-length 500)
 
 ;; Move the backup fies to user-emacs-directory/.backup
-(setq backup-directory-alist `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
 
 ;; Ask before killing emacs
 ;; (setq confirm-kill-emacs 'y-or-n-p)
@@ -241,7 +246,8 @@
 (setq ad-redefinition-action 'accept)
 
 ;; Move Custom-Set-Variables to Different File
-(setq custom-file (concat user-emacs-directory "custom-set-variables.el"))
+(setq custom-file
+      (concat user-emacs-directory "custom-set-variables.el"))
 (load custom-file 'noerror)
 
 ;; So Long mitigates slowness due to extremely long lines.
