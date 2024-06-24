@@ -61,6 +61,10 @@
 ;; icons
 (use-package all-the-icons :if (display-graphic-p))
 
+;; Icons
+(use-package nerd-icons
+  :if (display-graphic-p))
+
 ;; themes
 (when lolo-theme
   (require

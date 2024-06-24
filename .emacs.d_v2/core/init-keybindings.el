@@ -47,5 +47,8 @@
 
 (global-set-key [remap kill-whole-line] 'crux-kill-whole-line)
 
+;; terminal
+(global-set-key (kbd "C-<escape>") 'vterm-toggle)
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

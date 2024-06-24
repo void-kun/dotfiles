@@ -11,6 +11,7 @@
 (global-set-key (kbd "M-m") nil)
 (global-set-key (kbd "C-x C-z") nil)
 (global-set-key (kbd "M-/") nil)
+(global-set-key (kbd "C-d") nil)
 
 (setq user-full-name "zrik")
 (setq user-mail-address "lolizilker@gmail.com")
