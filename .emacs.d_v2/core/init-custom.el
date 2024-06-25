@@ -93,7 +93,6 @@ Only modes that don't derive from `prog-mode' should be listed here."
   :type 'number
   :group 'lolo)
 
-
 (defcustom lolo-minimalistic-ui nil
   "Controls whether to display the menu-bar and line numbers.
 Note that the toolbar is always hidden regardless of this settings."
