@@ -15,12 +15,12 @@
       "XD"
       :foundry "CYEL"
       :slant normal
-      :weight normal
-      :height 122
+      :weight semi-bold
+      :height 100
       :width normal)))))
 
 ;; Uncomment the following line if line spacing needs adjusting.
-(setq-default line-spacing 0.12)
+;; (setq-default line-spacing 0.12)
 
 ;; disable startup screen
 (setq inhibit-startup-screen t)
@@ -503,7 +503,6 @@
            :italic-weight nil
            :italic-slant italic
            :italic-height 1.0
-
 
            :line-spacing nil)))
 
