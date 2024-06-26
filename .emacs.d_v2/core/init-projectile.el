@@ -7,7 +7,6 @@
 
 (use-package
  projectile
- :bind ("C-x p" . projectile-command-map)
  :custom (projectile-completion-system 'ivy)
  :config
  (projectile-mode 1)

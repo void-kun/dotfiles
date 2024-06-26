@@ -116,10 +116,6 @@ FACE defaults to inheriting from default and highlight."
                     (window-total-height))
                  nil))
 
-;; Setup shorcuts for window resize width and height
-(global-set-key (kbd "C-z w") #'resize-window-width)
-(global-set-key (kbd "C-z h") #'resize-window-height)
-
 (defun resize-window (width delta)
   "Resize the current window's size.  If WIDTH is non-nil, resize width by some DELTA."
   (if (> (count-windows) 1)
@@ -146,16 +142,6 @@ FACE defaults to inheriting from default and highlight."
   "Desincrease window height."
   (interactive)
   (resize-window nil -5))
-
-(global-set-key (kbd "M-W =") #'window-width-increase)
-(global-set-key (kbd "M-W M-+") #'window-width-increase)
-(global-set-key (kbd "M-W -") #'window-width-decrease)
-(global-set-key (kbd "M-W M-_") #'window-width-decrease)
-
-(global-set-key (kbd "M-Q =") #'window-height-increase)
-(global-set-key (kbd "M-Q M-+") #'window-height-increase)
-(global-set-key (kbd "M-Q -") #'window-height-decrease)
-(global-set-key (kbd "M-Q M-_") #'window-height-decrease)
 
 (defun lolo/move-text-internal (arg)
   (cond
@@ -187,6 +173,16 @@ FACE defaults to inheriting from default and highlight."
   "Move region (transient-mark-mode active) or current line up."
   (interactive "*p")
   (lolo/move-text-internal (- arg)))
+
+(defun lolo/backward-kill-word ()
+  "Remove all whitespace if the character behind the cursor is whitespace.
+Otherwhise remove a word."
+  (interactive)
+  (if (looking-back "[ \n]")
+      (progn (delete-horizontal-space 't)
+	     (while (looking-back "[ \n]")
+	       (backward-delete-char 1)))
+    (backward-kill-word 1)))
 
 (provide 'init-funs)
 ;;; init-funs.el ends here

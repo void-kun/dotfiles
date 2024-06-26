@@ -30,6 +30,7 @@
 
 ;; whitespace
 ;; Define the whitespace style.
+(global-whitespace-mode 1)
 (setq-default whitespace-style
               '(face spaces empty tabs trailing space-mark tab-mark newline-mark))
 

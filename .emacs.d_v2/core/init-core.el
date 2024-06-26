@@ -20,11 +20,6 @@
 ;; a Collection of Ridiculously Useful eXtensions for Emacs
 (use-package
  crux
- :bind
- (("C-a" . crux-move-beginning-of-line)
-  ("C-x 4 t" . crux-transpose-windows)
-  ("C-x K" . crux-kill-other-buffers)
-  ("C-k" . crux-smart-kill-line))
  :config
  (crux-with-region-or-buffer indent-region)
  (crux-with-region-or-buffer untabify)
@@ -41,26 +36,13 @@
  (use-package counsel :diminish :config (counsel-mode 1))
  (use-package swiper :defer t)
  (ivy-mode 1)
- :bind
- (("C-s" . swiper-isearch)
-  ("C-z s" . counsel-rg)
-  ("C-z b" . counsel-buffer-or-recentf)
-  ("C-z C-b" . counsel-ibuffer)
-  ("M-y" . counsel-yank-pop)
-  (:map ivy-minibuffer-map ("M-RET" . ivy-immediate-done))
-  (:map counsel-find-file-map ("C-~" . counsel-goto-local-home)))
  :custom
  (ivy-use-virtual-buffers t)
- (ivy-height 10)
+ (ivy-height 20)
  (ivy-on-del-error-function nil)
  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
- (ivy-count-format " %d/%d  ")
- (ivy-wrap t)
- :config
- (defun counsel-goto-local-home ()
-   "Go to the $HOME of the local machine."
-   (interactive)
-   (ivy--cd "~/")))
+ (ivy-count-format " %d/%d  ")
+ (ivy-wrap t))
 
 ;; ============================================================================
 ;; color ripgrep
@@ -68,9 +50,7 @@
  color-rg
  :load-path
  (lambda ()
-   (expand-file-name "site-elisp/color-rg" user-emacs-directory))
- :if (executable-find "rg")
- :bind ("C-M-s" . color-rg-search-input))
+   (expand-file-name "site-elisp/color-rg" user-emacs-directory)))
 
 ;; ============================================================================
 ;; Winner, a mode to restore previous window layouts

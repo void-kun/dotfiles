@@ -5,14 +5,18 @@
 ;;
 ;;; Code:
 
-;; Unbind unneeded keys
+;; ============================================================================
+;; Unbind unneeded keys.
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "M-m") nil)
 (global-set-key (kbd "C-x C-z") nil)
 (global-set-key (kbd "M-/") nil)
 (global-set-key (kbd "C-d") nil)
+(global-set-key (kbd "M-<backspace>") nil)
 
+;; ============================================================================
+;; Custom variables.
 (setq user-full-name "zrik")
 (setq user-mail-address "lolizilker@gmail.com")
 
