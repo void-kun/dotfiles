@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/modus_vivendi.toml"]
+import = ["~/.config/alacritty/themes/rose-pine-dawn.toml"]
 
 [shell]
 program = "/usr/bin/tmux"
@@ -7,8 +7,8 @@ program = "/usr/bin/tmux"
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "ZedMono Nerd Font", style = "Semibold" }
-bold = { family = "ZedMono Nerd Font", style = "Bold" }
-italic = { family = "ZedMono Nerd Font", style = "Oblique" }
-bold_italic = { family = "ZedMono Nerd Font", style = "Bold Oblique" }
+normal = { family = "XD", style = "Semibold" }
+bold = { family = "XD", style = "Bold" }
+italic = { family = "XD", style = "Oblique" }
+bold_italic = { family = "XD", style = "Bold Oblique" }
 size = 12.0

@@ -3,7 +3,7 @@
 
 local vim = vim
 
--- vim.opt.background = "light"
+vim.opt.background = "dark"
 
 return {
     "loctvl842/monokai-pro.nvim",

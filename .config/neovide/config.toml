@@ -1,6 +1,7 @@
 [font]
 # normal = ["ZedMono Nerd Font"]
 # normal = ["RobotoMono Nerd Font"]
-normal = ["VictorMono Nerd Font"]
-size = 12.0
+# normal = ["VictorMono Nerd Font"]
+normal = ["XD SemiBold"]
+size = 10.0
 
