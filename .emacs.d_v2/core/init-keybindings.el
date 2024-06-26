@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-M-k") 'sp-change-enclosing)
 (global-set-key (kbd "C-]") 'sp-select-next-thing-exchange)
+(global-set-key (kbd "M-<down>") 'recenter-top-bottom)
 
 ;; search
 (global-set-key (kbd "C-s") 'swiper-isearch)

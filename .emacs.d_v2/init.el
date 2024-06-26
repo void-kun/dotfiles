@@ -79,8 +79,9 @@
 (require 'init-company)
 (require 'init-cpp)
 (require 'init-go)
-;; (require 'init-python)
 (require 'init-rust)
+
+;; (require 'init-python)
 ;; (require 'init-web)
 ;; (require 'init-yaml)
 

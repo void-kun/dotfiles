@@ -5,6 +5,9 @@
 ;;
 ;;; Code:
 
+;; config environment
+(setenv "LSP_USE_PLISTS" "true")
+
 (defvar better-gc-cons-threshold 134217728 ; 128*1024*1024 == 128mb
   "The default value to use for `gc-cons-threshold'.")
 

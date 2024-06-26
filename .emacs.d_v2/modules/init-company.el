@@ -21,9 +21,7 @@
  ;; Don't use company in the following modes
  (company-global-modes '(not shell-mode eaf-mode))
  ;; Trigger completion immediately.
- (company-idle-delay 0.3)
- ;; Number the candidates (use M-1, M-2 etc to select completions).
- (company-show-numbers t)
+ (company-idle-delay 0.100)
  :config
  (global-company-mode 1)
  (defun smarter-tab-to-complete ()
