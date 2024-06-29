@@ -24,7 +24,7 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(add-to-list 'default-frame-alist '(font . "XD SemiBold-10"))
+(add-to-list 'default-frame-alist '(font . "ZedMono Nerd Font-12"))
 (setq-default line-height 150
               line-spacing 4)
 
@@ -262,14 +262,7 @@
   :ensure t
   :hook (after-init . lin-global-mode) ; applies to all `lin-mode-hooks'
   :config
-  ;; You can use this to live update the face:
-  ;;
-  ;; (customize-set-variable 'lin-face 'lin-green)
-  ;;
-  ;; Or `setopt' on Emacs 29: (setopt lin-face 'lin-yellow)
-  ;;
-  ;; I still prefer `setq' for consistency.
-  (setq lin-face 'lin-magenta))
+  (setopt lin-face 'lin-magenta))
 
 ;;;; Increase padding of windows/frames
 ;; Yet another one of my packages:
@@ -300,21 +293,15 @@
                                 'help-key-binding)
            :mode-line-inactive window-divider)))
 
-;;;; Rainbow mode for colour previewing (rainbow-mode.el)
-(use-package rainbow-mode
+;;; Colorful mode
+(use-package colorful-mode
   :ensure t
-  :init
-  (setq rainbow-ansi-colors nil)
-  (setq rainbow-x-colors nil)
+  :hook (prog-mode text-mode))
 
-  (defun prot/rainbow-mode-in-themes ()
-    (when-let ((file (buffer-file-name))
-               ((derived-mode-p 'emacs-lisp-mode))
-               ((string-match-p "-theme" file)))
-      (rainbow-mode 1)))
-  :bind ( :map ctl-x-x-map
-          ("c" . rainbow-mode)) ; C-x x c
-  :hook (emacs-lisp-mode . prot/rainbow-mode-in-themes))
+;;; Rainbow for delimiters
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode))
 
 ;;; Cursor appearance (cursory)
 ;; Read the manual: <https://protesilaos.com/emacs/cursory>.

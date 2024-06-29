@@ -46,7 +46,7 @@
  vterm-toggle
  :config
  (setq vterm-toggle-fullscreen-p nil)
- 
+
  (add-to-list
   'display-buffer-alist
   '((lambda (buffer-or-name _)

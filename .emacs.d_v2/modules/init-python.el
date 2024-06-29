@@ -15,10 +15,11 @@
  (flycheck-python-pycompile-executable "python3")
  (python-shell-interpreter "python3"))
 
-(use-package
- lsp-pyright
- :hook (python-mode . (lambda () (require 'lsp-pyright)))
- :custom (lsp-pyright-multi-root nil))
+(with-eval-after-load 'eglot
+  ;; config python
+  (add-to-list
+   'eglot-server-programs
+   '(python-mode . ("pyright-langserver" "--stdio"))))
 
 (provide 'init-python)
 ;;; init-python.el ends here

@@ -69,6 +69,7 @@
 (require 'init-projectile)
 (require 'init-snippet)
 (require 'init-editor)
+(require 'init-treemacs)
 
 ;; Linux specific settings
 (when (eq system-type 'gnu/linux)
@@ -80,8 +81,8 @@
 (require 'init-cpp)
 (require 'init-go)
 (require 'init-rust)
+(require 'init-python)
 
-;; (require 'init-python)
 ;; (require 'init-web)
 ;; (require 'init-yaml)
 

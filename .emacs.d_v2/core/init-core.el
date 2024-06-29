@@ -42,6 +42,7 @@
  (ivy-on-del-error-function nil)
  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
  (ivy-count-format " %d/%d  ")
+ (ivy-initial-inputs-alist nil)
  (ivy-wrap t))
 
 ;; ============================================================================

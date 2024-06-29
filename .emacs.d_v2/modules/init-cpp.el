@@ -5,12 +5,6 @@
 ;;
 ;;; Code:
 
-(use-package ccls
-  :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls) (lsp))))
-(setq ccls-executable "/usr/bin/ccls")
-(setq ccls-sem-highlight-method 'font-lock)
-;; (setq ccls-use-default-rainbow-sem-highlight)
-(ccls-code-lens-mode 1)
 
 (use-package clang-format)
 
@@ -20,6 +14,20 @@
  :init (modern-c++-font-lock-global-mode t))
 
 (use-package cmake-mode :defer t)
+
+(with-eval-after-load 'eglot
+  ;; config c/c++
+  (add-to-list
+   'eglot-server-programs
+   `((c++-mode c-mode c-ts-mode c++-ts-mode)
+     ,
+     "clangd"
+     ,
+     "--query-driver=/**/*"))
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c-ts-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+  (add-hook 'c++-ts-mode-hook 'eglot-ensure))
 
 (provide 'init-cpp)
 ;;; init-cpp.el ends here
