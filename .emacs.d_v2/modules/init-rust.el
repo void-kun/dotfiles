@@ -5,11 +5,12 @@
 ;;
 ;;; Code:
 
-;; Rust
-(use-package rustic)
+(use-package
+ rust-mode
+ :init (setq rust-mode-treesitter-derive t)
+ :config (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
 
-(use-package ron-mode
-  :mode ("\\.ron" . ron-mode))
+(use-package ron-mode :mode ("\\.ron" . ron-mode))
 
 (with-eval-after-load 'eglot
   ;; config rust
@@ -22,10 +23,12 @@
       (:procMacro
        (:enable t)
        :cargo (:buildScripts (:enable t) :features "all")))))
+
   (add-hook 'rust-mode-hook 'eglot-ensure)
+
   (defun eglot-format-buffer-before-save-rust ()
     (add-hook 'before-save-hook #'rust-format-buffer))
-  (add-hook 'rust-mode-hook #'defun eglot-format-buffer-before-save-rust))
+  (add-hook 'rust-mode-hook #'eglot-format-buffer-before-save-rust))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

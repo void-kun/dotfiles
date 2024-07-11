@@ -9,8 +9,14 @@
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C--") #'text-scale-decrease)
 
+(defun lolo/keyboard-quit()
+  "The custom quit."
+  (interactive)
+  (keyboard-escape-quit)
+  (mc/keyboard-quit))
+
 ;; quick escape
-(global-set-key (kbd "<escape><escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<escape><escape>") #'lolo/keyboard-quit)
 
 ;; typing editor
 (global-set-key (kbd "C-s-c") 'kill-ring-save)
@@ -61,6 +67,11 @@
 
 ;; git
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; multiple cursors
+(global-set-key (kbd "C-S-<up>") 'mc/mmlte--up)
+(global-set-key (kbd "C-S-<down>") 'mc/mmlte--down)
+(global-set-key (kbd "C-d") 'mc/mark-next-like-this)
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

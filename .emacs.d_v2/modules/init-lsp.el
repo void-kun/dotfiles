@@ -22,9 +22,5 @@
  :commands (eldoc-box-hover-mode eldoc-box-hover-at-point-mode)
  :custom (eldoc-box-clear-with-C-g t))
 
-(use-package treesit-auto
-    :hook (after-init . global-treesit-auto-mode)
-    :init (setq treesit-auto-install 'prompt))
-
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

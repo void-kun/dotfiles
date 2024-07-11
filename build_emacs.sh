@@ -11,8 +11,8 @@ cd ./emacs-29.3
 
 ./autogen.sh
 ./configure --with-native-compilation=aot --with-x-toolkit=gtk3 --with-tree-sitter --with-json --with-threads --with-x --without-mailutils --prefix="/home/zrik/.local/emacs"
-make -j 16
-sudo make install -j 16
+make -j16
+sudo make install -j16
 
 mkdir -p ~/.local/bin/
 

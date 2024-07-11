@@ -70,6 +70,7 @@
 (require 'init-snippet)
 (require 'init-editor)
 (require 'init-treemacs)
+;; (require 'init-evil)
 
 ;; Linux specific settings
 (when (eq system-type 'gnu/linux)
@@ -82,6 +83,7 @@
 (require 'init-go)
 (require 'init-rust)
 (require 'init-python)
+(require 'init-elisp)
 
 ;; (require 'init-web)
 ;; (require 'init-yaml)

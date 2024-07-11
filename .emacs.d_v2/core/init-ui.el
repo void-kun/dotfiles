@@ -24,7 +24,7 @@
 (column-number-mode t)
 (size-indication-mode t)
 
-(add-to-list 'default-frame-alist '(font . "ZedMono Nerd Font-12"))
+(add-to-list 'default-frame-alist '(font . "XD Medium-12"))
 (setq-default line-height 150
               line-spacing 4)
 

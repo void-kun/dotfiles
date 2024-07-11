@@ -132,7 +132,7 @@
       `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
 
 ;; Ask before killing emacs
-;; (setq confirm-kill-emacs 'y-or-n-p)
+(setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Automatically kill all active processes when closing Emacs
 (setq confirm-kill-processes nil)
@@ -172,6 +172,11 @@
 
 ;; Enable `erase-buffer' function
 (put 'erase-buffer 'disabled nil)
+
+;; ============================================================================
+;; Multiple cursor.
+(use-package multiple-cursors)
+(multiple-cursors-mode +1)
 
 (provide 'init-core)
 ;;; init-core.el ends here
