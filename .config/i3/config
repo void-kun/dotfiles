@@ -15,6 +15,7 @@ exec_always --no-startup-id feh --bg-fill ~/.config/i3/wall/wall_3.jpg
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # ================================================================================================================
 # mapping application
@@ -27,7 +28,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 # A more mode dmenu replacement is rofi:
-bindsym $win+d exec dmenu_run
+bindsym $win+d exec rofi -show run
 # lock screen
 bindsym Control+$mod+l exec "i3lock -c 1B1D1E"
 
@@ -154,22 +155,27 @@ bindsym $mod+r mode "resize"
 
 
 # ================================================================================================================
-# border
-default_border pixel 5
-default_floating_border pixel 5
-for_window [class="^.*"] border pixel 5
+# colors 
 
-# set position of floating window
-for_window [class=".*"] move position center
+# class                 border  bground text    indicator child_border
+client.focused          #58AEB2 #58AEB2 #FFFFFF #F4F4F4   #777777
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+client.background       #FFFFFF
+
+# ================================================================================================================
+# border and gaps
+default_border pixel 0
+default_floating_border pixel 0
+for_window [class="^.*"] border pixel 0
+
+gaps inner 10
+gaps outer 5
 
 # ================================================================================================================
 # window bar
-bar {
-    position top
-    strip_workspace_numbers yes
-    #tray_output none
-    font pango:ZedMono Nerd Font, FontAwesome 10
-    separator_symbol "  "
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-    status_command i3status --config ~/.config/i3/i3status.conf
-}

@@ -22,6 +22,14 @@
 !.emacs.d_v2/init.el
 !.emacs.d_v2/script.py
 
+.emacs.d_v3/*
+!.emacs.d_v3/core
+!.emacs.d_v3/modules
+!.emacs.d_v3/site-elisp
+!.emacs.d_v3/early-init.el
+!.emacs.d_v3/init.el
+!.emacs.d_v3/script.py
+
 # git for neovim
 .config/nvim/undodir
 .config/nvim/.luarc.json

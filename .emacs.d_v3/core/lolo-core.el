@@ -1,4 +1,4 @@
-;;; init-core.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;;; lolo-core.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,18 +6,7 @@
 ;;; Code:
 
 ;; ============================================================================
-;; Move around text.
-(use-package
- avy
- :defer t
- :bind (("C-z c" . avy-goto-char-timer) ("C-z l" . avy-goto-line))
- :custom (avy-timeout-seconds 0.3) (avy-style 'pre)
- :custom-face
- (avy-lead-face
-  ((t (:background "#51afef" :foreground "#870000" :weight bold))))) ;
-
-;; ============================================================================
-;; A Collection of Ridiculously Useful eXtensions for Emacs
+;; A collection of ridiculously useful extensions for emacs
 (use-package
  crux
  :config
@@ -27,31 +16,11 @@
  (defalias 'rename-file-and-buffer #'crux-rename-file-and-buffer))
 
 ;; ============================================================================
-;; a generic completion mechanism for Emacs
-(use-package
- ivy
- :diminish
- :init
- (use-package amx :defer t)
- (use-package counsel :diminish :config (counsel-mode 1))
- (use-package swiper :defer t)
- (ivy-mode 1)
- :custom
- (ivy-use-virtual-buffers t)
- (ivy-height 20)
- (ivy-on-del-error-function nil)
- (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
- (ivy-count-format " %d/%d  ")
- (ivy-initial-inputs-alist nil)
- (ivy-wrap t))
-
-;; ============================================================================
-;; color ripgrep
+;; Color ripgrep
 (use-package
  color-rg
  :load-path
- (lambda ()
-   (expand-file-name "site-elisp/color-rg" user-emacs-directory)))
+ (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir)))
 
 ;; ============================================================================
 ;; Winner, a mode to restore previous window layouts
@@ -91,12 +60,8 @@
  :init (global-undo-tree-mode)
  :custom (undo-tree-visualizer-diff t)
  (undo-tree-history-directory-alist
-  `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
+  `(("." . ,(expand-file-name ".backup" lolo-savefile-dir))))
  (undo-tree-visualizer-timestamps t))
-
-;; ============================================================================
-;; Ace Window, a package for selecting windows to switch to.
-(use-package ace-window)
 
 ;; ============================================================================
 ;; History.
@@ -127,9 +92,9 @@
 ;; Set history-length longer
 (setq-default history-length 500)
 
-;; Move the backup fies to user-emacs-directory/.backup
+;; Move the backup fies to user-emacs-directory/savefile/.backup
 (setq backup-directory-alist
-      `(("." . ,(expand-file-name ".backup" user-emacs-directory))))
+      `(("." . ,(expand-file-name ".backup" lolo-savefile-dir))))
 
 ;; Ask before killing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -157,9 +122,6 @@
 ;; they are not helpful.
 (setq ad-redefinition-action 'accept)
 
-;; Move Custom-Set-Variables to Different File
-(setq custom-file
-      (concat user-emacs-directory "custom-set-variables.el"))
 (load custom-file 'noerror)
 
 ;; So Long mitigates slowness due to extremely long lines.
@@ -173,10 +135,5 @@
 ;; Enable `erase-buffer' function
 (put 'erase-buffer 'disabled nil)
 
-;; ============================================================================
-;; Multiple cursor.
-(use-package multiple-cursors)
-(multiple-cursors-mode +1)
-
-(provide 'init-core)
-;;; init-core.el ends here
+(provide 'lolo-core)
+;;; lolo-core.el ends here
