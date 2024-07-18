@@ -20,7 +20,6 @@
 ;; Define Lolo's directory structure
 (defvar lolo-dir (file-name-directory load-file-name)
   "The root dir of emacs config")
-(defvar lolo-org-directory (expand-file-name "org" "~/workspace/document/"))
 (defvar lolo-savefile-dir (expand-file-name "savefile" lolo-dir)
   "This folder stores all the automatically generated save/history-files.")
 
