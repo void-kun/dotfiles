@@ -372,7 +372,7 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
 (defun lolo/native-compile-site-lisp ()
   "Native compile packages in site-lisp directory."
   (interactive)
-  (let ((dir (locate-user-emacs-file "site-lisp")))
+  (let ((dir (locate-user-emacs-file "site-elisp")))
     (if (fboundp 'native-compile-async)
         (native-compile-async dir t))))
 

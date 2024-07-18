@@ -5,6 +5,5 @@
 ;;
 ;;; Code:
 
-
 (provide 'lolo-python)
 ;;; lolo-python.el ends here

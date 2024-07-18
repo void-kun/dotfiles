@@ -50,12 +50,12 @@
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-whitespace nil
+(defcustom lolo-whitespace t
   "Enable whitespace."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-clean-whitespace-on-save nil
+(defcustom lolo-clean-whitespace-on-save t
   "Cleanup whitespace from file before it's saved.
 Will only occur if `lolo-whitespace' is also enabled."
   :group 'lolo
@@ -66,7 +66,7 @@ Will only occur if `lolo-whitespace' is also enabled."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-theme 'modus
+(defcustom lolo-theme 'gruber-darker
   "The default color theme."
   :group 'lolo
   :type
@@ -74,13 +74,13 @@ Will only occur if `lolo-whitespace' is also enabled."
     :tag "Set of themes to load"
     :value
     modus
-    (const :tag "The `nano-theme' module" nano)
+    (const :tag "The `gruber-darker-theme' module" gruber-darker)
     (const :tag "The `ef-theme' module" ef)
     (const :tag "The `modus-theme' module" modus)
     (const :tag "The `standard-theme' module" standard)
     (const :tag "Do not load a theme module" nil)))
 
-(defcustom lolo-theme-dark nil
+(defcustom lolo-theme-dark t
   "The default theme style."
   :group 'lolo
   :type 'boolean)

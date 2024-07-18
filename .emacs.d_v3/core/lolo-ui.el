@@ -12,7 +12,7 @@
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
-(add-to-list 'default-frame-alist '(font . "XD Medium-12"))
+(add-to-list 'default-frame-alist '(font . "XD Semibold-16"))
 (setq-default
  line-height 150
  line-spacing 4)
@@ -109,7 +109,7 @@
 (when lolo-theme
   (require
    (pcase lolo-theme
-     ('nano 'lolo-nano-theme)
+     ('gruber-darker 'lolo-gruber-darker-theme)
      ('ef 'lolo-ef-theme)
      ('modus 'lolo-modus-theme)
      ('standard 'lolo-standard-theme))))
@@ -135,130 +135,6 @@
 (setq hscroll-step 1)
 (setq hscroll-margin 1)
 
-;; hydra
-(use-package
- hydra
- :hook (emacs-lisp-mode . hydra-add-imenu)
- :init
- (when (childframe-completion-workable-p)
-   (setq hydra-hint-display-type 'posframe)
-
-   (with-eval-after-load 'posframe
-     (defun hydra-set-posframe-show-params ()
-       "Set hydra-posframe style."
-       (setq
-        hydra-posframe-show-params
-        `(:left-fringe
-          8
-          :right-fringe 8
-          :internal-border-width 2
-          :internal-border-color ,(face-background 'posframe-border nil t)
-          :background-color ,(face-background 'tooltip nil t)
-          :foreground-color ,(face-foreground 'tooltip nil t)
-          :lines-truncate t
-          :poshandler posframe-poshandler-frame-center-near-bottom)))
-     (hydra-set-posframe-show-params)
-     (add-hook 'after-load-theme-hook #'hydra-set-posframe-show-params
-               t))))
-
-(use-package
- pretty-hydra
- :custom (pretty-hydra-default-title-body-format-spec " %s%s")
- :bind ("<f6>" . toggles-hydra/body)
- :hook
- (emacs-lisp-mode
-  .
-  (lambda ()
-    (add-to-list
-     'imenu-generic-expression
-     '("Hydras" "^.*(\\(pretty-hydra-define\\) \\([a-zA-Z-]+\\)" 2))))
- :init
- (cl-defun
-  pretty-hydra-title
-  (title &optional icon-type icon-name &key face height v-adjust)
-  "Add an icon in the hydra title."
-  (let ((face (or face `(:inherit highlight :reverse-video t)))
-        (height (or height 1.2))
-        (v-adjust (or v-adjust 0.0)))
-    (concat
-     (when (and icon-type icon-name)
-       (let ((f (intern (format "nerd-icons-%s" icon-type))))
-         (when (fboundp f)
-           (concat
-            (apply f
-                   (list
-                    icon-name
-                    :face face
-                    :height height
-                    :v-adjust v-adjust))
-            " "))))
-     (propertize title 'face face))))
-
- ;; Global toggles
- (with-no-warnings
-   (pretty-hydra-define
-    toggles-hydra
-    (:title
-     (pretty-hydra-title "Toggles" 'faicon "nf-fa-toggle_on")
-     :color amaranth
-     :quit-key ("q" "C-g"))
-    ("Basic" (("n" (cond
-        ((fboundp 'display-line-numbers-mode)
-         (display-line-numbers-mode
-          (if display-line-numbers-mode
-              -1
-            1)))
-        ((fboundp 'gblobal-linum-mode)
-         (global-linum-mode
-          (if global-linum-mode
-              -1
-            1))))
-       "line number"
-       :toggle
-       (or (bound-and-true-p display-line-numbers-mode)
-           (bound-and-true-p global-linum-mode)))
-      ("a"
-       global-aggressive-indent-mode
-       "aggressive indent"
-       :toggle t)
-      ("d" global-hungry-delete-mode "hungry delete" :toggle t)
-      ("e" electric-pair-mode "electric pair" :toggle t)
-      ("c" flyspell-mode "spell check" :toggle t)
-      ("s" prettify-symbols-mode "pretty symbol" :toggle t)
-      ("l" global-page-break-lines-mode "page break lines" :toggle t)
-      ("b" display-battery-mode "battery" :toggle t)
-      ("i" display-time-mode "time" :toggle t)
-      ("m" doom-modeline-mode "modern mode-line" :toggle t))
-     "Highlight"
-     (("h l" global-hl-line-mode "line" :toggle t)
-      ("h p" show-paren-mode "paren" :toggle t)
-      ("h s" symbol-overlay-mode "symbol" :toggle t)
-      ("h r" rainbow-mode "rainbow" :toggle t)
-      ("h w" (setq-default show-trailing-whitespace
-                     (not show-trailing-whitespace))
-       "whitespace"
-       :toggle show-trailing-whitespace)
-      ("h d" rainbow-delimiters-mode "delimiter" :toggle t)
-      ("h i" highlight-indent-guides-mode "indent" :toggle t)
-      ("h t" global-hl-todo-mode "todo" :toggle t))
-     "Program"
-     (("f" flymake-mode "flymake" :toggle t)
-      ("O" hs-minor-mode "hideshow" :toggle t)
-      ("u" subword-mode "subword" :toggle t)
-      ("W" which-function-mode "which function" :toggle t)
-      ("E"
-       toggle-debug-on-error
-       "debug on error"
-       :toggle (default-value 'debug-on-error))
-      ("Q"
-       toggle-debug-on-quit
-       "debug on quit"
-       :toggle (default-value 'debug-on-quit))
-      ("v" global-diff-hl-mode "gutter" :toggle t)
-      ("V" diff-hl-flydiff-mode "live gutter" :toggle t)
-      ("M" diff-hl-margin-mode "margin gutter" :toggle t)
-      ("D" diff-hl-dired-mode "dired gutter" :toggle t))))))
-
 ;; Mode-line
 (use-package
  doom-modeline
@@ -267,7 +143,6 @@
  (setq
   doom-modeline-icon t
   doom-modeline-minor-modes t)
- :bind (:map doom-modeline-mode-map ("C-<f6>" . doom-modeline-hydra/body))
  :config
  (setq doom-modeline-support-imenu t)
  (setq doom-modeline-height 36)
@@ -282,225 +157,8 @@
  (custom-set-faces
   '(mode-line ((t (:family "XD" :height 1.0))))
   '(mode-line-active ((t (:family "XD" :height 1.0)))) ; For 29+
-  '(mode-line-inactive ((t (:family "RobotoMono Nerd Font" :height 1.0)))))
- :pretty-hydra
- ((:title
-   (pretty-hydra-title
-    "Mode Line"
-    'sucicon
-    "nf-custom-emacs"
-    :face 'nerd-icons-purple)
-   :color amaranth
-   :quit-key ("q" "C-g"))
-  ("Icon" (("i"
-     (setq doom-modeline-icon (not doom-modeline-icon))
-     "display icons"
-     :toggle doom-modeline-icon)
-    ("u" (setq doom-modeline-unicode-fallback
-           (not doom-modeline-unicode-fallback))
-     "unicode fallback"
-     :toggle doom-modeline-unicode-fallback)
-    ("m" (setq doom-modeline-major-mode-icon
-           (not doom-modeline-major-mode-icon))
-     "major mode"
-     :toggle doom-modeline-major-mode-icon)
-    ("c" (setq doom-modeline-major-mode-color-icon
-           (not doom-modeline-major-mode-color-icon))
-     "colorful major mode"
-     :toggle doom-modeline-major-mode-color-icon)
-    ("s" (setq doom-modeline-buffer-state-icon
-           (not doom-modeline-buffer-state-icon))
-     "buffer state"
-     :toggle doom-modeline-buffer-state-icon)
-    ("o" (setq doom-modeline-buffer-modification-icon
-           (not doom-modeline-buffer-modification-icon))
-     "modification"
-     :toggle doom-modeline-buffer-modification-icon)
-    ("x"
-     (setq doom-modeline-time-icon (not doom-modeline-time-icon))
-     "time"
-     :toggle doom-modeline-time-icon)
-    ("v"
-     (setq doom-modeline-modal-icon (not doom-modeline-modal-icon))
-     "modal"
-     :toggle doom-modeline-modal-icon))
-   "Segment"
-   (("g h"
-     (setq doom-modeline-hud (not doom-modeline-hud))
-     "hud"
-     :toggle doom-modeline-hud)
-    ("g m"
-     (setq doom-modeline-minor-modes (not doom-modeline-minor-modes))
-     "minor modes"
-     :toggle doom-modeline-minor-modes)
-    ("g w" (setq doom-modeline-enable-word-count
-           (not doom-modeline-enable-word-count))
-     "word count"
-     :toggle doom-modeline-enable-word-count)
-    ("g e" (setq doom-modeline-buffer-encoding
-           (not doom-modeline-buffer-encoding))
-     "encoding"
-     :toggle doom-modeline-buffer-encoding)
-    ("g i"
-     (setq doom-modeline-indent-info (not doom-modeline-indent-info))
-     "indent"
-     :toggle doom-modeline-indent-info)
-    ("g c" (setq doom-modeline-display-misc-in-all-mode-lines
-           (not doom-modeline-display-misc-in-all-mode-lines))
-     "misc info"
-     :toggle doom-modeline-display-misc-in-all-mode-lines)
-    ("g l"
-     (setq doom-modeline-lsp (not doom-modeline-lsp))
-     "lsp"
-     :toggle doom-modeline-lsp)
-    ("g k" (setq doom-modeline-workspace-name
-           (not doom-modeline-workspace-name))
-     "workspace"
-     :toggle doom-modeline-workspace-name)
-    ("g g"
-     (setq doom-modeline-github (not doom-modeline-github))
-     "github"
-     :toggle doom-modeline-github)
-    ("g n"
-     (setq doom-modeline-gnus (not doom-modeline-gnus))
-     "gnus"
-     :toggle doom-modeline-gnus)
-    ("g r"
-     (setq doom-modeline-irc (not doom-modeline-irc))
-     "irc"
-     :toggle doom-modeline-irc)
-    ("g f"
-     (setq doom-modeline-irc-buffers (not doom-modeline-irc-buffers))
-     "irc buffers"
-     :toggle doom-modeline-irc-buffers)
-    ("g s" (progn
-       (setq doom-modeline-check-simple-format
-             (not doom-modeline-check-simple-format))
-       (and (bound-and-true-p flycheck-mode) (flycheck-buffer)))
-     "simple check format"
-     :toggle doom-modeline-check-simple-format)
-    ("g t"
-     (setq doom-modeline-time (not doom-modeline-time))
-     "time"
-     :toggle doom-modeline-time)
-    ("g v"
-     (setq doom-modeline-env-version (not doom-modeline-env-version))
-     "version"
-     :toggle doom-modeline-env-version))
-   "Style"
-   (("a"
-     (setq doom-modeline-buffer-file-name-style 'auto)
-     "auto"
-     :toggle (eq doom-modeline-buffer-file-name-style 'auto))
-    ("b"
-     (setq doom-modeline-buffer-file-name-style 'buffer-name)
-     "buffer name"
-     :toggle (eq doom-modeline-buffer-file-name-style 'buffer-name))
-    ("f"
-     (setq doom-modeline-buffer-file-name-style 'file-name)
-     "file name"
-     :toggle (eq doom-modeline-buffer-file-name-style 'file-name))
-    ("F" (setq doom-modeline-buffer-file-name-style
-           'file-name-with-project)
-     "file name with project"
-     :toggle
-     (eq
-      doom-modeline-buffer-file-name-style 'file-name-with-project))
-    ("t u" (setq doom-modeline-buffer-file-name-style
-           'truncate-upto-project)
-     "truncate upto project"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-upto-project))
-    ("t f" (setq doom-modeline-buffer-file-name-style
-           'truncate-from-project)
-     "truncate from project"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-from-project))
-    ("t w" (setq doom-modeline-buffer-file-name-style
-           'truncate-with-project)
-     "truncate with project"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-with-project))
-    ("t e" (setq doom-modeline-buffer-file-name-style
-           'truncate-except-project)
-     "truncate except project"
-     :toggle
-     (eq
-      doom-modeline-buffer-file-name-style 'truncate-except-project))
-    ("t r"
-     (setq doom-modeline-buffer-file-name-style 'truncate-upto-root)
-     "truncate upto root"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-upto-root))
-    ("t a"
-     (setq doom-modeline-buffer-file-name-style 'truncate-all)
-     "truncate all"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-all))
-    ("t n"
-     (setq doom-modeline-buffer-file-name-style 'truncate-nil)
-     "truncate none"
-     :toggle (eq doom-modeline-buffer-file-name-style 'truncate-nil))
-    ("r f" (setq doom-modeline-buffer-file-name-style
-           'relative-from-project)
-     "relative from project"
-     :toggle (eq doom-modeline-buffer-file-name-style 'relative-from-project))
-    ("r t"
-     (setq doom-modeline-buffer-file-name-style 'relative-to-project)
-     "relative to project"
-     :toggle (eq doom-modeline-buffer-file-name-style 'relative-to-project)))
-   "Project Detection"
-   (("p a"
-     (setq doom-modeline-project-detection 'auto)
-     "auto"
-     :toggle (eq doom-modeline-project-detection 'auto))
-    ("p f"
-     (setq doom-modeline-project-detection 'ffip)
-     "ffip"
-     :toggle (eq doom-modeline-project-detection 'ffip))
-    ("p i"
-     (setq doom-modeline-project-detection 'projectile)
-     "projectile"
-     :toggle (eq doom-modeline-project-detection 'projectile))
-    ("p p"
-     (setq doom-modeline-project-detection 'project)
-     "project"
-     :toggle (eq doom-modeline-project-detection 'project))
-    ("p n"
-     (setq doom-modeline-project-detection nil)
-     "disable"
-     :toggle (eq doom-modeline-project-detection nil)))
-   "Misc"
-   (("n" (progn
-       (message "Fetching GitHub notifications...")
-       (run-with-timer
-        300 nil #'doom-modeline--github-fetch-notifications)
-       (browse-url "https://github.com/notifications"))
-     "github notifications"
-     :exit t)
-    ("e" (cond
-      ((bound-and-true-p flycheck-mode)
-       (flycheck-list-errors))
-      ((bound-and-true-p flymake-mode)
-       (flymake-show-diagnostics-buffer)))
-     "list errors"
-     :exit t)
-    ("w" (if (bound-and-true-p grip-mode)
-         (grip-browse-preview)
-       (message "Not in preview"))
-     "browse preview"
-     :exit t)
-    ("z h"
-     (set-from-minibuffer 'doom-modeline-height)
-     "set height"
-     :exit t)
-    ("z w"
-     (set-from-minibuffer 'doom-modeline-bar-width)
-     "set bar width"
-     :exit t)
-    ("z g"
-     (set-from-minibuffer 'doom-modeline-github-interval)
-     "set github interval"
-     :exit t)
-    ("z n"
-     (set-from-minibuffer 'doom-modeline-gnus-timer)
-     "set gnus interval"
-     :exit t)))))
+  '(mode-line-inactive
+    ((t (:family "RobotoMono Nerd Font" :height 1.0))))))
 
 (use-package
  hide-mode-line
@@ -511,8 +169,7 @@
     term-mode
     vterm-mode
     embark-collect-mode
-    lsp-ui-imenu-mode
-    pdf-annot-list-mode)
+     pdf-annot-list-mode)
    . turn-on-hide-mode-line-mode)
   (dired-mode
    .
@@ -697,8 +354,6 @@
          "\\*ert\\*$"
          overseer-buffer-mode
          "\\*gud-debug\\*$"
-         "\\*lsp-help\\*$"
-         "\\*lsp session\\*$"
          "\\*quickrun\\*$"
          "\\*tldr\\*$"
          "\\*vc-.*\\**"

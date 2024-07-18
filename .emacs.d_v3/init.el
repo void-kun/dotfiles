@@ -20,6 +20,7 @@
 ;; Define Lolo's directory structure
 (defvar lolo-dir (file-name-directory load-file-name)
   "The root dir of emacs config")
+(defvar lolo-org-directory (expand-file-name "org" "~/workspace/document/"))
 (defvar lolo-savefile-dir (expand-file-name "savefile" lolo-dir)
   "This folder stores all the automatically generated save/history-files.")
 
@@ -44,6 +45,7 @@
 (require 'lolo-vars)
 (require 'lolo-func)
 (require 'lolo-package)
+(require 'lolo-linux)
 
 (require 'lolo-core)
 (require 'lolo-ui)
@@ -55,7 +57,7 @@
 (require 'lolo-completion)
 (require 'lolo-projectile)
 
-;; Programming
+;; programming
 (require 'lolo-prog)
 (require 'lolo-lisp)
 (require 'lolo-rust)
@@ -64,6 +66,7 @@
 (require 'lolo-web)
 (require 'lolo-python)
 
+(require 'lolo-snippet)
 (require 'lolo-keybinding)
 
 ;;; init.el ends here

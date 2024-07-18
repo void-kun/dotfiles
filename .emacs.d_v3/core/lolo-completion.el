@@ -344,6 +344,7 @@ targets."
 (unless (display-graphic-p)
   (use-package
    corfu-terminal
+   :load-path (lambda () (expand-file-name "site-elisp/corfu-terminal" lolo-dir))
    :hook (global-corfu-mode . corfu-terminal-mode)))
 
 (use-package

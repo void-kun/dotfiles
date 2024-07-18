@@ -12,10 +12,10 @@
  :config
  (setq
   modus-themes-custom-auto-reload nil
-  modus-themes-to-toggle '(modus-operandi modus-vivendi)
+  ;; modus-themes-to-toggle '(modus-operandi modus-vivendi)
   ;; modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)
   ;; modus-themes-to-toggle '(modus-operandi-deuteranopia modus-vivendi-deuteranopia)
-  ;; modus-themes-to-toggle '(modus-operandi-tritanopia modus-vivendi-tritanopia)
+  modus-themes-to-toggle '(modus-operandi-tritanopia modus-vivendi-tritanopia)
   modus-themes-mixed-fonts t
   modus-themes-variable-pitch-ui t
   modus-themes-italic-constructs t

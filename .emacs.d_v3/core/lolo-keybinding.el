@@ -31,6 +31,12 @@
 (global-set-key (kbd "<f5>") #'revert-buffer-quick)
 (global-set-key (kbd "C-x K") 'crux-kill-other-buffers)
 
+;; search
+;; (global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "C-f") 'color-rg-search-input)
+(global-set-key (kbd "C-b") 'counsel-buffer-or-recentf)
+(global-set-key (kbd "C-s-f") 'query-replace-regexp)
+
 ;; windows
 (global-set-key (kbd "C-x 4 t") 'crux-transpose-windows)
 ;; Setup shorcuts for window resize width and height
@@ -53,9 +59,6 @@
 ;; kill lines backward
 (global-set-key (kbd "C-<backspace>") 'lolo/backward-kill-word)
 
-;; terminal
-;; (global-set-key (kbd "C-<escape>") 'vterm-toggle)
-
 ;; projectile
 (global-set-key (kbd "C-x p") 'projectile-command-map)
 
@@ -63,8 +66,8 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; multiple cursors
-(global-set-key (kbd "C-S-<up>") 'mc/mmlte--up)
-(global-set-key (kbd "C-S-<down>") 'mc/mmlte--down)
+(global-set-key (kbd "C-M-s-<up>") 'mc/mmlte--up)
+(global-set-key (kbd "C-M-s-<down>") 'mc/mmlte--down)
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
 
 (provide 'lolo-keybinding)

@@ -20,7 +20,8 @@
 (use-package
  color-rg
  :load-path
- (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir)))
+ (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir))
+ )
 
 ;; ============================================================================
 ;; Winner, a mode to restore previous window layouts
