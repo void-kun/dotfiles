@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-polybar-msg cmd quit
+killall -q polybar
 
-# Launch statusbar_bot
-echo "---" | tee -a /tmp/statusbar_bot.log 
-polybar statusbar_bot -c ~/.config/polybar/config/statusbar.ini 2>&1 | tee -a /tmp/statusbar_bot.log & disown
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# Launch bar1 and bar2
+polybar -c ~/.config/polybar/config.ini main &
 
 echo "Bars launched..."

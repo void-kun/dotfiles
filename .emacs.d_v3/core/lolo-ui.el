@@ -1,4 +1,4 @@
-;;; lolo-ui.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;; ;; lolo-ui.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;
@@ -169,7 +169,7 @@
     term-mode
     vterm-mode
     embark-collect-mode
-     pdf-annot-list-mode)
+    pdf-annot-list-mode)
    . turn-on-hide-mode-line-mode)
   (dired-mode
    .
@@ -179,7 +179,6 @@
 
 ;; A minor-mode menu for mode-line
 (use-package minions :hook (doom-modeline-mode . minions-mode))
-
 
 ;; Child frame
 (when (childframe-workable-p)
@@ -208,72 +207,6 @@
         (/ (+ (plist-get info :parent-frame-height)
               (* 2 (plist-get info :font-height)))
            2))))))
-
-(use-package
- composite
- :ensure nil
- :init (defvar composition-ligature-table (make-char-table nil))
- :hook
- (((prog-mode
-    conf-mode
-    nxml-mode
-    markdown-mode
-    help-mode
-    shell-mode
-    eshell-mode
-    term-mode
-    vterm-mode)
-   .
-   (lambda ()
-     (setq-local composition-function-table
-                 composition-ligature-table))))
- :config
- ;; support ligatures, some toned down to prevent hang
- (let
-     ((alist
-       '((33 . ".\\(?:\\(==\\|[!=]\\)[!=]?\\)")
-         (35 . ".\\(?:\\(###?\\|_(\\|[(:=?[_{]\\)[#(:=?[_{]?\\)")
-         (36 . ".\\(?:\\(>\\)>?\\)")
-         (37 . ".\\(?:\\(%\\)%?\\)")
-         (38 . ".\\(?:\\(&\\)&?\\)")
-         (42 . ".\\(?:\\(\\*\\*\\|[*>]\\)[*>]?\\)")
-         ;; (42 . ".\\(?:\\(\\*\\*\\|[*/>]\\).?\\)")
-         (43 . ".\\(?:\\([>]\\)>?\\)")
-         ;; (43 . ".\\(?:\\(\\+\\+\\|[+>]\\).?\\)")
-         (45 . ".\\(?:\\(-[->]\\|<<\\|>>\\|[-<>|~]\\)[-<>|~]?\\)")
-         ;; (46 . ".\\(?:\\(\\.[.<]\\|[-.=]\\)[-.<=]?\\)")
-         (46 . ".\\(?:\\(\\.<\\|[-=]\\)[-<=]?\\)")
-         (47 . ".\\(?:\\(//\\|==\\|[=>]\\)[/=>]?\\)")
-         ;; (47 . ".\\(?:\\(//\\|==\\|[*/=>]\\).?\\)")
-         (48 . ".\\(?:x[a-zA-Z]\\)")
-         (58 . ".\\(?:\\(::\\|[:<=>]\\)[:<=>]?\\)")
-         (59 . ".\\(?:\\(;\\);?\\)")
-         (60
-          .
-          ".\\(?:\\(!--\\|\\$>\\|\\*>\\|\\+>\\|-[-<>|]\\|/>\\|<[-<=]\\|=[<>|]\\|==>?\\||>\\||||?\\|~[>~]\\|[$*+/:<=>|~-]\\)[$*+/:<=>|~-]?\\)")
-         (61
-          .
-          ".\\(?:\\(!=\\|/=\\|:=\\|<<\\|=[=>]\\|>>\\|[=>]\\)[=<>]?\\)")
-         (62 . ".\\(?:\\(->\\|=>\\|>[-=>]\\|[-:=>]\\)[-:=>]?\\)")
-         (63 . ".\\(?:\\([.:=?]\\)[.:=?]?\\)")
-         (91 . ".\\(?:\\(|\\)[]|]?\\)")
-         ;; (92 . ".\\(?:\\([\\n]\\)[\\]?\\)")
-         (94 . ".\\(?:\\(=\\)=?\\)")
-         (95 . ".\\(?:\\(|_\\|[_]\\)_?\\)")
-         (119 . ".\\(?:\\(ww\\)w?\\)")
-         (123 . ".\\(?:\\(|\\)[|}]?\\)")
-         (124
-          .
-          ".\\(?:\\(->\\|=>\\||[-=>]\\||||*>\\|[]=>|}-]\\).?\\)")
-         (126 . ".\\(?:\\(~>\\|[-=>@~]\\)[-=>@~]?\\)"))))
-   (dolist (char-regexp alist)
-     (set-char-table-range
-      composition-ligature-table
-      (car char-regexp)
-      `([,(cdr char-regexp) 0 font-shape-gstring]))))
- (set-char-table-parent
-  composition-ligature-table composition-function-table))
-
 
 ;; Enforce rules for popups
 (use-package
@@ -315,7 +248,6 @@
          tabulated-list-mode
          Buffer-menu-mode
 
-         flymake-diagnostics-buffer-mode
          flycheck-error-list-mode
          flycheck-verify-mode
 
@@ -401,7 +333,7 @@
 
    (defun popper-close-window-hack (&rest _)
      "Close popper window via `C-g'."
-     (when (and ;(called-interactively-p 'interactive)
+     (when (and (called-interactively-p 'interactive)
             (not (region-active-p))
             popper-open-popup-alist)
        (when-let ((window (caar popper-open-popup-alist))

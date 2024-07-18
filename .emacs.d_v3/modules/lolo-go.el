@@ -9,8 +9,8 @@
  go-mode
  :ensure t
  :mode "\\.go\\'"
- :custom (go-ts-mode-indent-offset 4)
- :config (add-to-list 'exec-path "~/.go/bin"))
+ :config (add-to-list 'exec-path "~/.go/bin")
+ :config (setq gofmt-command "goimports"))
 
 (use-package go-tag :ensure t)
 

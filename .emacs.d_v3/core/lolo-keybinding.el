@@ -32,7 +32,6 @@
 (global-set-key (kbd "C-x K") 'crux-kill-other-buffers)
 
 ;; search
-;; (global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-f") 'color-rg-search-input)
 (global-set-key (kbd "C-b") 'counsel-buffer-or-recentf)
 (global-set-key (kbd "C-s-f") 'query-replace-regexp)
@@ -52,7 +51,6 @@
 (global-set-key (kbd "C-<right>") 'move-end-of-line)
 (global-set-key (kbd "M-s-<up>") 'lolo/move-text-up)
 (global-set-key (kbd "M-s-<down>") 'lolo/move-text-down)
-
 (global-set-key (kbd "M-s-<return>") 'crux-smart-open-line)
 (global-set-key (kbd "C-M-s-<return>") 'crux-smart-open-line-above)
 
@@ -69,6 +67,9 @@
 (global-set-key (kbd "C-M-s-<up>") 'mc/mmlte--up)
 (global-set-key (kbd "C-M-s-<down>") 'mc/mmlte--down)
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
+
+;; zen-mode
+(global-set-key (kbd "C-M-z") #'lolo/zen-mode-toggle)
 
 (provide 'lolo-keybinding)
 ;;; lolo-keybinding.el ends here

@@ -10,7 +10,7 @@
 (multiple-cursors-mode +1)
 
 ;;; Colorful mode
-(use-package colorful-mode :ensure t :hook (prog-mode text-mode))
+(use-package colorful-mode)
 
 ;;; spell checker
 (use-package
@@ -138,8 +138,9 @@
  (ediff-window-setup-function #'ediff-setup-windows-plain))
 
 ;; ============================================================================
-;; Iedit, a minor mode that allows editing multiple regions simultaneousy in a buffer or a region.
-(use-package iedit :bind ("C-z ," . iedit-mode) :diminish)
+;; Config zen-mode
+(setf *lolo-zen-mode* t)
+(lolo/zen-mode-toggle)
 
 (provide 'lolo-editor)
 ;;; lolo-editor.el ends here

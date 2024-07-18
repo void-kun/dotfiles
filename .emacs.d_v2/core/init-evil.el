@@ -7,7 +7,7 @@
 
 (use-package
  evil
- :enhhhhhhhhhhhhhhhhsure t
+ :ensure t
  :init (setq evil-want-intergration t) (setq evil-want-keybinding nil)
  :config (evil-mode 1))
 

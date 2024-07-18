@@ -109,8 +109,8 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8" 
-set $ws9 "9" 
+set $ws8 "8"
+set $ws9 "9"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -155,7 +155,7 @@ bindsym $mod+r mode "resize"
 
 
 # ================================================================================================================
-# colors 
+# colors
 
 # class                 border  bground text    indicator child_border
 client.focused          #58AEB2 #58AEB2 #FFFFFF #F4F4F4   #777777
@@ -178,4 +178,3 @@ gaps outer 5
 # ================================================================================================================
 # window bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
