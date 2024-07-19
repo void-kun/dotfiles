@@ -137,10 +137,5 @@
  (ediff-split-window-function #'split-window-horizontally)
  (ediff-window-setup-function #'ediff-setup-windows-plain))
 
-;; ============================================================================
-;; Config zen-mode
-(setf *lolo-zen-mode* t)
-(lolo/zen-mode-toggle)
-
 (provide 'lolo-editor)
 ;;; lolo-editor.el ends here

@@ -12,7 +12,7 @@
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
-(add-to-list 'default-frame-alist '(font . "XD Semibold-16"))
+(add-to-list 'default-frame-alist '(font . "XD Semibold-14"))
 (setq-default
  line-height 150
  line-spacing 4)

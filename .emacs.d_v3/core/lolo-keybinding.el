@@ -38,6 +38,7 @@
 
 ;; windows
 (global-set-key (kbd "C-x 4 t") 'crux-transpose-windows)
+
 ;; Setup shorcuts for window resize width and height
 (global-set-key (kbd "C-z w") #'resize-window-width)
 (global-set-key (kbd "C-z h") #'resize-window-height)
@@ -67,9 +68,6 @@
 (global-set-key (kbd "C-M-s-<up>") 'mc/mmlte--up)
 (global-set-key (kbd "C-M-s-<down>") 'mc/mmlte--down)
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
-
-;; zen-mode
-(global-set-key (kbd "C-M-z") #'lolo/zen-mode-toggle)
 
 (provide 'lolo-keybinding)
 ;;; lolo-keybinding.el ends here

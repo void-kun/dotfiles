@@ -98,7 +98,7 @@
       `(("." . ,(expand-file-name ".backup" lolo-savefile-dir))))
 
 ;; Ask before killing emacs
-(setq confirm-kill-emacs 'y-or-n-p)
+;; (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Automatically kill all active processes when closing Emacs
 (setq confirm-kill-processes nil)

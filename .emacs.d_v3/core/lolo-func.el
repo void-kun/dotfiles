@@ -132,10 +132,10 @@ major modes only."
   "Remove all whitespace if the character behind the cursor is whitespace.
 Otherwhise remove a word."
   (interactive)
-  (if (looking-back "[ \n]")
+  (if (looking-back "[ \n\t]")
       (progn
         (delete-horizontal-space 't)
-        (while (looking-back "[ \n]")
+        (while (looking-back "[ \n\t]")
           (backward-delete-char 1)))
     (backward-kill-word 1)))
 
@@ -460,29 +460,6 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
       (set-frame-parameter nil 'fullscreen nil)
       (set-frame-position nil left top)
       (set-frame-size nil width height t))))
-
-;;;;;;
-
-;;;;;; Zen mode
-(defvar *lolo-zen-mode* nil)
-(defun lolo/zen-mode-toggle ()
-  "Toggle zen mode."
-  (interactive)
-  (setf *lolo-zen-mode* (not *lolo-zen-mode*))
-
-  (if (bound-and-true-p *lolo-zen-mode*)
-      (progn
-        (setq left-fringe-width 20)
-        (setq right-fringe-width 20)
-        (setq left-margin-width 20)
-        (setq right-margin-width 20)
-        (set-window-buffer nil (current-buffer)))
-    (progn
-      (setq left-fringe-width 0)
-      (setq right-fringe-width 0)
-      (setq left-margin-width 0)
-      (setq right-margin-width 0)
-      (set-window-buffer nil (current-buffer)))))
 
 ;;;;;;
 
