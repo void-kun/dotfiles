@@ -44,7 +44,16 @@
 (global-set-key (kbd "C-z h") #'resize-window-height)
 
 ;; improved window navigation with ace-window
-(global-set-key (kbd "C-w") 'ace-window)
+
+(defun switch-to-other-window ()
+  "Customize switch to other window."
+  (interactive)
+  (ace-window 0)
+  ;; (treemacs-select-window)
+  )
+
+
+(global-set-key (kbd "C-w") #'switch-to-other-window)
 (global-set-key [remap other-window] 'ace-window)
 
 ;; move line
@@ -68,6 +77,8 @@
 (global-set-key (kbd "C-M-s-<up>") 'mc/mmlte--up)
 (global-set-key (kbd "C-M-s-<down>") 'mc/mmlte--down)
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
+
+(put 'downcase-region 'disabled nil)
 
 (provide 'lolo-keybinding)
 ;;; lolo-keybinding.el ends here

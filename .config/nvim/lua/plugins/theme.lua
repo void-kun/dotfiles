@@ -3,16 +3,29 @@
 
 local vim = vim
 
-vim.opt.background = "dark"
+
+-- return {
+--     "loctvl842/monokai-pro.nvim",
+--     config = function()
+--         require("monokai-pro").setup({
+--             -- transparent_background = true,
+--             filter = "ristretto",
+--         })
+--         vim.cmd [[ colorscheme monokai-pro ]]
+--     end
+-- }
 
 return {
-    "loctvl842/monokai-pro.nvim",
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
-        require("monokai-pro").setup({
-            -- transparent_background = true,
-            filter = "ristretto",
+        require("rose-pine").setup({
+            variant = "dawn",
+            -- disable_background = true
         })
-        vim.cmd [[ colorscheme monokai-pro ]]
+
+        vim.cmd [[ colorscheme rose-pine ]]
     end
 }
+
 --- theme.lua ends here

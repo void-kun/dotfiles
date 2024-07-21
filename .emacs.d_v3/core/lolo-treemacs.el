@@ -31,6 +31,7 @@
   treemacs-follow-after-init t
   treemacs-width 30
   treemacs-no-png-images nil)
+ ;; FIXME: sync the treemacs with projectile
 
  (treemacs-follow-mode t) (treemacs-filewatch-mode t)
  (pcase (cons

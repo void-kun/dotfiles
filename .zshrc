@@ -19,9 +19,6 @@ alias updg="upd && upg"
 alias _cp="xclip -selection clipboard -i"
 alias _ps="xclip -selection clipboard -o"
 
-# activate dev environment
-# source $HOME/environment/pyenv/bin/activate  # commented out by conda initialize
-
 # pnpm
 export PNPM_HOME="/home/zrik/.local/share/pnpm"
 case ":$PATH:" in
@@ -29,10 +26,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-
-# activate cuda environment
-source $HOME/environment/cuda/env
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -48,4 +41,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-

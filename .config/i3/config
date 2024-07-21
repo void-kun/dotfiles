@@ -10,7 +10,6 @@ set $mod Mod1
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-
 exec_always --no-startup-id feh --bg-fill ~/.config/i3/wall/wall_3.jpg
 
 # Desktop notifications
@@ -28,7 +27,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 # A more mode dmenu replacement is rofi:
-bindsym $win+d exec rofi -show run
+bindsym $win+d exec rofi -show
 # lock screen
 bindsym Control+$mod+l exec "i3lock -c 1B1D1E"
 

@@ -9,6 +9,18 @@
  treesit-auto
  :custom (treesit-auto-install 'prompt))
 
+(with-eval-after-load 'treesit
+  (setq major-mode-remap-alist
+        '((yaml-mode . yaml-ts-mode)
+          (bash-mode . bash-ts-mode)
+          (js2-mode . js-ts-mode)
+          (typescript-mode . typescript-ts-mode)
+          (json-mode . json-ts-mode)
+          (css-mode . css-ts-mode)
+          (python-mode . python-ts-mode)
+          (go-mode . go-ts-mode)
+          (c-mode . c-ts-mode))))
+
 ;; Code styles
 (use-package
  editorconfig
@@ -71,6 +83,30 @@ Install the doc if it's not installed."
 (require 'which-func)
 (which-function-mode 1)
 
+;; formatter
+(use-package
+ format-all
+ :commands format-all-mode
+ :hook (prog-mode . format-all-mode)
+ :config
+ (setq-default format-all-formatters
+               '(("C" (clang-format "-style=file"))
+                 ("C++" (clang-format "-style=file"))
+                 ("Go" (gofmt))
+                 ("Rust" (rustfmt))
+                 ("Shell" (shfmt "-i" "4" "-ci"))
+                 ("TypeScript" (prettier))
+                 ("TSX" (prettier))
+                 ("JavaScript" (prettier))
+                 ("JSX" (prettier))
+                 ("Json" (prettier))
+                 ("Vue" (prettier))
+                 ("Python" (black))
+                 ("CMake" (cmake-format))
+                 ("CSS" (prettier))
+                 ("SCSS" (prettier))
+                 ("Less" (prettier)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;; Eglot
 
@@ -108,30 +144,6 @@ Install the doc if it's not installed."
  eldoc-box
  :commands (eldoc-box-hover-mode eldoc-box-hover-at-point-mode)
  :custom (eldoc-box-clear-with-C-g t))
-
-;; formatter
-(use-package
- format-all
- :commands format-all-mode
- :hook (prog-mode . format-all-mode)
- :config
- (setq-default format-all-formatters
-               '(("C" (clang-format "-style=file"))
-                 ("C++" (clang-format "-style=file"))
-                 ("Go" (gofmt))
-                 ("Rust" (rustfmt))
-                 ("Shell" (shfmt "-i" "4" "-ci"))
-                 ("TypeScript" (prettier))
-                 ("TSX" (prettier))
-                 ("JavaScript" (prettier))
-                 ("JSX" (prettier))
-                 ("Json" (prettier))
-                 ("Vue" (prettier))
-                 ("Python" (black))
-                 ("CMake" (cmake-format))
-                 ("CSS" (prettier))
-                 ("SCSS" (prettier))
-                 ("Less" (prettier)))))
 
 (provide 'lolo-prog)
 ;;; lolo-prog.el ends here

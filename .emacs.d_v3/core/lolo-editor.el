@@ -10,7 +10,13 @@
 (multiple-cursors-mode +1)
 
 ;;; Colorful mode
-(use-package colorful-mode)
+(use-package colorful-mode :config (global-colorful-mode t))
+
+;; Highlight TODO
+(use-package hl-todo :config (global-hl-todo-mode t))
+
+;; TODO toggle highlight current line
+(global-hl-line-mode t)
 
 ;;; spell checker
 (use-package

@@ -33,6 +33,12 @@ lspconfig.biome.setup({
     provideFormatter = true,
 })
 
+-- vue
+lspconfig.volar.setup({
+    capabilities = capabilities,
+    filetypes = { "vue" }
+})
+
 -- go
 lspconfig.gopls.setup({
     capabilities = capabilities,
@@ -41,11 +47,7 @@ lspconfig.gopls.setup({
     root_dir = util.root_pattern("go.work", "go.mod", ".git"),
     settings = {
         gopls = {
-            completeUnimportd = true,
             usePlaceholders = true,
-            analyses = {
-                unusedparams = true,
-            }
         }
     }
 })

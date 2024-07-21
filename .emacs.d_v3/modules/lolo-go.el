@@ -9,8 +9,7 @@
  go-mode
  :ensure t
  :mode "\\.go\\'"
- :config (add-to-list 'exec-path "~/.go/bin")
- :config (setq gofmt-command "goimports"))
+ :config (add-to-list 'exec-path "~/.go/bin"))
 
 (use-package go-tag :ensure t)
 

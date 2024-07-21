@@ -11,6 +11,12 @@
 (setq package-enable-at-startup nil)
 (setq site-run-file nil)
 
+;; use plists instead of hash-table
+(setenv "LSP_USE_PLISTS" "true")
+
+;; increate process output to 1mb intead 4kb
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; disable menu-bar and scroll-bar
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)

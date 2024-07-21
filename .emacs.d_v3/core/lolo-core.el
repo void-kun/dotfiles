@@ -20,8 +20,7 @@
 (use-package
  color-rg
  :load-path
- (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir))
- )
+ (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir)))
 
 ;; ============================================================================
 ;; Winner, a mode to restore previous window layouts
@@ -98,7 +97,7 @@
       `(("." . ,(expand-file-name ".backup" lolo-savefile-dir))))
 
 ;; Ask before killing emacs
-;; (setq confirm-kill-emacs 'y-or-n-p)
+(setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Automatically kill all active processes when closing Emacs
 (setq confirm-kill-processes nil)

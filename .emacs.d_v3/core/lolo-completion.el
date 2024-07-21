@@ -5,7 +5,6 @@
 ;;
 ;;; Code:
 
-
 ;; A few more useful configurations...
 (use-package
  emacs
@@ -237,7 +236,6 @@ value of the selected COLOR."
  (setq consult-narrow-key "<") ;; "C-+"
 
  ;; Optionally make narrowing help available in the minibuffer.
- ;; You may want to use `embark-prefix-help-command' or which-key instead.
  (define-key
   consult-narrow-map
   (vconcat consult-narrow-key "?")
@@ -325,44 +323,55 @@ targets."
  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; Auto completion
+
 (use-package
- corfu
+ company
+ :diminish company-mode
+ :hook ((prog-mode LaTeX-mode latex-mode ess-r-mode) . company-mode)
+ :bind
+ (:map
+  company-active-map
+  ([tab] . smarter-tab-to-complete)
+  ("TAB" . smarter-tab-to-complete))
  :custom
- (corfu-auto t)
- (corfu-auto-prefix 2)
- (corfu-preview-current nil)
- (corfu-auto-delay 0.2)
- (corfu-popupinfo-delay '(0.4 . 0.2))
- :custom-face
- (corfu-border ((t (:inherit region :background unspecified))))
- :bind ("M-/" . completion-at-point)
- :hook
- ((after-init . global-corfu-mode)
-  (global-corfu-mode . corfu-popupinfo-mode)))
+ (company-minimum-prefix-length 1)
+ (company-tooltip-align-annotations t)
+ (company-require-match 'never)
+ ;; Don't use company in the following modes
+ (company-global-modes '(not shell-mode eaf-mode))
+ ;; Trigger completion immediately.
+ (company-idle-delay 0.100)
+ :config
+ (global-company-mode 1)
+ (defun smarter-tab-to-complete ()
+   "Try to `org-cycle', `yas-expand', and `yas-next-field' at current cursor position.
 
-(unless (display-graphic-p)
-  (use-package
-   corfu-terminal
-   :load-path (lambda () (expand-file-name "site-elisp/corfu-terminal" lolo-dir))
-   :hook (global-corfu-mode . corfu-terminal-mode)))
-
-(use-package
- nerd-icons-corfu
- :after corfu
- :init
- (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+If all failed, try to complete the common part with `company-complete-common'"
+   (interactive)
+   (when yas-minor-mode
+     (let ((old-point (point))
+           (old-tick (buffer-chars-modified-tick))
+           (func-list
+            (if (equal major-mode 'org-mode)
+                '(org-cycle yas-expand yas-next-field)
+              '(yas-expand yas-next-field))))
+       (catch 'func-suceed
+         (dolist (func func-list)
+           (ignore-errors
+             (call-interactively func))
+           (unless (and (eq old-point (point))
+                        (eq old-tick (buffer-chars-modified-tick)))
+             (throw 'func-suceed t)))
+         (company-complete-common))))))
 
 ;; Add extensions
-(use-package
- cape
- :init
- (add-to-list 'completion-at-point-functions #'cape-dabbrev)
- (add-to-list 'completion-at-point-functions #'cape-file)
- (add-to-list 'completion-at-point-functions #'cape-elisp-block)
- (add-to-list 'completion-at-point-functions #'cape-keyword)
- (add-to-list 'completion-at-point-functions #'cape-abbrev)
-
- (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+(use-package cape
+  :config
+  (setq completion-at-point-functions
+	(list
+	 (cape-company-to-capf
+	  (apply-partially #'company-multi-backend-adapter
+			   '(company-dabbrev company-elisp company-files company-abbrev company-keywords))))))
 
 (provide 'lolo-completion)
 ;;; lolo-completion.el ends here

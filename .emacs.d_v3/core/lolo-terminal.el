@@ -96,21 +96,10 @@
            (executable-find "cmake")
            (executable-find "libtool") ; libtool-bin
            (executable-find "make"))
-  (use-package
-   vterm
-   :bind
-   (:map
-    vterm-mode-map
-    ([f9]
-     .
-     (lambda ()
-       (interactive)
-       (and (fboundp 'shell-pop-toggle) (shell-pop-toggle)))))
-   :init (setq vterm-always-compile-module t))
+  (use-package vterm :init (setq vterm-always-compile-module t))
 
   (use-package
    multi-vterm
-   :bind ("C-<f9>" . multi-vterm)
    :custom (multi-vterm-buffer-name "vterm")
    :config
    (with-no-warnings
@@ -127,7 +116,7 @@
      (advice-add #'multi-vterm :override #'my-multi-vterm))))
 
 ;; Shell Pop: leverage `popper'
-(with-no-warnings
+;; (with-no-warnings
   (defvar shell-pop--frame nil) (defvar shell-pop--window nil)
 
   (defun shell-pop--shell (&optional arg)
@@ -135,8 +124,6 @@
     (cond
      ((fboundp 'vterm)
       (vterm arg))
-     (sys/win32p
-      (eshell arg))
      (t
       (shell))))
 
@@ -159,7 +146,6 @@
           (setq shell-pop--window nil))
       (setq shell-pop--window
             (get-buffer-window (shell-pop--shell)))))
-  (bind-keys ([f9] . shell-pop-toggle) ("C-`" . shell-pop-toggle))
 
   (when (childframe-workable-p)
     (defun shell-pop-posframe-hidehandler (_)
@@ -213,7 +199,9 @@
               (goto-char (point-max))
               (when (fboundp 'vterm-reset-cursor-point)
                 (vterm-reset-cursor-point)))))))
-    (bind-key "C-<escape>" #'shell-pop-posframe-toggle)))
+    (bind-key "C-<escape>" #'shell-pop-posframe-toggle))
+;; )
+
 
 (provide 'lolo-terminal)
 ;;; lolo-terminal.el ends here

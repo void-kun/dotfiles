@@ -5,7 +5,6 @@
 ;;
 ;;; Code:
 
-
 ;; ============================================================================
 ;; Define function and vars.
 
@@ -510,8 +509,7 @@ FACE defaults to inheriting from default and highlight."
 
 (defun childframe-workable-p ()
   "Whether childframe is workable."
-  (not
-   (or noninteractive emacs-basic-display (not (display-graphic-p)))))
+  t)
 
 (defun childframe-completion-workable-p ()
   "Whether childframe completion is workable."

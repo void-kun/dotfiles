@@ -9,10 +9,7 @@
   (require 'lolo-vars))
 
 ;; font face
-(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
-
-(add-to-list 'default-frame-alist '(font . "XD Semibold-14"))
+(add-to-list 'default-frame-alist '(font . "XD Medium-12"))
 (setq-default
  line-height 150
  line-spacing 4)
@@ -155,8 +152,8 @@
  (setq find-file-visit-truename t)
 
  (custom-set-faces
-  '(mode-line ((t (:family "XD" :height 1.0))))
-  '(mode-line-active ((t (:family "XD" :height 1.0)))) ; For 29+
+  '(mode-line ((t (:family "RobotoMono Nerd Font" :height 1.0))))
+  '(mode-line-active ((t (:family "RobotoMono Nerd Font" :height 1.0)))) ; For 29+
   '(mode-line-inactive
     ((t (:family "RobotoMono Nerd Font" :height 1.0))))))
 
