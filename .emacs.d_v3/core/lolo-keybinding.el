@@ -16,12 +16,14 @@
   (mc/keyboard-quit))
 
 ;; quick escape
-(global-set-key (kbd "<escape><escape>") #'lolo/keyboard-quit)
+(global-set-key (kbd "<escape>") #'lolo/keyboard-quit)
+
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
 
 ;; typing editor
-(global-set-key (kbd "C-s-c") 'kill-ring-save)
-(global-set-key (kbd "C-s-x") 'kill-region)
-(global-set-key (kbd "C-s-v") 'yank)
+(global-set-key (kbd "C-S-c") 'kill-ring-save)
+(global-set-key (kbd "C-S-x") 'kill-region)
+(global-set-key (kbd "C-S-v") 'yank)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-M-k") 'sp-change-enclosing)
 (global-set-key (kbd "C-]") 'sp-select-next-thing-exchange)
@@ -45,15 +47,7 @@
 
 ;; improved window navigation with ace-window
 
-(defun switch-to-other-window ()
-  "Customize switch to other window."
-  (interactive)
-  (ace-window 0)
-  ;; (treemacs-select-window)
-  )
-
-
-(global-set-key (kbd "C-w") #'switch-to-other-window)
+(global-set-key (kbd "C-w") #'lolo/switch-window)
 (global-set-key [remap other-window] 'ace-window)
 
 ;; move line
@@ -77,8 +71,6 @@
 (global-set-key (kbd "C-M-s-<up>") 'mc/mmlte--up)
 (global-set-key (kbd "C-M-s-<down>") 'mc/mmlte--down)
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this)
-
-(put 'downcase-region 'disabled nil)
 
 (provide 'lolo-keybinding)
 ;;; lolo-keybinding.el ends here

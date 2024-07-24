@@ -23,6 +23,9 @@ keymap.set("n", "U", "<C-r>")
 keymap.set({ "n", "v" }, "H", "^")
 keymap.set({ "n", "v" }, "L", "$")
 
+-- remaps jj for Esc
+keymap.set("i", "jj", "<ESC>", { silent = true })
+
 -- telescope
 keymap.set("n", "<leader>ff", cmd "Telescope find_files")
 keymap.set("n", "<leader>lg", cmd "Telescope live_grep")

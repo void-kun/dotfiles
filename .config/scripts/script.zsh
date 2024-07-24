@@ -4,3 +4,6 @@ alias gp="git push origin"
 alias gcm="git commit -m"
 alias giturl="~/.config/scripts/giturl.sh"
 
+alias tabby_start="~/.config/scripts/tabby_start.sh"
+
+

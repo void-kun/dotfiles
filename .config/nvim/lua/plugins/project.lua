@@ -6,7 +6,6 @@ return {
     opts = {
         projects = {
             "~/.config/nvim",
-
             -- personal projects
             "~/workspace/code/*",
             "~/workspace/source/*"

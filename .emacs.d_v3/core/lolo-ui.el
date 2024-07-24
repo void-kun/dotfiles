@@ -9,7 +9,7 @@
   (require 'lolo-vars))
 
 ;; font face
-(add-to-list 'default-frame-alist '(font . "XD Medium-12"))
+(add-to-list 'default-frame-alist '(font . "ZedMono Nerd Font-14"))
 (setq-default
  line-height 150
  line-spacing 4)
@@ -153,7 +153,8 @@
 
  (custom-set-faces
   '(mode-line ((t (:family "RobotoMono Nerd Font" :height 1.0))))
-  '(mode-line-active ((t (:family "RobotoMono Nerd Font" :height 1.0)))) ; For 29+
+  '(mode-line-active
+    ((t (:family "RobotoMono Nerd Font" :height 1.0)))) ; For 29+
   '(mode-line-inactive
     ((t (:family "RobotoMono Nerd Font" :height 1.0))))))
 
@@ -331,8 +332,8 @@
    (defun popper-close-window-hack (&rest _)
      "Close popper window via `C-g'."
      (when (and (called-interactively-p 'interactive)
-            (not (region-active-p))
-            popper-open-popup-alist)
+                (not (region-active-p))
+                popper-open-popup-alist)
        (when-let ((window (caar popper-open-popup-alist))
                   (buffer (cdar popper-open-popup-alist)))
          (when (and (with-current-buffer buffer

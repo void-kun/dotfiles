@@ -11,9 +11,6 @@
 (setq package-enable-at-startup nil)
 (setq site-run-file nil)
 
-;; use plists instead of hash-table
-(setenv "LSP_USE_PLISTS" "true")
-
 ;; increate process output to 1mb intead 4kb
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
@@ -55,7 +52,7 @@
 (setq-default mode-line-format nil)
 
 ;; disable warnings
-(setq warning-minimum-level :emergency)
-(setq byte-compile-warnings '(cl-functions))
+;; (setq warning-minimum-level :emergency)
+;; (setq byte-compile-warnings '(cl-functions))
 
 ;;; early-init.el ends here

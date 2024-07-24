@@ -5,27 +5,44 @@ local vim = vim
 
 
 -- return {
---     "loctvl842/monokai-pro.nvim",
+--     "rose-pine/neovim",
+--     name = "rose-pine",
 --     config = function()
---         require("monokai-pro").setup({
---             -- transparent_background = true,
---             filter = "ristretto",
+--         require("rose-pine").setup({
+--             variant = "dawn",
+--             -- disable_background = true
 --         })
---         vim.cmd [[ colorscheme monokai-pro ]]
+--
+--         vim.cmd [[ colorscheme rose-pine ]]
 --     end
 -- }
 
+
+vim.o.background = "light"
 return {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-        require("rose-pine").setup({
-            variant = "dawn",
-            -- disable_background = true
-        })
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            require('kanagawa').setup({
+                theme = "lotus",     -- Load "wave" theme when 'background' option is not set
+                background = {       -- map the value of 'background' option to a theme
+                    dark = "dragon", -- try "dragon" !
+                    light = "lotus"
+                },
+            })
+            -- vim.cmd("colorscheme kanagawa")
+        end
+    },
+    {
+        "miikanissi/modus-themes.nvim",
+        priority = 1000,
+        config = function()
+            require("modus-themes").setup({
+                -- `default`, `tinted`, `deuteranopia`, and `tritanopia`
+                variant = "tritanopia"
+            })
 
-        vim.cmd [[ colorscheme rose-pine ]]
-    end
-}
-
+            vim.cmd("colorscheme modus")
+        end
+    } }
 --- theme.lua ends here

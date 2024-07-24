@@ -56,6 +56,8 @@
 (require 'lolo-completion)
 (require 'lolo-projectile)
 
+(require 'lolo-openai)
+
 ;; programming
 (require 'lolo-prog)
 (require 'lolo-lisp)

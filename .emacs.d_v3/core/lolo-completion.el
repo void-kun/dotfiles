@@ -365,13 +365,18 @@ If all failed, try to complete the common part with `company-complete-common'"
          (company-complete-common))))))
 
 ;; Add extensions
-(use-package cape
-  :config
-  (setq completion-at-point-functions
-	(list
-	 (cape-company-to-capf
-	  (apply-partially #'company-multi-backend-adapter
-			   '(company-dabbrev company-elisp company-files company-abbrev company-keywords))))))
+(use-package
+ cape
+ :config
+ (setq completion-at-point-functions
+       (list
+        (cape-company-to-capf
+         (apply-partially #'company-multi-backend-adapter
+                          '(company-dabbrev
+                            company-elisp
+                            company-files
+                            company-abbrev
+                            company-keywords))))))
 
 (provide 'lolo-completion)
 ;;; lolo-completion.el ends here

@@ -462,6 +462,16 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
 
 ;;;;;;
 
+;;;;;; Move activate window larger
+(defun lolo/switch-window ()
+  "Switch window and make active window larger."
+  (interactive)
+  (shrink-window-horizontally 45)
+  (ace-window -1)
+  (enlarge-window-horizontally 45))
+
+;;;;;;
+
 ;; ============================================================================
 ;; Utility functions.
 

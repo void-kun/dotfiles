@@ -19,6 +19,9 @@ alias updg="upd && upg"
 alias _cp="xclip -selection clipboard -i"
 alias _ps="xclip -selection clipboard -o"
 
+# go environment 
+source ~/.config/go/env
+
 # pnpm
 export PNPM_HOME="/home/zrik/.local/share/pnpm"
 case ":$PATH:" in

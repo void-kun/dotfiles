@@ -66,7 +66,7 @@ Will only occur if `lolo-whitespace' is also enabled."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-theme 'modus
+(defcustom lolo-theme 'gruber-darker
   "The default color theme."
   :group 'lolo
   :type

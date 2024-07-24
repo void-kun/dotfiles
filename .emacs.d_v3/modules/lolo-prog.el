@@ -5,9 +5,7 @@
 ;;
 ;;; Code:
 
-(use-package
- treesit-auto
- :custom (treesit-auto-install 'prompt))
+(use-package treesit-auto :custom (treesit-auto-install 'prompt))
 
 (with-eval-after-load 'treesit
   (setq major-mode-remap-alist
@@ -86,13 +84,15 @@ Install the doc if it's not installed."
 ;; formatter
 (use-package
  format-all
+ :load-path
+ (lambda () (expand-file-name "site-elisp/format-all" lolo-dir))
  :commands format-all-mode
  :hook (prog-mode . format-all-mode)
  :config
  (setq-default format-all-formatters
                '(("C" (clang-format "-style=file"))
                  ("C++" (clang-format "-style=file"))
-                 ("Go" (gofmt))
+                 ("Go" (gofumpt))
                  ("Rust" (rustfmt))
                  ("Shell" (shfmt "-i" "4" "-ci"))
                  ("TypeScript" (prettier))
@@ -114,15 +114,26 @@ Install the doc if it's not installed."
  eglot
  :commands eglot
  :init (setq eglot-stay-out-of '(flycheck))
- :custom
- (eglot-ignored-server-capabilites '(:documentHighlightProvider))
- (eglot-autoshutdown t)
+ ;; :custom
+ ;; (eglot-ignored-server-capabilites
+ ;;  '(:hoverProvider
+ ;;    :documentHighlightProvider
+ ;;    :documentFormattingProvider
+ ;;    :documentRangeFormattingProvider
+ ;;    :documentOnTypeFormattingProvider
+ ;;    :colorProvider
+ ;;    :foldingRangeProvider))
+ ;; (eglot-stay-out-of '(yasnippet))
+ ;; (eglot-events-buffer-size 0)
+ ;; (eglot-extend-to-xref nil)
+ ;; (eglot-autoshutdown t)
  :hook
  (eglot-managed-mode . eldoc-box-hover-mode)
  (c++-mode . eglot-ensure)
  (c-ts-mode . eglot-ensure)
  (go-ts-mode . eglot-ensure)
  (rustic-mode . eglot-ensure)
+ (python-ts-mode . eglot-ensure)
  (javascript-ts-mode . eglot-ensure))
 
 (with-eval-after-load 'treesit

@@ -7,8 +7,8 @@ program = "/usr/bin/tmux"
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "RobotoMono Nerd Font", style = "Regular" }
+normal = { family = "XD", style = "Medium" }
 bold = { family = "XD", style = "Bold" }
 italic = { family = "XD", style = "Oblique" }
 bold_italic = { family = "XD", style = "Bold Oblique" }
-size = 12.0
+size = 14.0
