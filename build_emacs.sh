@@ -13,7 +13,8 @@ tar -xf emacs-29.4.tar.xz
 cd ./emacs-29.4
 
 ./autogen.sh
-./configure --with-native-compilation=aot --with-cairo --with-xwidgets --with-x-toolkit=gtk3 --with-tree-sitter --with-json --with-threads --with-x --without-mailutils --prefix="/home/zrik/.local/emacs"
+./configure --with-compress-install --with-file-notification --with-gif  --with-gnustep-conf --with-gsettings --with-harfbuzz  --with-included-regex --with-jpeg  --with-json  --with-libotf  --with-libsystemd --with-m17n-flt --with-modules  --with-native-compilation=aot --with-native-image-api --with-png --with-rsvg --with-sqlite3 --with-threads --with-tree-sitter --with-webp --with-wide-int --with-xft --with-xml2  --with-x-toolkit=gtk3 --with-xwidgets --with-zlib --without-gameuser --without-mailhost --without-mailutils --without-sound --without-toolkit-scroll-bars --without-pop --prefix="/home/zrik/.local/emacs"
+
 make -j16
 sudo make install -j16
 

@@ -2,10 +2,10 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="eastwood"
 
 plugins=(git
-		 zsh-syntax-highlighting
-		 zsh-autosuggestions
-		 docker
-		 fzf)
+                 zsh-syntax-highlighting
+                 zsh-autosuggestions
+                 docker
+                 fzf)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.config/scripts/script.zsh
@@ -19,8 +19,11 @@ alias updg="upd && upg"
 alias _cp="xclip -selection clipboard -i"
 alias _ps="xclip -selection clipboard -o"
 
-# go environment 
+# go environment
 source ~/.config/go/env
+
+# flutter environment
+export PATH="/usr/bin/flutter/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="/home/zrik/.local/share/pnpm"

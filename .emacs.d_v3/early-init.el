@@ -52,7 +52,7 @@
 (setq-default mode-line-format nil)
 
 ;; disable warnings
-;; (setq warning-minimum-level :emergency)
-;; (setq byte-compile-warnings '(cl-functions))
+(setq warning-minimum-level :emergency)
+(setq byte-compile-warnings '(cl-functions))
 
 ;;; early-init.el ends here

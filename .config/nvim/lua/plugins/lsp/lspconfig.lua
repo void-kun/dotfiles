@@ -48,6 +48,7 @@ lspconfig.gopls.setup({
     settings = {
         gopls = {
             usePlaceholders = true,
+            gofumpt = true
         }
     }
 })
