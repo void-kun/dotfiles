@@ -56,14 +56,13 @@ Will only occur if `lolo-var-whitespace' is also enabled."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-var-theme 'ef
+(defcustom lolo-var-theme 'modus
   "The default color theme."
   :group 'lolo
   :type
   '(choice
     :tag "Set of themes to load"
     :value
-    modus
     (const :tag "The `gruber-darker-theme' module" gruber-darker)
     (const :tag "The `ef-theme' module" ef)
     (const :tag "The `modus-theme' module" modus)

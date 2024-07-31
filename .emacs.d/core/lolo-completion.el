@@ -65,6 +65,86 @@
   company-box-icons-alist 'company-box-icons-all-the-icons
   all-the-icons-scale-factor 0.8))
 
+(use-package
+ counsel
+ :straight (:build t)
+ :bind
+ (("M-x" . counsel-M-x)
+  ("C-x b" . counsel-ibuffer)
+  ("C-x C-f" . counsel-find-file)
+  :map
+  minibuffer-local-map
+  ("C-r" . 'counsel-minibuffer-history))
+ :config
+ (setq ivy-initial-inputs-alist nil))
+
+(use-package
+ ivy
+ :straight (:build t)
+ :defer t
+ :diminish
+ :bind
+ (("C-s" . swiper)
+  :map
+  ivy-minibuffer-map
+  ("TAB" . ivy-alt-done)
+  ("C-l" . ivy-alt-done)
+  ("C-t" . ivy-next-line)
+  ("C-s" . ivy-previous-line)
+  ("C-u" . ivy-scroll-up-command)
+  ("C-d" . ivy-scroll-down-command)
+  :map
+  ivy-switch-buffer-map
+  ("C-t" . ivy-next-line)
+  ("C-s" . ivy-previous-line)
+  ("C-l" . ivy-done)
+  ("C-d" . ivy-switch-buffer-kill)
+  :map
+  ivy-reverse-i-search-map
+  ("C-t" . ivy-next-line)
+  ("C-s" . ivy-previous-line)
+  ("C-d" . ivy-reverse-i-search-kill))
+ :config (ivy-mode 1)
+ (setq
+  ivy-wrap t
+  ivy-height 17
+  ivy-sort-max-size 50000
+  ivy-fixed-height-minibuffer t
+  ivy-read-action-functions #'ivy-hydra-read-action
+  ivy-read-action-format-function #'ivy-read-action-format-columns
+  projectile-completion-system 'ivy
+  ivy-on-del-error-function #'ignore
+  ivy-initial-inputs-alist nil
+  ivy-use-selectable-prompt t))
+
+(use-package ivy-prescient :after ivy :straight (:build t))
+
+(use-package
+ all-the-icons-ivy
+ :straight (:build t)
+ :after (ivy all-the-icons)
+ :init (all-the-icons-ivy-setup)
+ :hook (after-init . all-the-icons-ivy-setup))
+(all-the-icons-ivy-setup)
+
+(use-package ivy-posframe
+  :defer t
+  :after (:any ivy helpful)
+  :hook (ivy-mode . ivy-posframe-mode)
+  :straight (:build t)
+  :init
+  (ivy-posframe-mode 1)
+  :config
+  (setq ivy-fixed-height-minibuffer nil
+        ivy-posframe-border-width   10
+        ivy-posframe-parameters
+        `((min-width  . 90)
+          (min-height . ,ivy-height))))
+
+(use-package ivy-hydra :requires (ivy hydra) :after ivy :straight (:build t))
+
+(use-package ivy-rich :straight (:build t) :after ivy :init (ivy-rich-mode 1))
+
 ;; ============================================================================
 ;; Support Pinyin
 (use-package
@@ -91,16 +171,6 @@
   (rfn-eshadow-update-overlay . vertico-directory-tidy)))
 
 (use-package
-  vertico-posframe
-  :straight (:build t)
-  :hook (vertico-mode . vertico-posframe-mode)
-  :init
-  (setq
-   vertico-posframe-poshandler
-   #'posframe-poshandler-frame-center-near-bottom
-   vertico-posframe-parameters '((left-fringe . 8) (right-fringe . 8))))
-
-(use-package
  nerd-icons-completion
  :straight (:build t)
  :hook (vertico-mode . nerd-icons-completion-mode))
@@ -108,19 +178,6 @@
 (use-package marginalia :hook (after-init . marginalia-mode))
 
 ;; ============================================================================
-(use-package
- counsel
- :straight (:build t)
- :bind
- (("M-x" . counsel-M-x)
-  ("C-x b" . counsel-ibuffer)
-  ("C-x C-f" . counsel-find-file)
-  :map
-  minibuffer-local-map
-  ("C-r" . 'counsel-minibuffer-history))
- :config
- (setq ivy-initial-inputs-alist nil))
-
 (use-package
  yasnippet
  :defer t

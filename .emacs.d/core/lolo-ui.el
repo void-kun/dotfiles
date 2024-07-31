@@ -231,12 +231,12 @@
  (inhibit-compacting-font-caches t)
  (find-file-visit-truename t)
  :config
-  (custom-set-faces
-   '(mode-line ((t (:family "Terminess Nerd Font" :height 1.0))))
-   '(mode-line-active
-     ((t (:family "Terminess Nerd Font" :height 1.0)))) ; For 29+
-   '(mode-line-inactive
-     ((t (:family "Terminess Nerd Font" :height 1.0))))))
+ (custom-set-faces
+  '(mode-line ((t (:family "Terminess Nerd Font" :height 1.0))))
+  '(mode-line-active
+    ((t (:family "Terminess Nerd Font" :height 1.0)))) ; For 29+
+  '(mode-line-inactive
+    ((t (:family "Terminess Nerd Font" :height 1.0))))))
 
 (use-package
  hide-mode-line
@@ -275,16 +275,16 @@
     (defun my-posframe--prettify-frame (&rest _)
       (set-face-background 'fringe nil posframe--frame))
     (advice-add
-    #'posframe--create-posframe
-    :after #'my-posframe--prettify-frame)
+     #'posframe--create-posframe
+     :after #'my-posframe--prettify-frame)
 
     (defun posframe-poshandler-frame-center-near-bottom (info)
       (cons
-      (/ (- (plist-get info :parent-frame-width)
-            (plist-get info :posframe-width))
+       (/ (- (plist-get info :parent-frame-width)
+             (plist-get info :posframe-width))
           2)
-      (/ (+ (plist-get info :parent-frame-height)
-            (* 2 (plist-get info :font-height)))
+       (/ (+ (plist-get info :parent-frame-height)
+             (* 2 (plist-get info :font-height)))
           2)))))
 
 ;; Enforce rules for popups
@@ -452,14 +452,87 @@
  :init (solaire-global-mode +1))
 
 ;; ============================================================================
-(when lolo-var-theme
-  (require
-   (pcase lolo-var-theme
-     ('gruber-darker 'lolo-gruber-darker-theme)
-     ('ef 'lolo-ef-theme)
-     ('modus 'lolo-modus-theme)
-     ('standard 'lolo-standard-theme))))
-;; (require 'lolo-gruber-darker-theme)
+;; (use-package
+;;  gruber-darker-theme
+;;  :defer t
+;;  :straight (:build t))
+
+;; (use-package
+;;  ef-themes
+;;  :straight (:build t)
+;;  :demand t
+;;  :config
+;;  (setq
+;;   ef-themes-variable-pitch-ui t
+;;   ef-themes-mixed-fonts t
+;;   ef-themes-headings ; read the manual's entry of the doc string
+;;   '((0 . (variable-pitch light 1.9))
+;;     (1 . (variable-pitch light 1.8))
+;;     (2 . (variable-pitch regular 1.7))
+;;     (3 . (variable-pitch regular 1.6))
+;;     (4 . (variable-pitch regular 1.5))
+;;     (5 . (variable-pitch 1.4)) ; absence of weight means `bold'
+;;     (6 . (variable-pitch 1.3))
+;;     (7 . (variable-pitch 1.2))
+;;     (agenda-date . (semilight 1.5))
+;;     (agenda-structure . (variable-pitch light 1.9))
+;;     (t . (variable-pitch 1.1)))))
+
+(use-package
+ modus-themes
+ :defer t
+ :straight (:build t)
+ :config
+ (setq
+  modus-themes-custom-auto-reload nil
+  modus-themes-mixed-fonts t
+  modus-themes-variable-pitch-ui t
+  modus-themes-italic-constructs t
+  modus-themes-bold-constructs nil
+  modus-themes-completions '((t . (extrabold)))
+  modus-themes-prompts '(extrabold)
+  modus-themes-headings
+  '((agenda-structure . (variable-pitch light 2.2))
+    (agenda-date . (variable-pitch regular 1.3))
+    (t . (regular 1.15))))
+ (setq modus-themes-common-palette-overrides nil))
+
+;; (use-package standard-themes
+;;   :defer t
+;;   :straight (:build t)
+;;   :config
+;;   (setq standard-themes-bold-constructs t
+;;         standard-themes-italic-constructs t
+;;         standard-themes-mixed-fonts t
+;;         standard-themes-variable-pitch-ui t
+;;         standard-themes-mode-line-accented nil
+;;         ;; Accepts a symbol value
+;;         standard-themes-fringes 'subtle
+;;         ;; The following accept lists of properties
+;;         standard-themes-links nil
+;;         standard-themes-region nil
+;;         standard-themes-prompts nil
+;;         ;; more complex alist to set weight, height, and optional
+;;         ;; `variable-pitch' per heading level (t is for any level not
+;;         ;; specified)
+;;         standard-themes-headings
+;;         '((0 . (variable-pitch light 1.9))
+;;           (1 . (variable-pitch light 1.8))
+;;           (2 . (variable-pitch light 1.7))
+;;           (3 . (variable-pitch semilight 1.6))
+;;           (4 . (variable-pitch semilight 1.5))
+;;           (5 . (variable-pitch 1.4))
+;;           (6 . (variable-pitch 1.3))
+;;           (7 . (variable-pitch 1.2))
+;;           (agenda-date . (1.3))
+;;           (agenda-structure . (variable-pitch light 1.8))
+;;           (t . (variable-pitch 1.1)))))
+
+(let ((value lolo-var-theme))
+  (cond ((eql value 'gruber-darker) (load-theme 'gruber-darker))
+        ((eql value 'ef) (load-theme 'ef-trio-light))
+        ((eql value 'modus) (load-theme 'modus-operandi-tritanopia))
+        ((eql value 'standard) (load-theme 'standard-light))))
 
 ;; ============================================================================
 (use-package
