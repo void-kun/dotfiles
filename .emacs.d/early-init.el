@@ -1,50 +1,50 @@
-;;; early-init.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;; -*- coding: utf-8; lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
 ;;
 ;;; Code:
 
-(when (or (daemonp)
-          noninteractive)
-  (setq package-enable-at-startup nil))
+(setq package-enable-at-startup nil
+      inhibit-startup-message   t
+      frame-resize-pixelwise    t  ; fine resize
+      package-native-compile    t) ; native compile packages
 
-(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
-      gc-cons-percentage 0.6)
+(scroll-bar-mode -1)               ; disable scrollbar
+(tool-bar-mode -1)                 ; disable toolbar
+(tooltip-mode -1)                  ; disable tooltips
+(set-fringe-mode 10)               ; give some breathing room
+(menu-bar-mode -1)                 ; disable menubar
+(blink-cursor-mode 0)              ; disable blinking cursor
 
-;; Garbage Collector Optimization Hack
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold (* 16 1024 1024) ; 16mb
-                  gc-cons-percentage 0.1)))
+(setq garbage-collection-messages t            ;; tell me when garbage collecting
+      gc-cons-threshold (* 8 1024 1024 1024)) ;; 8GiB of RAM
 
+(defmacro my/time (&rest body)
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))
 
-;; The command-line option ‘-batch’ makes Emacs to run noninteractively.
-;; In noninteractive sessions, prioritize non-byte-compiled source files to
-;; prevent the use of stale byte-code.  Otherwise, skipping the mtime checks
-;; on every *.elc file saves a bit of IO time.
-(setq load-prefer-newer noninteractive)
+(defun my/garbage-collect ()
+  "Garbage collect and tell the user how much time it took."
+  (message "Garbage collector ran for %.06fs"
+           (my/time (garbage-collect))))
 
-;; Contrary to common configurations, this is all that's needed to set UTF-8
-;; as the default coding system:
-(set-language-environment "UTF-8")
+(defvar my/gc-timer nil
+  "Timer for garbage collection. See
+`my/garbage-collect-on-focus-lost'.")
 
-;; `set-language-enviornment' sets `default-input-method', which is unwanted.
-(setq default-input-method nil)
+(defun my/garbage-collect-on-focus-lost ()
+  "Garbage collect when Emacs loses focus.
 
-;; Prevent the glimpse of un-styled Emacs by disabling these UI elements early.
-(setq tool-bar-mode nil)
-(when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil))
+Garbage collection is only triggered thirty seconds after losing
+focus, and only once."
+  (if (frame-focus-state)
+      (when (timerp my/gc-timer)
+       (cancel-timer my/gc-timer))
+    (setq my/gc-timer (run-with-idle-timer 30 nil #'my/garbage-collect))))
 
-;; Currently I use menubar on graphical mode.
-(when (and (not (display-graphic-p)) (fboundp 'menu-bar-mode))
-  (menu-bar-mode -1))
-
-;; Resizing the Emacs frame can be a terribly expensive part of changing the
-;; font.  By inhibiting this, the startup time is significantly reduced,
-;; especially with fonts larger than the system default.
-(setq frame-inhibit-implied-resize t)
+(add-function :after after-focus-change-function #'my/garbage-collect-on-focus-lost)
 
 ;; disable warnings
 (setq warning-minimum-level :emergency)

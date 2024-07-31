@@ -1,4 +1,4 @@
-;;; init.el --- Zrik's Emacs setup.  -*- lexical-binding: t; -*-
+;; -*- coding: utf-8; lexical-binding: t -*-
 ;;
 ;;; Commentary:
 ;;
@@ -6,102 +6,62 @@
 ;;; Code:
 
 ;; ============================================================================
-;; Profiling and Debug.
-(defconst emacs-debug-mode (or (getenv "DEBUG") init-file-debug)
-  "If non-nil, Emacs will be verbose.
-Set DEBUG=1 in the command line or use --debug-init to enable this.")
-
-;; Set the `debug-on-error' variable as per the runtime context:
-;; - Enable debugging on error if Emacs is running in interactive mode, and the
-;;   custom variable `emacs-debug-mode' is true.
-;; - Do not enable debugging on error in non-interactive mode, regardless of the
-;;   `emacs-debug-mode' value.
-(setq-default debug-on-error (and (not noninteractive) emacs-debug-mode))
-
-;; ============================================================================
-;; Measure the current start up time.
-(add-hook
- 'emacs-startup-hook
- #'(lambda ()
-     (message "Emacs ready in %s with %d garbage collections."
-              (format "%.2f seconds"
-                      (float-time
-                       (time-subtract after-init-time before-init-time)))
-              gcs-done)))
-
-;; Define Lolo's directory structure
+;; Define custom location variables
 (defvar lolo-dir (file-name-directory load-file-name)
-  "The root dir of emacs config")
-(defvar lolo-savefile-dir (expand-file-name "savefile" user-emacs-directory)
-  "This folder stores all the automatically generated save/history-files.")
+    "The root dir of emacs config.")
+(defvar lolo-savefile-dir (expand-file-name "savefile" lolo-dir)
+    "This folder stores all the automatically generated save/history files.")
 
 ;; ============================================================================
-;; Load modules.
-(unless (or (daemonp) noninteractive init-file-debug)
-  ;; Suppress file handlers operations at startup
-  ;; `file-name-handler-alist' is consulted on each call to `require' and `load'
-  (let ((o-value file-name-handler-alist))
-    (setq file-name-handler-alist nil)
-    (set-default-toplevel-value
-     'file-name-handler-alist file-name-handler-alist)
-    (add-hook 'emacs-startup-hook
-              (lambda ()
-                "Recover file name handlers."
-                (setq file-name-handler-alist
-                      (delete-dups (append file-name-handler-alist o-value))))
-              101)))
+;; Function load packages
+(defun load-package-dirs (&rest _)
+    "Load emacs configuration directories (`site-elisp', `core', `modules')"
+    (dolist (dir '("site-elisp" "core" "modules"))
+        (push (expand-file-name dir lolo-dir) load-path)))
 
-;; Load path
-(defun update-load-path (&rest _)
-  "Update `load-path'."
-  (dolist (dir '("site-lisp" "core" "modules"))
-    (push (expand-file-name dir lolo-dir) load-path)))
+(defun load-package-subdirs (&rest _)
+    "Load emacs package subdirs (`site-elisp')"
+    (let ((default-directory (expand-file-name "site-elisp" lolo-dir)))
+        (normal-top-level-add-subdirs-to-load-path)))
 
-(defun add-subdirs-to-load-path (&rest _)
-  "Add subdirectories to `load-path'."
-  (let ((default-directory (expand-file-name "site-lisp" lolo-dir)))
-    (normal-top-level-add-subdirs-to-load-path)))
+(advice-add #'package-initialize :after #'load-package-dirs)
+(advice-add #'package-initialize :after #'load-package-subdirs)
+(load-package-dirs)
 
-(advice-add #'package-initialize :after #'update-load-path)
-(advice-add #'package-initialize :after #'add-subdirs-to-load-path)
+;; ============================================================================
+;; Load core packages
+(require 'lolo-customs)
+(require 'lolo-functions)
+(require 'lolo-config)
+(require 'lolo-packages)
+(require 'lolo-keybindings)
 
-(update-load-path)
+;; OS config
+(require 'lolo-linux)
 
-;; Required
-(require 'init-custom)
-(require 'init-funs)
-(require 'init-packages)
-(require 'init-lolo-mode)
-(require 'init-core)
-(require 'init-ui)
+;; Beautiful packages
+(require 'lolo-builtin)
+(require 'lolo-ui)
+(require 'lolo-completion)
+(require 'lolo-applications)
+(require 'lolo-editing)
+(require 'lolo-misc)
+(require 'lolo-terminal)
 
-;; Linux specific settings
-(when (eq system-type 'gnu/linux)
-  (require 'init-linux))
+;; Programming
+(require 'lolo-prog-tool)
+(require 'lolo-dsls)
+(require 'lolo-c)
+(require 'lolo-commonlisp)
+(require 'lolo-emacslisp)
+(require 'lolo-python)
+(require 'lolo-rust)
+(require 'lolo-go)
+(require 'lolo-web)
+(require 'lolo-zig)
 
-;; Modules
-(require 'init-vertico)
-(require 'init-company)
-
-(require 'init-lsp)
-
-(require 'init-c)
-(require 'init-css)
-(require 'init-emacs-lisp)
-(require 'init-js)
-(require 'init-lisp)
-(require 'init-perl)
-(require 'init-shell)
-(require 'init-web)
-(require 'init-xml)
-(require 'init-yaml)
-(require 'init-python)
-(require 'init-rust)
-(require 'init-go)
-
-(require 'init-keybindings)
-;; Load `custom-file'
-(and (file-readable-p custom-file) (load custom-file))
+;; Load core with packages
+(require 'lolo-config-with-packages)
 
 (provide 'init)
 ;;; init.el ends here

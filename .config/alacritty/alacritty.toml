@@ -7,8 +7,10 @@ program = "/usr/bin/tmux"
 padding = { x = 2, y = 2 }
 
 [font]
-normal = { family = "ZedMono Nerd Font", style = "Regular" }
-bold = { family = "ZedMono Nerd Font", style = "Bold" }
-italic = { family = "ZedMono Nerd Font", style = "Oblique" }
-bold_italic = { family = "ZedMono Nerd Font", style = "Bold Oblique" }
+# normal = { family = "ZedMono Nerd Font", style = "Regular" }
+# bold = { family = "ZedMono Nerd Font", style = "Bold" }
+# italic = { family = "ZedMono Nerd Font", style = "Oblique" }
+# bold_italic = { family = "ZedMono Nerd Font", style = "Bold Oblique" }
+# normal = { family = "XD", style = "Medium" }
+normal = { family = "IosevkaLyteTerm", style = "Regular" }
 size = 14.0

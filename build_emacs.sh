@@ -23,6 +23,6 @@ mkdir -p ~/.local/bin/
 ln -s ~/.local/emacs/bin/emacs-29.4 ~/.local/bin/emacs
 ln -s ~/.local/emacs/bin/emacsclient ~/.local/bin/emacsclient
 
-mkdir -p ~/.local/share/applications 
+mkdir -p ~/.local/share/applications
 cp -rf ~/.local/emacs/share/applications/* ~/.local/share/applications/ 
 
