@@ -71,12 +71,8 @@
  :bind
  (("M-x" . counsel-M-x)
   ("C-x b" . counsel-ibuffer)
-  ("C-x C-f" . counsel-find-file)
-  :map
-  minibuffer-local-map
-  ("C-r" . 'counsel-minibuffer-history))
- :config
- (setq ivy-initial-inputs-alist nil))
+  ("C-x C-f" . counsel-find-file))
+ :config (setq ivy-initial-inputs-alist nil))
 
 (use-package
  ivy
@@ -127,19 +123,18 @@
  :hook (after-init . all-the-icons-ivy-setup))
 (all-the-icons-ivy-setup)
 
-(use-package ivy-posframe
-  :defer t
-  :after (:any ivy helpful)
-  :hook (ivy-mode . ivy-posframe-mode)
-  :straight (:build t)
-  :init
-  (ivy-posframe-mode 1)
-  :config
-  (setq ivy-fixed-height-minibuffer nil
-        ivy-posframe-border-width   10
-        ivy-posframe-parameters
-        `((min-width  . 90)
-          (min-height . ,ivy-height))))
+(use-package
+ ivy-posframe
+ :defer t
+ :after (:any ivy helpful)
+ :hook (ivy-mode . ivy-posframe-mode)
+ :straight (:build t)
+ :init (ivy-posframe-mode 1)
+ :config
+ (setq
+  ivy-fixed-height-minibuffer nil
+  ivy-posframe-border-width 10
+  ivy-posframe-parameters `((min-width . 90) (min-height . ,ivy-height))))
 
 (use-package ivy-hydra :requires (ivy hydra) :after ivy :straight (:build t))
 

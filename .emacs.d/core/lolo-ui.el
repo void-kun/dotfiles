@@ -51,8 +51,7 @@
 (use-package
  nerd-icons
  :config
- (when (and (display-graphic-p)
-            (not (font-installed-p nerd-icons-font-family)))
+ (when (and (display-graphic-p) (not (font-installed-p nerd-icons-font-family)))
    (nerd-icons-install-fonts t)))
 
 (defun prog-mode-set-symbols-alist ()
@@ -235,8 +234,7 @@
   '(mode-line ((t (:family "Terminess Nerd Font" :height 1.0))))
   '(mode-line-active
     ((t (:family "Terminess Nerd Font" :height 1.0)))) ; For 29+
-  '(mode-line-inactive
-    ((t (:family "Terminess Nerd Font" :height 1.0))))))
+  '(mode-line-inactive ((t (:family "Terminess Nerd Font" :height 1.0))))))
 
 (use-package
  hide-mode-line
@@ -257,35 +255,36 @@
           (turn-off-hide-mode-line-mode))))))
 
 ;; A minor-mode menu for mode-line
-(use-package minions :straight (:build t) :hook (doom-modeline-mode . minions-mode))
+(use-package
+ minions
+ :straight (:build t)
+ :hook (doom-modeline-mode . minions-mode))
 
 ;; Child frame
 (use-package
-  posframe
-  :straight (:build t)
-  :hook (after-load-theme . posframe-delete-all)
-  :init
-  (defface posframe-border `((t (:inherit region)))
-    "Face used by the `posframe' border."
-    :group 'posframe)
-  (defvar posframe-border-width 2
-    "Default posframe border width.")
-  :config
-  (with-no-warnings
-    (defun my-posframe--prettify-frame (&rest _)
-      (set-face-background 'fringe nil posframe--frame))
-    (advice-add
-     #'posframe--create-posframe
-     :after #'my-posframe--prettify-frame)
+ posframe
+ :straight (:build t)
+ :hook (after-load-theme . posframe-delete-all)
+ :init
+ (defface posframe-border `((t (:inherit region)))
+   "Face used by the `posframe' border."
+   :group 'posframe)
+ (defvar posframe-border-width 2
+   "Default posframe border width.")
+ :config
+ (with-no-warnings
+   (defun my-posframe--prettify-frame (&rest _)
+     (set-face-background 'fringe nil posframe--frame))
+   (advice-add #'posframe--create-posframe :after #'my-posframe--prettify-frame)
 
-    (defun posframe-poshandler-frame-center-near-bottom (info)
-      (cons
-       (/ (- (plist-get info :parent-frame-width)
-             (plist-get info :posframe-width))
-          2)
-       (/ (+ (plist-get info :parent-frame-height)
-             (* 2 (plist-get info :font-height)))
-          2)))))
+   (defun posframe-poshandler-frame-center-near-bottom (info)
+     (cons
+      (/ (- (plist-get info :parent-frame-width)
+            (plist-get info :posframe-width))
+         2)
+      (/ (+ (plist-get info :parent-frame-height)
+            (* 2 (plist-get info :font-height)))
+         2)))))
 
 ;; Enforce rules for popups
 (use-package
@@ -400,8 +399,7 @@
                     'doom-modeline)))
              (if (and (bound-and-true-p doom-modeline-icon)
                       (bound-and-true-p doom-modeline-mode))
-                 (format " %s "
-                         (nerd-icons-octicon "nf-oct-pin" :face face))
+                 (format " %s " (nerd-icons-octicon "nf-oct-pin" :face face))
                (propertize " POP " 'face face))))))
  :config
  (with-no-warnings
@@ -421,10 +419,7 @@
          (when (and (with-current-buffer buffer
                       (not
                        (derived-mode-p
-                        'eshell-mode
-                        'shell-mode
-                        'term-mode
-                        'vterm-mode)))
+                        'eshell-mode 'shell-mode 'term-mode 'vterm-mode)))
                     (window-live-p window))
            (delete-window window)))))
    (advice-add #'keyboard-quit :before #'popper-close-window-hack)))
@@ -452,10 +447,7 @@
  :init (solaire-global-mode +1))
 
 ;; ============================================================================
-;; (use-package
-;;  gruber-darker-theme
-;;  :defer t
-;;  :straight (:build t))
+(use-package gruber-darker-theme :defer t :straight (:build t))
 
 ;; (use-package
 ;;  ef-themes
@@ -478,24 +470,24 @@
 ;;     (agenda-structure . (variable-pitch light 1.9))
 ;;     (t . (variable-pitch 1.1)))))
 
-(use-package
- modus-themes
- :defer t
- :straight (:build t)
- :config
- (setq
-  modus-themes-custom-auto-reload nil
-  modus-themes-mixed-fonts t
-  modus-themes-variable-pitch-ui t
-  modus-themes-italic-constructs t
-  modus-themes-bold-constructs nil
-  modus-themes-completions '((t . (extrabold)))
-  modus-themes-prompts '(extrabold)
-  modus-themes-headings
-  '((agenda-structure . (variable-pitch light 2.2))
-    (agenda-date . (variable-pitch regular 1.3))
-    (t . (regular 1.15))))
- (setq modus-themes-common-palette-overrides nil))
+;; (use-package
+;;  modus-themes
+;;  :defer t
+;;  :straight (:build t)
+;;  :config
+;;  (setq
+;;   modus-themes-custom-auto-reload nil
+;;   modus-themes-mixed-fonts t
+;;   modus-themes-variable-pitch-ui t
+;;   modus-themes-italic-constructs t
+;;   modus-themes-bold-constructs nil
+;;   modus-themes-completions '((t . (extrabold)))
+;;   modus-themes-prompts '(extrabold)
+;;   modus-themes-headings
+;;   '((agenda-structure . (variable-pitch light 2.2))
+;;     (agenda-date . (variable-pitch regular 1.3))
+;;     (t . (regular 1.15))))
+;;  (setq modus-themes-common-palette-overrides nil))
 
 ;; (use-package standard-themes
 ;;   :defer t
@@ -529,10 +521,15 @@
 ;;           (t . (variable-pitch 1.1)))))
 
 (let ((value lolo-var-theme))
-  (cond ((eql value 'gruber-darker) (load-theme 'gruber-darker))
-        ((eql value 'ef) (load-theme 'ef-trio-light))
-        ((eql value 'modus) (load-theme 'modus-operandi-tritanopia))
-        ((eql value 'standard) (load-theme 'standard-light))))
+  (cond
+   ((eql value 'gruber-darker)
+    (load-theme 'gruber-darker :no-confirm))
+   ((eql value 'ef)
+    (load-theme 'ef-trio-light :no-confirm))
+   ((eql value 'modus)
+    (load-theme 'modus-operandi-tritanopia :no-confirm))
+   ((eql value 'standard)
+    (load-theme 'standard-light :no-confirm))))
 
 ;; ============================================================================
 (use-package
