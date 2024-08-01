@@ -32,6 +32,7 @@
 (global-set-key (kbd "C-M-k") 'sp-change-enclosing)
 (global-set-key (kbd "C-]") 'sp-select-next-thing-exchange)
 (global-set-key (kbd "M-<down>") 'recenter-top-bottom)
+(global-set-key (kbd "C-M-s-<return>") 'crux-smart-open-line)
 ;; adjust font size
 (global-set-key (kbd "C-=") 'lolo/zoom-in)
 (global-set-key (kbd "C--") 'lolo/zoom-out)
@@ -50,7 +51,7 @@
 (global-set-key (kbd "C-<backspace>") 'lolo/backward-kill-word)
 (global-set-key (kbd "C-x g") 'magit-status)
 ;; projects
-;; (global-set-key (kbd "C-x p") 'projectile-command-map)
+(global-set-key (kbd "C-x C-p") 'counsel-projectile-switch-project)
 ;; improved window navigation with ace-window
 (global-set-key (kbd "C-w") #'lolo/switch-window)
 (global-set-key [remap other-window] 'ace-window)

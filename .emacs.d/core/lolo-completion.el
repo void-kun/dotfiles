@@ -165,11 +165,6 @@
  ((after-init . vertico-mode)
   (rfn-eshadow-update-overlay . vertico-directory-tidy)))
 
-(use-package
- nerd-icons-completion
- :straight (:build t)
- :hook (vertico-mode . nerd-icons-completion-mode))
-
 (use-package marginalia :hook (after-init . marginalia-mode))
 
 ;; ============================================================================

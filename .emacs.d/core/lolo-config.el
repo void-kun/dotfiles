@@ -26,9 +26,6 @@
 (setq backup-directory-alist
       `((".*" . ,(expand-file-name ".backup" lolo-savefile-dir))))
 
-(setq auto-save-file-name-transforms
-      `((".*" ,(expand-file-name ".autosave" lolo-savefile-dir))))
-
 ;; enable y/n answers
 (setopt use-short-answers t)
 
@@ -122,7 +119,7 @@
 ;; Misc.
 (setq
  undo-limit 100000000
- auto-save-default t)
+ auto-save-default nil)
 
 (setq window-combination-resize t) ; take new window space from all other windows
 

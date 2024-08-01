@@ -48,12 +48,6 @@
 ;; ============================================================================
 (use-package all-the-icons :defer t :straight (:build t))
 
-(use-package
- nerd-icons
- :config
- (when (and (display-graphic-p) (not (font-installed-p nerd-icons-font-family)))
-   (nerd-icons-install-fonts t)))
-
 (defun prog-mode-set-symbols-alist ()
   (setq prettify-symbols-alist '(("lambda" . ?λ)))
   (prettify-symbols-mode 1))
@@ -390,17 +384,6 @@
          rustic-cargo-run-mode
          rustic-cargo-test-mode))
 
- (with-eval-after-load 'doom-modeline
-   (setq popper-mode-line
-         '(:eval
-           (let ((face
-                  (if (doom-modeline--active)
-                      'doom-modeline-emphasis
-                    'doom-modeline)))
-             (if (and (bound-and-true-p doom-modeline-icon)
-                      (bound-and-true-p doom-modeline-mode))
-                 (format " %s " (nerd-icons-octicon "nf-oct-pin" :face face))
-               (propertize " POP " 'face face))))))
  :config
  (with-no-warnings
    (defun my-popper-fit-window-height (win)
@@ -447,7 +430,7 @@
  :init (solaire-global-mode +1))
 
 ;; ============================================================================
-(use-package gruber-darker-theme :defer t :straight (:build t))
+;; (use-package gruber-darker-theme :defer t :straight (:build t))
 
 ;; (use-package
 ;;  ef-themes
@@ -470,24 +453,24 @@
 ;;     (agenda-structure . (variable-pitch light 1.9))
 ;;     (t . (variable-pitch 1.1)))))
 
-;; (use-package
-;;  modus-themes
-;;  :defer t
-;;  :straight (:build t)
-;;  :config
-;;  (setq
-;;   modus-themes-custom-auto-reload nil
-;;   modus-themes-mixed-fonts t
-;;   modus-themes-variable-pitch-ui t
-;;   modus-themes-italic-constructs t
-;;   modus-themes-bold-constructs nil
-;;   modus-themes-completions '((t . (extrabold)))
-;;   modus-themes-prompts '(extrabold)
-;;   modus-themes-headings
-;;   '((agenda-structure . (variable-pitch light 2.2))
-;;     (agenda-date . (variable-pitch regular 1.3))
-;;     (t . (regular 1.15))))
-;;  (setq modus-themes-common-palette-overrides nil))
+(use-package
+ modus-themes
+ :defer t
+ :straight (:build t)
+ :config
+ (setq
+  modus-themes-custom-auto-reload nil
+  modus-themes-mixed-fonts t
+  modus-themes-variable-pitch-ui t
+  modus-themes-italic-constructs t
+  modus-themes-bold-constructs nil
+  modus-themes-completions '((t . (extrabold)))
+  modus-themes-prompts '(extrabold)
+  modus-themes-headings
+  '((agenda-structure . (variable-pitch light 2.2))
+    (agenda-date . (variable-pitch regular 1.3))
+    (t . (regular 1.15))))
+ (setq modus-themes-common-palette-overrides nil))
 
 ;; (use-package standard-themes
 ;;   :defer t

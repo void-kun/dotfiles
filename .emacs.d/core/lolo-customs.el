@@ -56,7 +56,7 @@ Will only occur if `lolo-var-whitespace' is also enabled."
   :group 'lolo
   :type 'boolean)
 
-(defcustom lolo-var-theme 'gruber-darker
+(defcustom lolo-var-theme 'modus
   "The default color theme."
   :group 'lolo
   :type
@@ -76,7 +76,7 @@ Will only occur if `lolo-var-whitespace' is also enabled."
 
 ;; ============================================================================
 ;; Define variables.
-(defvar lolo/default-font-size 179
+(defvar lolo/default-font-size 120
   "Default font size.")
 
 (defvar lolo/default-font-name "IosevkaLyteTerm"
