@@ -11,14 +11,17 @@ local function cmd(command)
 end
 
 -- map for normal mode
-keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+local function keyboard_quit()
+    
+end
+keymap.set("t", "<Esc>", keyboard_quit)
 
 -- remaps ; to act as :
 keymap.set("n", ";", cmd "FineCmdline")
 
 keymap.set("n", "<C-a>", cmd "ggVG")  -- select all
 keymap.set("n", "<leader>w", cmd "w") -- save current file
-keymap.set("n", "<leader>q", cmd "q") -- quit
+-- keymap.set("n", "<leader>q", cmd "q") -- quit
 keymap.set("n", "U", "<C-r>")
 keymap.set({ "n", "v" }, "H", "^")
 keymap.set({ "n", "v" }, "L", "$")
