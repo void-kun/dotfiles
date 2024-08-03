@@ -6,6 +6,7 @@
 ;;; Code:
 
 ;; ============================================================================
+(use-package tree-sitter)
 (use-package treesit
   :defer t
   :straight (:type built-in)
@@ -20,6 +21,7 @@
           tsx-ts-mode
           python-ts-mode
           css-ts-mode
+          go-ts-mode
           yaml-ts-mode) . lsp-deferred)
   :init
   (setq treesit-language-source-alist
@@ -46,7 +48,23 @@
           (toml "https://github.com/tree-sitter/tree-sitter-toml")
           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
           (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-          (yaml "https://github.com/ikatyang/tree-sitter-yaml"))))
+          (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+
+  ;; install all languages above (just run one time, remove after that)
+  ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist)))
+  ;; remap current mode with treesitter mode
+  (setq major-mode-remap-alist
+   '((bash-mode . bash-ts-mode)
+     (c-mode . c-ts-mode)
+     (c++-mode . c++-ts-mode)
+     (html-mode . html-ts-mode)
+     (js2-mode . js-ts-mode)
+     (typescript-mode . typescript-ts-mode)
+     (json-mode . json-ts-mode)
+     (python-mode . python-ts-mode)
+     (css-mode . css-ts-mode)
+     (go-mode . go-ts-mode)
+     (yaml-mode . yaml-ts-mode))))
 
 ;; ============================================================================
 (use-package emacsql-psql
@@ -195,7 +213,7 @@ Spell Commands^^           Add To Dictionary^^              Other
   :custom
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
-  (lsp-idle-delay 0.6)
+  (lsp-idle-delay 0.2)
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-use-plist t)
   :config

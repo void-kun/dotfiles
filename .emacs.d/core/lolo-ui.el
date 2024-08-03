@@ -225,10 +225,10 @@
  (find-file-visit-truename t)
  :config
  (custom-set-faces
-  '(mode-line ((t (:family "Terminess Nerd Font" :height 1.0))))
+  '(mode-line ((t (:family "IosevkaLyteTerm" :height 1.0))))
   '(mode-line-active
-    ((t (:family "Terminess Nerd Font" :height 1.0)))) ; For 29+
-  '(mode-line-inactive ((t (:family "Terminess Nerd Font" :height 1.0))))))
+    ((t (:family "IosevkaLyteTerm" :height 1.0)))) ; For 29+
+  '(mode-line-inactive ((t (:family "IosevkaLyteTerm" :height 1.0))))))
 
 (use-package
  hide-mode-line
@@ -453,24 +453,24 @@
 ;;     (agenda-structure . (variable-pitch light 1.9))
 ;;     (t . (variable-pitch 1.1)))))
 
-(use-package
- modus-themes
- :defer t
- :straight (:build t)
- :config
- (setq
-  modus-themes-custom-auto-reload nil
-  modus-themes-mixed-fonts t
-  modus-themes-variable-pitch-ui t
-  modus-themes-italic-constructs t
-  modus-themes-bold-constructs nil
-  modus-themes-completions '((t . (extrabold)))
-  modus-themes-prompts '(extrabold)
-  modus-themes-headings
-  '((agenda-structure . (variable-pitch light 2.2))
-    (agenda-date . (variable-pitch regular 1.3))
-    (t . (regular 1.15))))
- (setq modus-themes-common-palette-overrides nil))
+;; (use-package
+;;  modus-themes
+;;  :defer t
+;;  :straight (:build t)
+;;  :config
+;;  (setq
+;;   modus-themes-custom-auto-reload nil
+;;   modus-themes-mixed-fonts t
+;;   modus-themes-variable-pitch-ui t
+;;   modus-themes-italic-constructs t
+;;   modus-themes-bold-constructs nil
+;;   modus-themes-completions '((t . (extrabold)))
+;;   modus-themes-prompts '(extrabold)
+;;   modus-themes-headings
+;;   '((agenda-structure . (variable-pitch light 2.2))
+;;     (agenda-date . (variable-pitch regular 1.3))
+;;     (t . (regular 1.15))))
+;;  (setq modus-themes-common-palette-overrides nil))
 
 ;; (use-package standard-themes
 ;;   :defer t
@@ -503,16 +503,11 @@
 ;;           (agenda-structure . (variable-pitch light 1.8))
 ;;           (t . (variable-pitch 1.1)))))
 
-(let ((value lolo-var-theme))
-  (cond
-   ((eql value 'gruber-darker)
-    (load-theme 'gruber-darker :no-confirm))
-   ((eql value 'ef)
-    (load-theme 'ef-trio-light :no-confirm))
-   ((eql value 'modus)
-    (load-theme 'modus-operandi-tritanopia :no-confirm))
-   ((eql value 'standard)
-    (load-theme 'standard-light :no-confirm))))
+(use-package gruvbox-theme
+  :traight (:build t)
+  :defer t)
+
+(load-theme 'gruvbox-dark-medium :no-confirm)
 
 ;; ============================================================================
 (use-package

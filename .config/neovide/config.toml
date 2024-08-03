@@ -1,7 +1,3 @@
 [font]
-# normal = ["ZedMono Nerd Font"]
-# normal = ["RobotoMono Nerd Font"]
-# normal = ["VictorMono Nerd Font"]
-normal = ["XD Medium"]
+normal = ["IosevkaLyteTerm"]
 size = 14.0
-
