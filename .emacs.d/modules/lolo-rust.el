@@ -7,7 +7,6 @@
 
 (use-package rustic
   :defer t
-  :straight (:build t)
   :mode ("\\.rs\\'" . rustic-mode)
   :hook (rustic-mode-local-vars . rustic-setup-lsp)
   :hook (rustic-mode . lsp-deferred)

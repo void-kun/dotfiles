@@ -18,9 +18,29 @@
 (global-set-key (kbd "C-d") nil)
 (global-set-key (kbd "M-<backspace>") nil)
 
+(when (native-comp-available-p)
+  (setq native-comp-async-report-warnings-errors 'silent) ; emacs 28 with native compilation
+  (setq native-compile-prune-cache t)) ; emacs 29
+
 ;; Create savefile folder if not exists
 (unless (file-exists-p lolo-savefile-dir)
   (make-directory lolo-savefile-dir))
+
+(setq default-input-method "greek") ; also check "greek-postfix"
+(setq default-transient-input-method "greek")
+
+;; Enable these
+(mapc
+ (lambda (command) (put command 'disabled nil))
+ '(list-timers narrow-to-region narrow-to-page upcase-region downcase-region))
+
+;; And disable these
+(mapc
+ (lambda (command) (put command 'disabled t))
+ '(eshell project-eshell overwrite-mode iconify-frame diary))
+
+;; Always start with *scratch*
+(setq initial-buffer-choice t)
 
 ;; Move the backup fies to user-emacs-directory/savefile/.backup
 (setq backup-directory-alist

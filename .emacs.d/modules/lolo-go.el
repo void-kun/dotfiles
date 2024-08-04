@@ -7,7 +7,6 @@
 
 (use-package
  go-mode
- :straight (:build t)
  :mode "\\.go\\'"
  :config (add-to-list 'exec-path "~/.go/bin"))
 
@@ -20,7 +19,7 @@
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-ts-mode-hook #'lsp-go-install-save-hooks)
 
-(use-package go-tag :straight (:build t))
+(use-package go-tag)
 
 (provide 'lolo-go)
 ;;; lolo-go.el ends here

@@ -8,6 +8,7 @@ EXIT_SUCCESS_CODE = 0
 EXIT_FAILURE_CODE = 1
 
 
+
 def create_modules_info(module_names: list[str], directory: str) -> list[str]:
     """
     Create a list of module paths

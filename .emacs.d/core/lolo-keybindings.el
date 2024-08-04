@@ -9,7 +9,6 @@
 ;; Display the keys.
 (use-package
  which-key
- :straight (:build t)
  :defer t
  :init (which-key-mode)
  :diminish which-key-mode
@@ -17,7 +16,7 @@
 
 ;; ============================================================================
 ;; Menu creator for keybindings.
-(use-package hydra :straight (:build t) :defer t)
+(use-package hydra :defer t)
 
 ;; ============================================================================
 ;; Manage keybindings.
@@ -51,10 +50,7 @@
 (global-set-key (kbd "C-<backspace>") 'lolo/backward-kill-word)
 (global-set-key (kbd "C-x g") 'magit-status)
 ;; projects
-(global-set-key (kbd "C-x C-p") 'counsel-projectile-switch-project)
-;; improved window navigation with ace-window
-(global-set-key (kbd "C-w") #'lolo/switch-window)
-(global-set-key [remap other-window] 'ace-window)
+(global-set-key (kbd "C-e") 'treemacs)
 
 (provide 'lolo-keybindings)
 ;;; lolo-keybindings.el ends here

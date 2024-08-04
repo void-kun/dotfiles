@@ -5,35 +5,26 @@
 ;;
 ;;; Code:
 
-;; ============================================================================
-;; Add package archives.
-(setq package-user-dir (expand-file-name "elpa" lolo-dir))
+(setq package-vc-register-as-project nil) ; Emacs 30
+(add-hook 'package-menu-mode-hook #'hl-line-mode)
+
+;; Also read: <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>
 (setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("gnu" . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+      '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
 
-(defvar bootstrap-version)
-(defvar comp-deferred-compilation-deny-list ())
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" lolo-dir))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent
-         'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+;; Highest number gets priority (what is not mentioned has priority 0)
+(setq package-archive-priorities
+      '(("gnu-elpa" . 3) ("melpa" . 2) ("nongnu" . 1)))
 
-;; Initialize package contents
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+(setq package-install-upgrade-built-in nil)
 
-(straight-use-package '(use-package :build t))
+(require 'package)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 (setq use-package-always-ensure t)
 
 (provide 'lolo-packages)

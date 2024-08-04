@@ -10,10 +10,9 @@
 (use-package
  exec-path-from-shell
  :defer t
- :straight (:build t)
  :init (exec-path-from-shell-initialize))
 
-(use-package sudo-edit :straight (:build t) :commands (sudo-edit))
+(use-package sudo-edit :commands (sudo-edit))
 
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)

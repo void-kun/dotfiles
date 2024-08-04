@@ -8,21 +8,21 @@
 ;; ============================================================================
 ;; Define custom location variables
 (defvar lolo-dir (file-name-directory load-file-name)
-    "The root dir of emacs config.")
+  "The root dir of emacs config.")
 (defvar lolo-savefile-dir (expand-file-name "savefile" lolo-dir)
-    "This folder stores all the automatically generated save/history files.")
+  "This folder stores all the automatically generated save/history files.")
 
 ;; ============================================================================
 ;; Function load packages
 (defun load-package-dirs (&rest _)
-    "Load emacs configuration directories (`site-elisp', `core', `modules')"
-    (dolist (dir '("site-elisp" "core" "modules"))
-        (push (expand-file-name dir lolo-dir) load-path)))
+  "Load emacs configuration directories (`site-elisp', `core', `modules')"
+  (dolist (dir '("site-elisp" "core" "modules"))
+    (push (expand-file-name dir lolo-dir) load-path)))
 
 (defun load-package-subdirs (&rest _)
-    "Load emacs package subdirs (`site-elisp')"
-    (let ((default-directory (expand-file-name "site-elisp" lolo-dir)))
-        (normal-top-level-add-subdirs-to-load-path)))
+  "Load emacs package subdirs (`site-elisp')"
+  (let ((default-directory (expand-file-name "site-elisp" lolo-dir)))
+    (normal-top-level-add-subdirs-to-load-path)))
 
 (advice-add #'package-initialize :after #'load-package-dirs)
 (advice-add #'package-initialize :after #'load-package-subdirs)
@@ -45,14 +45,12 @@
 (require 'lolo-completion)
 (require 'lolo-applications)
 (require 'lolo-editing)
-(require 'lolo-misc)
 (require 'lolo-terminal)
 
 ;; Programming
 (require 'lolo-prog-tool)
 (require 'lolo-dsls)
 (require 'lolo-c)
-(require 'lolo-commonlisp)
 (require 'lolo-emacslisp)
 (require 'lolo-python)
 (require 'lolo-rust)
@@ -65,3 +63,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+(put 'project-eshell 'disabled nil)

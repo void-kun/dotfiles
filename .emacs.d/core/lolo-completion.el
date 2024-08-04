@@ -8,7 +8,8 @@
 ;; ============================================================================
 (use-package
  recentf
- :straight (:build t :type built-in)
+ :init
+ (setq recentf-max-saved-items nil)
  :custom ((recentf-max-saved-items 2000))
  :config
  (lolo/add-all-to-list
@@ -27,7 +28,6 @@
 ;; ============================================================================
 (use-package
  company
- :straight (:build t)
  :defer t
  :init (global-company-mode)
  :config
@@ -45,17 +45,16 @@
   company-auto-complete-chars nil
   company-dabbrev-other-buffers nil
   company-dabbrev-ignore-case nil
-  company-dabbrev-downcase nil))
+  company-dabbrev-downcase nil)
+ (setq orderless-component-separator "[ &]"))
 
 (use-package
  company-dict
  :after company
- :straight (:build t)
  :config (setq company-dict-dir (expand-file-name "dicts" lolo-dir)))
 
 (use-package
  company-box
- :straight (:build t)
  :after (company all-the-icons)
  :config
  (setq
@@ -66,8 +65,14 @@
   all-the-icons-scale-factor 0.8))
 
 (use-package
+ orderless
+ :ensure t
+ :custom
+ (completion-styles '(orderless basic))
+ (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package
  counsel
- :straight (:build t)
  :bind
  (("M-x" . counsel-M-x)
   ("C-x b" . counsel-ibuffer)
@@ -76,7 +81,6 @@
 
 (use-package
  ivy
- :straight (:build t)
  :defer t
  :diminish
  :bind
@@ -111,13 +115,17 @@
   projectile-completion-system 'ivy
   ivy-on-del-error-function #'ignore
   ivy-initial-inputs-alist nil
-  ivy-use-selectable-prompt t))
+  ivy-use-virtual-buffers t
+  ivy-use-selectable-prompt t)
+ (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
+ (add-to-list
+  'ivy-highlight-functions-alist
+  '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
-(use-package ivy-prescient :after ivy :straight (:build t))
+(use-package ivy-prescient :after ivy :defer t)
 
 (use-package
  all-the-icons-ivy
- :straight (:build t)
  :after (ivy all-the-icons)
  :init (all-the-icons-ivy-setup)
  :hook (after-init . all-the-icons-ivy-setup))
@@ -128,7 +136,6 @@
  :defer t
  :after (:any ivy helpful)
  :hook (ivy-mode . ivy-posframe-mode)
- :straight (:build t)
  :init (ivy-posframe-mode 1)
  :config
  (setq
@@ -136,25 +143,12 @@
   ivy-posframe-border-width 10
   ivy-posframe-parameters `((min-width . 90) (min-height . ,ivy-height))))
 
-(use-package ivy-hydra :requires (ivy hydra) :after ivy :straight (:build t))
+(use-package ivy-hydra :requires (ivy hydra) :after ivy)
 
-(use-package ivy-rich :straight (:build t) :after ivy :init (ivy-rich-mode 1))
-
-;; ============================================================================
-;; Support Pinyin
-(use-package
- pinyinlib
- :straight (:build t)
- :after orderless
- :autoload pinyinlib-build-regexp-string
- :init
- (defun completion--regex-pinyin (str)
-   (orderless-regexp (pinyinlib-build-regexp-string str)))
- (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
+(use-package ivy-rich :after ivy :init)
 
 (use-package
  vertico
- :straight (:build t)
  :bind
  (:map
   vertico-map
@@ -171,19 +165,14 @@
 (use-package
  yasnippet
  :defer t
- :straight (:build t)
- :init
- (use-package yasnippet-snippets :straight (:build t) :after yasnippet)
- (yas-global-mode)
+ :init (use-package yasnippet-snippets :after yasnippet) (yas-global-mode)
  :hook ((prog-mode . yas-minor-mode) (text-mode . yas-minor-mode))
- :bind
- (:map yas-minor-mode-map ("C-c C-n" . yas-expand-from-trigger-key))
+ :bind (:map yas-minor-mode-map ("C-c C-n" . yas-expand-from-trigger-key))
  (:map
   yas-keymap
   (("TAB" . smarter-yas-expand-next-field)
    ([(tab)] . smarter-yas-expand-next-field)))
- :config
- (yas-reload-all)
+ :config (yas-reload-all)
  (defun smarter-yas-expand-next-field ()
    "Try to `yas-expand' then `yas-next-field' at current cursor position."
    (interactive)
@@ -195,9 +184,9 @@
        (ignore-errors
          (yas-next-field))))))
 
-(use-package yasnippet-snippets :defer t :after yasnippet :straight (:build t))
+(use-package yasnippet-snippets :defer t :after yasnippet)
 
-(use-package yatemplate :defer t :after yasnippet :straight (:build t))
+(use-package yatemplate :defer t :after yasnippet)
 
 (provide 'lolo-completion)
 ;;; lolo-completion.el ends here

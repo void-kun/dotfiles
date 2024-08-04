@@ -7,7 +7,7 @@
 
 (use-package
  emmet-mode
- :straight (:build t)
+ 
  :defer t
  :hook
  ((css-mode . emmet-mode)
@@ -17,12 +17,12 @@
   (scss-mode . emmet-mode)
   (web-mode . emmet-mode)))
 
-(use-package impatient-mode :straight (:build t) :defer t)
+(use-package impatient-mode  :defer t)
 
 (use-package
  web-mode
  :defer t
- :straight (:build t)
+ 
  :hook html-mode
  :hook (web-mode . prettier-js-mode)
  :hook (web-mode . lsp-deferred)
@@ -62,17 +62,16 @@
 (use-package
  company-web
  :defer t
- :straight (:build t)
+ 
  :after (emmet-mode web-mode))
 
 ;; ============================================================================
-(use-package astro-ts-mode :straight (:build t) :defer t)
+(use-package astro-ts-mode  :defer t)
 
 ;; ============================================================================
 (use-package
  css-mode
  :defer t
- :straight (:type built-in)
  :hook (css-mode . smartparens-mode)
  :hook (css-mode . lsp-deferred)
  :hook (scss-mode . prettier-js-mode)
@@ -80,7 +79,7 @@
 
 (use-package
  scss-mode
- :straight (:build t)
+ 
  :hook (scss-mode . smartparens-mode)
  :hook (scss-mode . lsp-deferred)
  :hook (scss-mode . prettier-js-mode)
@@ -89,7 +88,7 @@
 
 (use-package
  counsel-css
- :straight (:build t)
+ 
  :defer t
  :init
  (cl-loop
@@ -102,7 +101,6 @@
 
 (use-package
  less-css-mode
- :straight (:type built-in)
  :defer t
  :mode "\\.less\\'"
  :hook (less-css-mode . smartparens-mode)
@@ -113,7 +111,7 @@
 (use-package
  rjsx-mode
  :defer t
- :straight (:build t)
+ 
  :after compile
  :mode "\\.[mc]?jsx?\\'"
  :mode "\\.es6\\'"
@@ -146,7 +144,7 @@
 (use-package
  js2-refactor
  :defer t
- :straight (:build t)
+ 
  :after (js2-mode rjsx-mode)
  :hook (js2-mode . js2-refactor-mode)
  :hook (rjsx-mode . js2-refactor-mode))
@@ -154,7 +152,7 @@
 (use-package
  prettier-js
  :defer t
- :straight (:build t)
+ 
  :after (rjsx-mode web-mode typescript-mode)
  :hook ((rjsx-mode typescript-mode) . prettier-js-mode)
  :config (setq prettier-js-args '("--single-quote" "--jsx-single-quote")))
@@ -163,7 +161,7 @@
 (use-package
  typescript-mode
  :defer t
- :straight (:build t)
+ 
  :hook (typescript-mode . rainbow-delimiters-mode)
  :hook (typescript-tsx-mode . rainbow-delimiters-mode)
  :hook (typescript-mode . lsp-deferred)
@@ -186,7 +184,7 @@
 (use-package
  tide
  :defer t
- :straight (:build t)
+ 
  :hook (tide-mode . tide-hl-identifier-mode)
  :config
  (setq

@@ -7,7 +7,6 @@
 
 (use-package
  cc-mode
- :straight (:type built-in)
  :defer t
  :init
  (put 'c-c++-backend 'safe-local-variable 'symbolp)
@@ -17,13 +16,11 @@
 
 (use-package
  clang-format+
- :straight (:build t)
  :defer t
  :init (add-hook 'c-mode-common-hook #'clang-format+-mode))
 
 (use-package
  modern-cpp-font-lock
- :straight (:build t)
  :defer t
  :hook (c++-mode . modern-c++-font-lock-mode))
 

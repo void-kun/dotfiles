@@ -76,7 +76,7 @@ Will only occur if `lolo-var-whitespace' is also enabled."
 
 ;; ============================================================================
 ;; Define variables.
-(defvar lolo/default-font-size 139
+(defvar lolo/default-font-size 120
   "Default font size.")
 
 (defvar lolo/default-font-name "IosevkaLyteTerm"

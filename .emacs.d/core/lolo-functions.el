@@ -150,35 +150,6 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
   (interactive)
   (save-buffer-as-utf8 'gbk))
 
-;;;;;; Compile emacs
-(defun lolo/byte-compile-elpa ()
-  "Compile packages in elpa directory. Useful if you switch Emacs versions."
-  (interactive)
-  (if (fboundp 'async-byte-recompile-directory)
-      (async-byte-recompile-directory package-user-dir)
-    (byte-recompile-directory package-user-dir 0 t)))
-
-(defun lolo/byte-compile-site-lisp ()
-  "Compile packages in site-lisp directory."
-  (interactive)
-  (let ((dir (locate-user-emacs-file "site-lisp")))
-    (if (fboundp 'async-byte-recompile-directory)
-        (async-byte-recompile-directory dir)
-      (byte-recompile-directory dir 0 t))))
-
-(defun lolo/native-compile-elpa ()
-  "Native-compile packages in elpa directory."
-  (interactive)
-  (if (fboundp 'native-compile-async)
-      (native-compile-async package-user-dir t)))
-
-(defun lolo/native-compile-site-lisp ()
-  "Native compile packages in site-lisp directory."
-  (interactive)
-  (let ((dir (locate-user-emacs-file "site-elisp")))
-    (if (fboundp 'native-compile-async)
-        (native-compile-async dir t))))
-
 (defun lolo/open-marked-files (&optional files)
   "Open all marked FILES in Dired buffer as new Emacs buffers."
   (interactive)
@@ -284,7 +255,7 @@ frame if FRAME is nil, and to 1 if AMT is nil."
   "Switch window and make active window larger."
   (interactive)
   (shrink-window-horizontally 45)
-  (ace-window -1)
+  (other-window)
   (enlarge-window-horizontally 45))
 
 ;; ============================================================================
@@ -314,20 +285,6 @@ APPEND and COMPARE-FN, see `add-to-list'."
   (let (return)
     (dolist (elt elements return)
       (setq return (add-to-list list-var elt append compare-fn)))))
-
-(with-eval-after-load 'hydra
-  (defhydra
-   windows-adjust-size
-   ()
-   "
-             _t_: shrink
-_c_: enlarge              _r_: right
-             _s_: enlarge
-"
-   ("c" enlarge-window-horizontally)
-   ("t" shrink-window)
-   ("s" enlarge-window)
-   ("r" shrink-window-horizontally)))
 
 ;; ============================================================================
 ;; Utility macros.

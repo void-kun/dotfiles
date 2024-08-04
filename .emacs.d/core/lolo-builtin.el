@@ -9,7 +9,6 @@
 ;; Dired
 (use-package
  dirvish
- :straight (:build t)
  :init (dirvish-override-dired-mode)
  :custom
  (dirvish-quick-access-entries
@@ -56,47 +55,13 @@
    image-dired-temp-rotate-image-file
    (funcall lolo/file "temp-rotate-image" image-dired-dir)))
 
-(use-package
- dired-rsync
- :if (executable-find "rsync")
- :defer t
- :straight (:build t))
-
-;; ============================================================================
-(use-package
- tramp
- :straight (tramp :type built-in :build t)
- :config
- (setq
-  tramp-ssh-controlmaster-options nil
-  tramp-verbose 0
-  tramp-auto-save-directory (locate-user-emacs-file "tramp/")
-  tramp-chunksize 2000)
- (add-to-list
-  'backup-directory-alist ; deactivate auto-save with TRAMP
-  (cons tramp-file-name-regexp nil)))
-
-
-(add-to-list
- 'tramp-methods
- '("yadm"
-   (tramp-login-program "yadm")
-   (tramp-login-args (("enter")))
-   (tramp-login-env (("SHELL") ("/bin/sh")))
-   (tramp-remote-shell "/bin/sh")
-   (tramp-remote-shell-args ("-c"))))
-
-(defun lolo/yadm ()
-  "Manage my dotfiles through TRAMP."
-  (interactive)
-  (magit-status "/yadm::"))
+(use-package dired-rsync :if (executable-find "rsync") :defer t)
 
 ;; ============================================================================
 ;; Compile
 (use-package
  compile
  :defer t
- :straight (compile :type built-in)
  :hook (compilation-filter . colorize-compilation-buffer)
  :init (require 'ansi-color)
  (defun colorize-compilation-buffer ()
@@ -108,7 +73,6 @@
 (use-package
  tab-bar
  :defer t
- :straight (:type built-in)
  :custom
  (tab-bar-close-button-show nil)
  (tab-bar-new-button-show nil)
@@ -129,14 +93,10 @@
       (call-interactively #'tab-rename)))))
 
 ;; ============================================================================
-(use-package
- bufler
- :straight (bufler :build t :files (:defaults (:exclude "helm-bufler.el")))
- :defer t)
+(use-package bufler :defer t)
 
 (use-package
  helpful
- :straight (:build t)
  :after (counsel)
  :custom
  (counsel-describe-function-function #'helpful-callable)
@@ -150,7 +110,6 @@
 ;; ============================================================================
 (use-package
  consult
- :straight (:build t)
  :bind
  ( ;; C-c bindings in `mode-specific-map'
   ("C-c M-x" . consult-mode-command)
@@ -259,9 +218,8 @@ value of the selected COLOR."
  (defun consult-colors--web-list nil
    "Return list of CSS colors for `counsult-colors-web'."
    (require 'shr-color)
-   (sort
-    (mapcar #'downcase (mapcar #'car shr-color-html-colors-alist))
-    #'string-lessp))
+   (sort (mapcar #'downcase (mapcar #'car shr-color-html-colors-alist))
+         #'string-lessp))
 
  (defun consult-colors-web (color)
    "Show a list of all CSS colors.\
@@ -287,19 +245,12 @@ value of the selected COLOR."
  (define-key
   consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help))
 
-(use-package
- consult-flyspell
- :straight (:build t)
- :bind ("M-g s" . consult-flyspell))
+(use-package consult-flyspell :bind ("M-g s" . consult-flyspell))
 
-(use-package
- consult-yasnippet
- :straight (:build t)
- :bind ("M-g y" . consult-yasnippet))
+(use-package consult-yasnippet :bind ("M-g y" . consult-yasnippet))
 
 (use-package
  embark
- :straight (:build t)
  :bind
  (("s-." . embark-act)
   ("C-s-." . embark-act)
@@ -370,14 +321,12 @@ targets."
 
 (use-package
  embark-consult
- :straight (:build t)
  :bind (:map minibuffer-mode-map ("C-c C-o" . embark-export))
  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; ============================================================================
 (use-package
  undo-tree
- :straight (:build t)
  :defer t
  :diminish undo-tree-mode
  :custom (undo-tree-visualizer-diff t)
@@ -389,7 +338,6 @@ targets."
 ;; ============================================================================
 (use-package
  color-rg
- :straight nil
  :load-path (lambda () (expand-file-name "site-elisp/color-rg" lolo-dir)))
 
 (provide 'lolo-builtin)

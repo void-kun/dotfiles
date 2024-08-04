@@ -7,7 +7,6 @@
 
 (use-package zig-mode
   :defer t
-  :straight (:build t)
   :after flycheck
   :hook (zig-mode . lsp-deferred)
   :config
